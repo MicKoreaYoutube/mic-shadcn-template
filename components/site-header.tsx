@@ -1,31 +1,8 @@
 'use client'
 
-import { TriangleDownIcon } from "@radix-ui/react-icons"
-import {
-  Cloud,
-  CreditCard,
-  Github,
-  Keyboard,
-  LifeBuoy,
-  LogOut,
-  Mail,
-  MessageSquare,
-  Plus,
-  PlusCircle,
-  Settings,
-  User,
-  UserPlus,
-  Users,
-  Calculator,
-  Calendar,
-  Smile,
-  Menu,
-  Search
-} from "lucide-react"
-
 import Link from "next/link"
 
-import { siteConfig, navDropDownContent } from "@/config/site"
+import { siteConfig } from "@/config/site"
 
 import { useState } from "react"
 
@@ -64,7 +41,7 @@ export function SiteHeader() {
         <MainNav items={siteConfig.mainNav} />
         <div className="hidden flex-1 items-center justify-end space-x-4 md:flex">
           {/* <SearchDialog /> */}
-          <NavDropDown items={navDropDownContent}/>
+          {/* <NavDropDown items={navDropDownContent}/> */}
         </div>
         <div className="flex flex-1 items-center justify-end md:hidden">
           <NavSheet items={siteConfig.mainNav} />

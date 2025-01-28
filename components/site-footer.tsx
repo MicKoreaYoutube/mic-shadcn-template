@@ -13,19 +13,16 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Icons } from "@/components/icons"
 import { ThemeToggle } from "@/components/theme-toggle"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons"
-import { faGithub, faInstagram } from "@fortawesome/free-brands-svg-icons";
+import { faGithub, faInstagram } from "@fortawesome/free-brands-svg-icons"
 
-import { useState } from "react"
 import { useInView } from "react-intersection-observer"
 
 export function SiteFooter() {
 
-  const [isOpen, changeOpenState] = useState(false)
   const [FamilySurviceRef, FamilySurviceRefInView] = useInView({
     threshold: 1
   })
@@ -36,7 +33,7 @@ export function SiteFooter() {
         <div className="md:flex md:justify-between">
           <div className="mb-6 md:mb-0">
             <Link href="/" className="flex items-center space-x-2">
-              <Icons.logo className="h-6 w-6" />
+              로고
               <span className="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">{siteConfig.name}</span>
             </Link>
             <p className="mt-4 max-w-[400px] text-muted-foreground">

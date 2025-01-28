@@ -3,7 +3,7 @@ import Link from "next/link"
 import { Menu } from "lucide-react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faBars } from "@fortawesome/free-solid-svg-icons"
-import { Icons } from "@/components/icons"
+// import { Icons } from "@/components/icons"
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons"
 import { faGithub, faInstagram } from "@fortawesome/free-brands-svg-icons";
 
@@ -21,47 +21,15 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet"
 import { buttonVariants, Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
-  NavigaitionMenuListItem
-} from "@/components/ui/navigation-menu"
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
+import { ScrollArea } from "@/components/ui/scroll-area"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuPortal,
-  DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
 import {
   Accordion,
   AccordionContent,
@@ -94,7 +62,7 @@ export function NavSheet({ items }: NavSheetProps) {
           <SheetHeader>
             <SheetTitle>
               <Link href="/" className="flex flex-row space-x-2">
-                <Icons.logo className="h-6 w-6" />
+                {/* <Icons.logo className="h-6 w-6" /> */}
                 <span className="inline-block font-bold">{siteConfig.name}</span>
               </Link>
             </SheetTitle>
@@ -123,7 +91,7 @@ export function NavSheet({ items }: NavSheetProps) {
                                     <div className="duraition-700 h-full rounded-md transition hover:bg-accent">
                                       <Link className="flex h-full w-full select-none flex-col justify-end rounded-md bg-linear-to-b from-muted/50 to-muted p-4 no-underline outline-hidden focus:shadow-md"
                                         href={`${item.mainLink?.href}`}>
-                                        <Icons.logo className={`h-6 w-6 ${item.mainLink?.logo ? null : "hidden"}`} />
+                                        {/* <Icons.logo className={`h-6 w-6 ${item.mainLink?.logo ? null : "hidden"}`} /> */}
                                         <div className="mb-2 mt-4 text-lg font-medium leading-tight">
                                           {item.mainLink?.title}
                                         </div>

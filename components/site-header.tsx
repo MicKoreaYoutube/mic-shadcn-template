@@ -12,7 +12,7 @@ import { NavSheet } from "@/components/nav-sheet"
 
 export function SiteHeader() {
 
-  const [open, setOpen] = useState(false)
+  // const [open, setOpen] = useState(false)
 
   // let result
   // let arrayResult: string[] = []

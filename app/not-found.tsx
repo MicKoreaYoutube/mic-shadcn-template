@@ -7,7 +7,7 @@ import { Button, buttonVariants } from "@/components/ui/button"
 
 export default function NotFound() {
 
-    const router = useRouter()
+  const router = useRouter()
 
   return (
     <>
@@ -37,7 +37,9 @@ export default function NotFound() {
             <Button
               variant={"outline"}
               rel="noreferrer"
-              onClick={router.back}
+              onClick={()=>{
+                router.back()
+              }}
             >
               Go back to recent page
             </Button>

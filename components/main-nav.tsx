@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import Link from "next/link"
+import Image from "next/image"
 
 import { NavItem } from "@/types/nav"
 import { siteConfig } from "@/config/site"
@@ -20,6 +21,8 @@ import {
 } from "@/components/ui/navigation-menu"
 import { ScrollArea } from "@/components/ui/scroll-area"
 
+import logo from "@/public/logo.svg"
+
 interface MainNavProps {
   items?: NavItem[]
 }
@@ -28,7 +31,7 @@ export function MainNav({ items }: MainNavProps) {
   return (
     <div className="flex gap-6 md:gap-10">
       <Link href="/" className="flex items-center space-x-2">
-        로고
+        <Image src={logo} alt="로고" />
         <span className="inline-block font-bold">{siteConfig.name}</span>
       </Link>
       <div className="hidden md:flex">
@@ -54,7 +57,7 @@ export function MainNav({ items }: MainNavProps) {
                                     <NavigationMenuLink asChild>
                                       <Link className="flex h-full w-full select-none flex-col justify-center rounded-md bg-linear-to-b from-muted/50 to-muted p-4 no-underline outline-hidden focus:shadow-md"
                                         href={`${item.mainLink?.href}`}>
-                                        {/* <Icons.logo className={`h-6 w-6 ${item.mainLink?.logo ? null : "hidden"}`} /> */}
+                                        <Image src={logo} alt="로고" className={`h-6 w-6 ${item.mainLink?.logo ? null : "hidden"}`} />
                                         <div className="mb-2 mt-4 text-lg font-medium leading-tight">
                                           {item.mainLink?.title}
                                         </div>

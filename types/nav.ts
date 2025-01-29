@@ -1,5 +1,5 @@
 export interface NavItem {
-    title: string
+    title?: string
     href?: string
     mainLink?: {
       logo?: boolean

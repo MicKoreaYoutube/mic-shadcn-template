@@ -1,6 +1,7 @@
 'use client';
 
 import Link from "next/link"
+import Image from "next/image"
 
 import { siteConfig } from "@/config/site"
 
@@ -21,6 +22,8 @@ import { faGithub, faInstagram } from "@fortawesome/free-brands-svg-icons"
 
 import { useInView } from "react-intersection-observer"
 
+import logo from "@/public/logo.svg"
+
 export function SiteFooter() {
 
   const [FamilySurviceRef, FamilySurviceRefInView] = useInView({
@@ -33,7 +36,7 @@ export function SiteFooter() {
         <div className="md:flex md:justify-between">
           <div className="mb-6 md:mb-0">
             <Link href="/" className="flex items-center space-x-2">
-              로고
+              <Image src={logo} alt="로고" />
               <span className="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">{siteConfig.name}</span>
             </Link>
             <p className="mt-4 max-w-[400px] text-muted-foreground">

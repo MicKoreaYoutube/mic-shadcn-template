@@ -1,9 +1,8 @@
 import Link from "next/link"
+import Image from "next/image"
 
 import { Menu } from "lucide-react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faBars } from "@fortawesome/free-solid-svg-icons"
-// import { Icons } from "@/components/icons"
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons"
 import { faGithub, faInstagram } from "@fortawesome/free-brands-svg-icons";
 
@@ -12,7 +11,6 @@ import { siteConfig } from "@/config/site"
 
 import {
   Sheet,
-  SheetClose,
   SheetContent,
   SheetDescription,
   SheetHeader,
@@ -40,6 +38,8 @@ import { ThemeToggle } from "@/components/theme-toggle"
 
 import { useInView } from "react-intersection-observer"
 
+import logo from "@/public/logo.svg"
+
 interface NavSheetProps {
   items?: NavItem[]
 }
@@ -62,7 +62,7 @@ export function NavSheet({ items }: NavSheetProps) {
           <SheetHeader>
             <SheetTitle>
               <Link href="/" className="flex flex-row space-x-2">
-                {/* <Icons.logo className="h-6 w-6" /> */}
+                <Image src={logo} alt="로고" />
                 <span className="inline-block font-bold">{siteConfig.name}</span>
               </Link>
             </SheetTitle>
@@ -89,9 +89,9 @@ export function NavSheet({ items }: NavSheetProps) {
                                 {item.mainLink ? (
                                   <li className="h-full">
                                     <div className="duraition-700 h-full rounded-md transition hover:bg-accent">
-                                      <Link className="flex h-full w-full select-none flex-col justify-end rounded-md bg-linear-to-b from-muted/50 to-muted p-4 no-underline outline-hidden focus:shadow-md"
+                                      <Link className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-4 no-underline outline-hidden focus:shadow-md"
                                         href={`${item.mainLink?.href}`}>
-                                        {/* <Icons.logo className={`h-6 w-6 ${item.mainLink?.logo ? null : "hidden"}`} /> */}
+                                        <Image src={logo} alt="로고" className={`h-6 w-6 ${item.mainLink?.logo ? null : "hidden"}`} />
                                         <div className="mb-2 mt-4 text-lg font-medium leading-tight">
                                           {item.mainLink?.title}
                                         </div>

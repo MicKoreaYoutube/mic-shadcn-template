@@ -8,6 +8,8 @@ import { siteConfig } from "@/config/site"
 
 import { buttonVariants } from "@/components/ui/button"
 
+import { cn } from "@/lib/utils"
+
 export default function Page() {
 
   const classToAdd = "animate__fadeIn"
@@ -18,7 +20,7 @@ export default function Page() {
         <section className="container grid items-center gap-6 pb-8 pt-6 md:py-10">
           <div className="flex flex-col items-start gap-2">
             <InView triggerOnce={true} threshold={1}>
-              {({ inView, ref, entry }) => (
+              {({ inView, ref }) => (
                 <h1 className={`font-KBO-Dia-Gothic_bold content animate__animated text-3xl font-extrabold leading-tight tracking-tighter md:text-4xl ${inView ? classToAdd : 'invisible'}`}
                   ref={ref}>
                   Beautifully designed components <br className="hidden sm:inline" />
@@ -55,7 +57,7 @@ export default function Page() {
         <section className="container grid items-center gap-6 pb-8 pt-6 md:py-10">
           <div className="flex flex-col items-start gap-2">
             <InView triggerOnce={true} threshold={1}>
-              {({ inView, ref, entry }) => (
+              {({ inView, ref }) => (
                 <h1 className={`font-KBO-Dia-Gothic_bold content animate__animated text-3xl font-extrabold leading-tight tracking-tighter text-background md:text-4xl ${inView ? classToAdd : 'invisible'}`}
                   ref={ref}>
                   Beautifully designed components <br className="hidden sm:inline" />
@@ -81,7 +83,7 @@ export default function Page() {
               target="_blank"
               rel="noreferrer"
               href={siteConfig.links.micGithub}
-              className={buttonVariants({ variant: "ghost" })}
+              className={cn(buttonVariants(), "border border-muted-foreground")}
             >
               GitHub
             </Link>
@@ -92,7 +94,7 @@ export default function Page() {
         <section className="container grid items-center gap-6 pb-8 pt-6 md:py-10">
           <div className="flex flex-col items-start gap-2">
             <InView triggerOnce={true} threshold={1}>
-              {({ inView, ref, entry }) => (
+              {({ inView, ref }) => (
                 <h1 className={`font-KBO-Dia-Gothic_bold content animate__animated text-3xl font-extrabold leading-tight tracking-tighter md:text-4xl ${inView ? classToAdd : 'invisible'}`}
                   ref={ref}>
                   Beautifully designed components <br className="hidden sm:inline" />
@@ -129,7 +131,7 @@ export default function Page() {
         <section className="container grid items-center gap-6 pb-8 pt-6 md:py-10">
           <div className="flex flex-col items-start gap-2">
             <InView triggerOnce={true} threshold={1}>
-              {({ inView, ref, entry }) => (
+              {({ inView, ref }) => (
                 <h1 className={`font-KBO-Dia-Gothic_bold content animate__animated text-3xl font-extrabold leading-tight tracking-tighter text-background md:text-4xl ${inView ? classToAdd : 'invisible'}`}
                   ref={ref}>
                   Beautifully designed components <br className="hidden sm:inline" />
@@ -155,7 +157,7 @@ export default function Page() {
               target="_blank"
               rel="noreferrer"
               href={siteConfig.links.micGithub}
-              className={buttonVariants({ variant: "ghost" })}
+              className={cn(buttonVariants(), "border border-muted-foreground")}
             >
               GitHub
             </Link>

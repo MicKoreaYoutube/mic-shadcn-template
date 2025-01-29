@@ -55,7 +55,7 @@ export function MainNav({ items }: MainNavProps) {
                                 {item.mainLink ? (
                                   <li className="row-span-3">
                                     <NavigationMenuLink asChild>
-                                      <Link className="flex h-full w-full select-none flex-col justify-center rounded-md bg-linear-to-b from-muted/50 to-muted p-4 no-underline outline-hidden focus:shadow-md"
+                                      <Link className="flex h-full w-full select-none flex-col justify-center rounded-md bg-gradient-to-b from-muted/50 to-muted p-4 no-underline outline-hidden focus:shadow-md"
                                         href={`${item.mainLink?.href}`}>
                                         <Image src={logo} alt="로고" className={`h-6 w-6 ${item.mainLink?.logo ? null : "hidden"}`} />
                                         <div className="mb-2 mt-4 text-lg font-medium leading-tight">

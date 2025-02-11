@@ -77,75 +77,7 @@ const siteConfig = {
     shadcnuiDocs: "https://ui.shadcn.com",
     micInstagram: "https://instagram.com/leejunsibal",
     micGithub: "https://github.com/MicKoreaYoutube/mic-next-template"
-  },
-  docsSidebarContent: [
-    {
-      title: "1번줄",
-      content: [
-        {
-          title: "11번 내용",
-          doc: "<p className='text-2xl'>시발</p>",
-          chapter: ["test1", "test2", "test3"]
-        },
-        {
-          title: "12번 내용",
-        },
-        {
-          title: "13번 내용",
-        }
-      ]
-    },
-    {
-      title: "2번줄",
-      href: true,
-      content: [
-        {
-          title: "21번 내용",
-        },
-        {
-          title: "22번 내용",
-        },
-        {
-          title: "23번 내용",
-        }
-      ]
-    },
-    {
-      title: "3번줄",
-      content: [
-        {
-          title: "31번 내용",
-        },
-        {
-          title: "32번 내용",
-        },
-        {
-          title: "33번 내용",
-          doc: "와 개 좆같다 ㄹㅇ"
-        }
-      ]
-    },
-    {
-      title: "4번줄",
-      href: true,
-      doc: "<div className='h-full bg-red-500 text-2xl font-KBO-Dia-Gothic_bold' id='chapter-test1'>무적 LG!</div>",
-      chapter: ["test1", "test2", "test3"]
-    },
-    {
-      title: "5번줄",
-      content: [
-        {
-          title: "51번 내용",
-        },
-        {
-          title: "52번 내용",
-        },
-        {
-          title: "53번 내용",
-        }
-      ]
-    },
-  ],
+  }
 }
 
 export { siteConfig }
@@ -327,3 +259,126 @@ export const navDropDownContent: dropDownItem = {
     ]
   ]
 }
+
+import { docsSidebarItem } from "@/types/sidebar"
+
+export const docsSidebarContent: docsSidebarItem[] = [
+  {
+    title: "시작하기",
+    isDoc: true,
+    id: "get-started",
+    description: "기본 문서 페이지입니다.",
+    chapterList: [
+      {
+        title: "시작하기 1",
+        content: "시작하기 1입니다."
+      },
+      {
+        title: "시작하기 2",
+        content: "시작하기 2입니다."
+      },
+      {
+        title: "시작하기 3",
+        content: "시작하기 3입니다."
+      },
+    ],
+    subDocList: [
+      {
+        title: "시작하기 하위 페이지 1",
+        description: "시작하기 하위 페이지 1입니다.",
+        chapterList: [
+          {
+            title: "챕터1-1",
+            content: "챕터1-1의 내용"
+          },
+          {
+            title: "챕터1-2",
+            content: "챕터1-2의 내용",
+            subChapterList: [
+              {
+                title: "챕터1-2-1",
+                content: "챕터1-2-1의 내용"
+              },
+              {
+                title: "챕터1-2-2",
+                content: "챕터1-2-2의 내용"
+              },
+              {
+                title: "챕터1-2-3",
+                content: "챕터1-2-3의 내용"
+              },
+            ]
+          },
+          {
+            title: "챕터1-3",
+            content: "챕터1-3의 내용"
+          },
+        ]
+      },
+      {
+        title: "시작하기 하위 페이지 2",
+        description: "시작하기 하위 페이지 2입니다.",
+        chapterList: [
+          {
+            title: "챕터2-1",
+            content: "챕터2-1의 내용"
+          },
+          {
+            title: "챕터2-2",
+            content: "챕터2-2의 내용",
+            subChapterList: [
+              {
+                title: "챕터2-2-1",
+                content: "챕터2-2-1의 내용"
+              },
+              {
+                title: "챕터2-2-2",
+                content: "챕터2-2-2의 내용"
+              },
+              {
+                title: "챕터2-2-3",
+                content: "챕터2-2-3의 내용"
+              },
+            ]
+          },
+          {
+            title: "챕터2-3",
+            content: "챕터2-3의 내용"
+          },
+        ]
+      },
+      {
+        title: "시작하기 하위 페이지 3",
+        description: "시작하기 하위 페이지 3입니다.",
+        chapterList: [
+          {
+            title: "챕터3-1",
+            content: "챕터3-1의 내용"
+          },
+          {
+            title: "챕터3-2",
+            content: "챕터3-2의 내용",
+            subChapterList: [
+              {
+                title: "챕터3-2-1",
+                content: "챕터3-2-1의 내용"
+              },
+              {
+                title: "챕터3-2-2",
+                content: "챕터3-2-2의 내용"
+              },
+              {
+                title: "챕터3-2-3",
+                content: "챕터3-2-3의 내용"
+              },
+            ]
+          },
+          {
+            title: "챕터3-3",
+            content: "챕터3-3의 내용"
+          },
+        ]
+      }
+    ]
+  }
+]

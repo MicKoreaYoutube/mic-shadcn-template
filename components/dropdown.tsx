@@ -43,7 +43,6 @@ interface dropDownProps {
 export function NavDropDown({ items }: dropDownProps) {
 
   const [isLogin, changeLoginState] = useState(true)
-  changeLoginState(true) //development state
 
   library.add(fas, far, fab)
 

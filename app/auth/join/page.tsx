@@ -1,13 +1,10 @@
 "use client"
 
 import Link from "next/link"
-import { useState } from "react"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faCheck } from "@fortawesome/free-solid-svg-icons"
 import { faGoogle, faGithub, faApple } from "@fortawesome/free-brands-svg-icons"
 
-import { siteConfig } from "@/config/site"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"

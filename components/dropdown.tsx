@@ -1,4 +1,4 @@
-'use client'
+"use client"
 
 import { useState } from "react"
 
@@ -33,7 +33,6 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import { far } from '@fortawesome/free-regular-svg-icons'
 import { fab } from '@fortawesome/free-brands-svg-icons'
-import { faRightToBracket } from '@fortawesome/free-solid-svg-icons'
 
 import { dropDownItem } from "@/types/dropdown"
 
@@ -44,6 +43,7 @@ interface dropDownProps {
 export function NavDropDown({ items }: dropDownProps) {
 
   const [isLogin, changeLoginState] = useState(true)
+  changeLoginState(true) //development state
 
   library.add(fas, far, fab)
 

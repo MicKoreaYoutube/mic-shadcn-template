@@ -1,10 +1,6 @@
-'use client'
-
-import Link from "next/link"
+"use client"
 
 import { mainNavContent, navDropDownContent } from "@/config/site"
-
-import { useState } from "react"
 
 import { MainNav } from "@/components/main-nav"
 import { NavDropDown } from "@/components/dropdown"

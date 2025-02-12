@@ -262,7 +262,27 @@ export const navDropDownContent: dropDownItem = {
 
 import { docsItem } from "@/types/sidebar"
 
-export const docsSidebarContent: docsItem[] = [
+export const docsContent: docsItem[] = [
+  {
+    title: "소개",
+    isDoc: true,
+    id: "introduction",
+    description: "MicKoreaYoutube가 제작한 shadcn-ui 템플릿입니다!",
+    chapterList: [
+      {
+        title: "소개 1",
+        content: "소개 1입니다."
+      },
+      {
+        title: "소개 2",
+        content: "소개 2입니다."
+      },
+      {
+        title: "소개 3",
+        content: "소개 3입니다."
+      },
+    ],
+  },
   {
     title: "시작하기",
     isDoc: true,

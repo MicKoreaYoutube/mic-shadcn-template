@@ -1,6 +1,6 @@
 "use client"
 
-import { docsSidebarContent } from "@/config/site"
+import { docsContent } from "@/config/site"
 
 import { Menu } from "lucide-react"
 
@@ -30,12 +30,12 @@ export default function DocsLayout({ children }: DocsLayoutProps) {
             </SheetTrigger>
             <SheetContent side="left">
               <SheetTitle className="font-KBO-Dia-Gothic_bold text-3xl">문서</SheetTitle>
-              <DocsSidebar items={docsSidebarContent} />
+              <DocsSidebar items={docsContent} />
             </SheetContent>
           </Sheet>
         </div>
         <div className="hidden md:inline">
-          <DocsSidebar items={docsSidebarContent} />
+          <DocsSidebar items={docsContent} />
         </div>
         <div className="w-full">{children}</div>
       </div>

@@ -31,14 +31,11 @@ export function DocsSidebar({ items }: docsSidebarInterface) {
     <>
       <ScrollArea className="h-[80vh] w-48">
         <div className="m-8">
-          <div className="py-2">
-            <Link href="/docs" className={`font-KBO-Dia-Gothic_bold my-3 block text-lg ${(decodeURI(pathName) == "/docs") ? "underline underline-offset-4" : "font-bold"}`}>소개</Link>
-          </div>
           {items?.length ? (
             items.map(
               (item, index) => (
                 <div key={index} className="py-2">
-                  <Link href={`${item.isDoc ? `/docs/${item.id ?? item.title}` : "#"}`} className={`font-KBO-Dia-Gothic_bold my-3 block text-lg ${(decodeURI(pathName) == `/docs/${item.id}` || decodeURI(pathName) == `/docs/${item.title}`) ? "underline underline-offset-4" : "font-bold"}`}>{item.title}</Link>
+                  <Link href={`${item.isDoc ? `/docs/${item.id ?? item.title}` : "#"}`} className={`font-KBO-Dia-Gothic_bold my-3 block text-lg ${((decodeURI(pathName) == "/docs" && index == 0) || decodeURI(pathName) == `/docs/${item.id}` || decodeURI(pathName) == `/docs/${item.title}`) ? "underline underline-offset-4" : "font-bold"}`}>{item.title}</Link>
                   {item.subDocList?.length ? (
                     item.subDocList.map(
                       (subDocItem, subDocIndex) => (

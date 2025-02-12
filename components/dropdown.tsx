@@ -65,7 +65,7 @@ export function NavDropDown({ items }: dropDownProps) {
                 </div>
               </button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-56">
+            <DropdownMenuContent className="w-56 font-TheJamsil5Bold">
               <DropdownMenuLabel>{items?.label}</DropdownMenuLabel>
               {items?.content.length ? (
                 <>
@@ -80,19 +80,21 @@ export function NavDropDown({ items }: dropDownProps) {
                                 {itemInItem.semiDropDown ? (
                                   <DropdownMenuSub>
                                     <DropdownMenuSubTrigger>
-                                      {itemInItem.icon ? (
-                                        <FontAwesomeIcon icon={itemInItem.icon} className="mr-2 h-4 w-4" />
-                                      ) : null}
-                                      <span>{itemInItem.title}</span>
+                                      <div>
+                                        {itemInItem.icon ? (
+                                          <FontAwesomeIcon icon={itemInItem.icon} className="mr-2 h-4 w-4" />
+                                        ) : null}
+                                        <span>{itemInItem.title}</span>
+                                      </div>
                                     </DropdownMenuSubTrigger>
                                     <DropdownMenuPortal>
-                                      <DropdownMenuSubContent>
+                                      <DropdownMenuSubContent className="font-TheJamsil5Bold">
                                         {itemInItem.semiDropDown.map((semiDropDownItem, semiDropDownIndex) => (
                                           <div key={semiDropDownIndex}>
                                             <DropdownMenuSeparator className={`${semiDropDownIndex == 0 ? "hidden" : null}`} />
                                             {semiDropDownItem.map((semiDropDownItemInItem, semiDropDownItemInItemIndex) => (
                                               <DropdownMenuItem key={semiDropDownItemInItemIndex}>
-                                                <Link href={`${semiDropDownItemInItem.href ? semiDropDownItemInItem.href : null}`}>
+                                                <Link href={`${semiDropDownItemInItem.href ?? null}`}>
                                                   {semiDropDownItemInItem.icon ? (
                                                     <FontAwesomeIcon icon={semiDropDownItemInItem.icon} className="mr-2 h-4 w-4" />
                                                   ) : null}
@@ -110,7 +112,7 @@ export function NavDropDown({ items }: dropDownProps) {
                                   </DropdownMenuSub>
                                 ) : (
                                   <DropdownMenuItem>
-                                    <Link href={`${itemInItem.href ? itemInItem.href : null}`}>
+                                    <Link href={`${itemInItem.href ?? null}`}>
                                       {itemInItem.icon ? (
                                         <FontAwesomeIcon icon={itemInItem.icon} className="mr-2 h-4 w-4" />
                                       ) : null}

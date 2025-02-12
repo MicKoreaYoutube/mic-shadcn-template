@@ -19,7 +19,7 @@ import {
 } from "@/components/ui/navigation-menu"
 import { ScrollArea } from "@/components/ui/scroll-area"
 
-import logo from "@/public/logo.svg"
+import Logo from "@/public/logo.svg"
 
 interface MainNavProps {
   items?: NavItem[]
@@ -29,7 +29,7 @@ export function MainNav({ items }: MainNavProps) {
   return (
     <div className="flex gap-6 md:gap-10">
       <Link href="/" className="flex items-center space-x-2">
-        <Image src={logo} alt="로고" />
+        <Logo className="h-7 w-7" />
         <span className="inline-block font-bold">{siteConfig.name}</span>
       </Link>
       <div className="hidden md:flex">
@@ -55,7 +55,7 @@ export function MainNav({ items }: MainNavProps) {
                                     <NavigationMenuLink asChild>
                                       <Link className="flex h-full w-full select-none flex-col justify-center rounded-md bg-gradient-to-b from-muted/50 to-muted p-4 no-underline outline-hidden focus:shadow-md"
                                         href={`${item.mainLink?.href}`}>
-                                        <Image src={logo} alt="로고" className={`h-6 w-6 ${item.mainLink?.logo ? null : "hidden"}`} />
+                                        <Logo className={`h-6 w-6 ${item.mainLink?.logo ? null : "hidden"}`} />
                                         <div className="mb-2 mt-4 text-lg font-medium leading-tight">
                                           {item.mainLink?.title}
                                         </div>

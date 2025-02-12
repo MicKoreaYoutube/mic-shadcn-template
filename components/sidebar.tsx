@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 
-import { docsSidebarItem, chapterSidebarItem } from "@/types/sidebar"
+import { docsItem, chapterSidebarItem } from "@/types/sidebar"
 
 // import { SearchDialog } from "@/components/search"
 import {
@@ -23,7 +23,7 @@ import { Link as TargetLink } from "react-scroll"
 // }
 
 interface docsSidebarInterface {
-  items?: docsSidebarItem[]
+  items?: docsItem[]
 }
 
 interface chapterSidebarInterface {
@@ -72,17 +72,36 @@ export function ChapterSidebar({ items }: chapterSidebarInterface) {
           {items?.length ? (
             items.map(
               (item, index) => (
-                <TargetLink
-                  activeClass="font-bold"
-                  key={index}
-                  spy
-                  smooth
-                  isDynamic
-                  to={`chapter-${item.title}`}
-                  offset={-55}
-                  className="font-SUITE-Regular cursor-pointer"
-                  duration={700}
-                >{item.title}</TargetLink>
+                <div key={index}>
+                  <TargetLink
+                    activeClass="font-bold"
+
+                    spy
+                    smooth
+                    isDynamic
+                    to={`chapter-${item.title}`}
+                    offset={-55}
+                    className="font-SUITE-Regular cursor-pointer"
+                    duration={700}
+                  >{item.title}</TargetLink>
+                  <div className="px-3 flex flex-col">
+                    {item?.subChapterList?.length ? (
+                      item?.subChapterList.map((subChapterItem, subChapterIndex) => (
+                        <TargetLink
+                          activeClass="font-bold"
+                          key={subChapterIndex}
+                          spy
+                          smooth
+                          isDynamic
+                          to={`chapter-${subChapterItem.title}`}
+                          offset={-55}
+                          className="font-SUITE-Regular cursor-pointer"
+                          duration={700}
+                        >{subChapterItem.title}</TargetLink>
+                      ))
+                    ) : null}
+                  </div>
+                </div>
               )
             )
           ) : null}

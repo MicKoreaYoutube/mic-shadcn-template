@@ -22,7 +22,7 @@ import { faGithub, faInstagram } from "@fortawesome/free-brands-svg-icons"
 
 import { useInView } from "react-intersection-observer"
 
-import logo from "@/public/logo.svg"
+import Logo from "@/public/logo.svg"
 
 export function SiteFooter() {
 
@@ -36,7 +36,7 @@ export function SiteFooter() {
         <div className="md:flex md:justify-between">
           <div className="mb-6 md:mb-0">
             <Link href="/" className="flex items-center space-x-2">
-              <Image src={logo} alt="로고" />
+              <Logo className="h-7 w-7" />
               <span className="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">{siteConfig.name}</span>
             </Link>
             <p className="mt-4 max-w-[400px] text-muted-foreground">

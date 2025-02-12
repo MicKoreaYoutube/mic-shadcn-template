@@ -1,12 +1,13 @@
 "use client"
 
-import { siteConfig, docsSidebarContent } from "@/config/site"
+import { docsSidebarContent } from "@/config/site"
 
 import { Menu } from "lucide-react"
 
 import { DocsSidebar } from "@/components/sidebar"
 import {
   Sheet,
+  SheetTitle,
   SheetContent,
   SheetTrigger
 } from "@/components/ui/sheet"
@@ -20,7 +21,7 @@ export default function DocsLayout({ children }: DocsLayoutProps) {
   return (
     <>
       <div className="relative flex flex-col md:flex-row">
-        <div className="inline p-5 md:hidden">
+        <div className="inline px-12 pt-8 md:hidden">
           <Sheet>
             <SheetTrigger asChild>
               <Button variant="secondary" size="icon">
@@ -28,6 +29,7 @@ export default function DocsLayout({ children }: DocsLayoutProps) {
               </Button>
             </SheetTrigger>
             <SheetContent side="left">
+              <SheetTitle className="font-KBO-Dia-Gothic_bold text-3xl">문서</SheetTitle>
               <DocsSidebar items={docsSidebarContent} />
             </SheetContent>
           </Sheet>

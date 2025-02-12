@@ -260,9 +260,9 @@ export const navDropDownContent: dropDownItem = {
   ]
 }
 
-import { docsSidebarItem } from "@/types/sidebar"
+import { docsItem } from "@/types/sidebar"
 
-export const docsSidebarContent: docsSidebarItem[] = [
+export const docsSidebarContent: docsItem[] = [
   {
     title: "시작하기",
     isDoc: true,

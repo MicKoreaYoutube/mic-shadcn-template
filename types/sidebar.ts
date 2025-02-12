@@ -1,4 +1,4 @@
-export interface docsSidebarItem {
+export interface docsItem {
   title: string
   isDoc?: boolean
   id?: string
@@ -29,4 +29,8 @@ export interface docsSidebarItem {
 export interface chapterSidebarItem {
   title: string
   content: string
+  subChapterList?: Array<{
+    title: string
+    content: string
+  }>
 }

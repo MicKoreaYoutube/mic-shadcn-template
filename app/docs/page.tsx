@@ -1,24 +1,8 @@
 "use client"
 
-import Link from "next/link"
-
-import { docsSidebarContent } from "@/config/site"
-
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"
-import {
-  Card,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
 import { ChapterSidebar } from "@/components/sidebar"
 
-export default function DocsPage() {
+export default function DocsMainPage() {
 
   const docs_chapter = [
     {

@@ -4,7 +4,7 @@ import Image from "next/image"
 
 import { siteConfig } from "@/config/site"
 
-import logo from "@/public/logo.svg"
+import Logo from "@/public/logo.svg"
 
 interface AuthLayoutProps {
   children: React.ReactNode
@@ -15,10 +15,10 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
     <>
       <div className="flex h-full w-full justify-between lg:h-[94vh]">
         <div className="hidden basis-1/2 flex-col justify-between bg-primary p-12 dark:bg-accent lg:flex">
-          <span className="font-KBO-Dia-Gothic_bold flex text-lg font-medium text-background">
-            <Image src={logo} alt="로고" className="text-background h-7 w-7" />
+          <h3 className="font-KBO-Dia-Gothic_bold flex text-lg font-medium text-background gap-2">
+            <Logo className="text-background h-7 w-7" />
             {siteConfig.name}
-          </span>
+          </h3>
           <span className="font-SUITE-Regular w-54 text-xl text-white">
             {siteConfig.description}
           </span>

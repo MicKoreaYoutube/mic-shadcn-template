@@ -23,6 +23,11 @@ interface chapterSidebarInterface {
   items?: chapterSidebarItem[]
 }
 
+interface ChapterSidebarTargetLinkInterface {
+  to: string
+  children?: string
+}
+
 export function DocsSidebar({ items }: docsSidebarInterface) {
 
   const pathName = usePathname()
@@ -53,44 +58,40 @@ export function DocsSidebar({ items }: docsSidebarInterface) {
   )
 }
 
+function ChapterSidebarTargetLink({ to, children, ...props }: ChapterSidebarTargetLinkInterface) {
+  return (
+    <TargetLink
+      activeClass="font-bold"
+      spy
+      smooth
+      isDynamic
+      to={to}
+      offset={-80}
+      className="font-SUITE-Regular cursor-pointer"
+      duration={700}
+      {...props}
+    >{children}</TargetLink>
+  )
+}
+
 export function ChapterSidebar({ items }: chapterSidebarInterface) {
   return (
     <div className="w-32">
       <div className="fixed w-full py-6">
         <h1 className="font-KBO-Dia-Gothic_bold font-bold">Chapter</h1>
-        <div className="flex flex-col">
+        <div className="grid gap-1">
           {items?.length ? (
             items.map(
               (item, index) => (
                 <div key={index}>
-                  <TargetLink
-                    activeClass="font-bold"
-
-                    spy
-                    smooth
-                    isDynamic
-                    to={`chapter-${item.title}`}
-                    offset={-55}
-                    className="font-SUITE-Regular cursor-pointer"
-                    duration={700}
-                  >{item.title}</TargetLink>
-                  <div className="px-3 flex flex-col">
-                    {item?.subChapterList?.length ? (
-                      item?.subChapterList.map((subChapterItem, subChapterIndex) => (
-                        <TargetLink
-                          activeClass="font-bold"
-                          key={subChapterIndex}
-                          spy
-                          smooth
-                          isDynamic
-                          to={`chapter-${subChapterItem.title}`}
-                          offset={-55}
-                          className="font-SUITE-Regular cursor-pointer"
-                          duration={700}
-                        >{subChapterItem.title}</TargetLink>
-                      ))
-                    ) : null}
-                  </div>
+                  <ChapterSidebarTargetLink to={`chapter-${item.title}`}>{item.title}</ChapterSidebarTargetLink>
+                  {item?.subChapterList?.length ? (
+                    <div className="px-3 grid gap-1 pt-1">
+                      {item?.subChapterList.map((subChapterItem, subChapterIndex) => (
+                        <ChapterSidebarTargetLink to={`chapter-${subChapterItem.title}`} key={subChapterIndex}>{subChapterItem.title}</ChapterSidebarTargetLink>
+                      ))}
+                    </div>
+                  ) : null}
                 </div>
               )
             )

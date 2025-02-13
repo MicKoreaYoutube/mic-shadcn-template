@@ -9,6 +9,6 @@ export default function DocsTitlePage() {
   const params = useParams<{ doc: string, subDoc: string }>()
 
   return (
-    <DocsPage doc={params.doc} subDoc={params.subDoc} />
+    <DocsPage doc={decodeURI(params.doc)} subDoc={decodeURI(params.subDoc)} />
   )
 }

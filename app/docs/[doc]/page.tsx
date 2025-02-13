@@ -9,6 +9,6 @@ export default function DocsSubjectPage() {
   const params = useParams<{ doc: string }>()
 
   return (
-    <DocsPage doc={params.doc} />
+    <DocsPage doc={decodeURI(params.doc)} />
   )
 }

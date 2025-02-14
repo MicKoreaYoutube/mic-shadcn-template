@@ -26,39 +26,60 @@ interface docsPageInterface {
   subDoc?: string
 }
 
+interface prevNextDocFounderInterface {
+  docIndex: number
+  subDocIndex?: number
+}
+
 interface docsIndicatorInterface {
-  docs?: docsItem | null
+  docCoordinate: {
+    docIndex: number | null
+    subDocIndex: number | null
+  }
   type: "prev" | "next"
 }
 
-function DocsIndicator({ docs, type }: docsIndicatorInterface) {
-  return (
-    <>
-      {docs ? (
-        <Link href={"#"}>
-          <Card className={cn("shadow-md transition-all hover:-translate-y-2 hover:shadow-lg", type == "prev" ? "text-right" : "text-left")}>
-            <CardHeader className={cn("flex flex-row justify-between gap-3", type == "prev" ? "flex-row-reverse" : null)}>
-              <div className="flex flex-col">
-                <CardTitle className="font-KBO-Dia-Gothic_bold">
-                  {docs?.title.slice(0, 8)}...
-                </CardTitle>
-                <CardDescription className="font-SUITE-Regular">
-                  {docs?.description?.slice(0, 15)}...
-                </CardDescription>
-              </div>
+function DocsIndicator({ docCoordinate, type }: docsIndicatorInterface) {
+
+  const docIndex = docCoordinate.docIndex
+  const subDocIndex = docCoordinate.subDocIndex
+
+  if (docIndex != null) {
+    let doc = docsContent[docIndex]
+    if (doc.subDocList && subDocIndex != null) {
+      doc = doc.subDocList[subDocIndex]
+    }
+
+    return (
+      <>
+        {doc ? (
+          <Link href={`/docs/${docsContent[docIndex].id ?? docsContent[docIndex].title}/${docsContent[docIndex].subDocList && subDocIndex != null ? (docsContent[docIndex].subDocList[subDocIndex].id ?? docsContent[docIndex].subDocList[subDocIndex].title) : ""}`}>
+            <Card className={cn("shadow-md transition-all hover:-translate-y-2 hover:shadow-lg", type == "prev" ? "text-right" : "text-left")}>
+              <CardHeader className={cn("flex flex-row justify-between gap-3", type == "prev" ? "flex-row-reverse" : null)}>
+                <div className="flex flex-col">
+                  <CardTitle className="font-KBO-Dia-Gothic_bold">
+                    {doc?.title.slice(0, 8)}...
+                  </CardTitle>
+                  <CardDescription className="font-SUITE-Regular">
+                    {doc?.description?.slice(0, 15)}...
+                  </CardDescription>
+                </div>
                 {type == "prev" ? (
                   <CircleArrowLeft className="size-9 my-auto" />
                 ) : (
                   <CircleArrowRight className="size-9 my-auto" />
                 )}
-            </CardHeader>
-          </Card>
-        </Link>
-      ) : (
-        <div className="invisible" />
-      )}
-    </>
-  )
+              </CardHeader>
+            </Card>
+          </Link>
+        ) : (
+          <div className="invisible" />
+        )}
+      </>
+    )
+  } else {
+    return null
+  }
 }
 
 export function DocsPage({ doc, subDoc }: docsPageInterface) {
@@ -76,44 +97,59 @@ export function DocsPage({ doc, subDoc }: docsPageInterface) {
     setDoc(document)
   }, [doc, subDoc])
 
-  function fillterDoc(docs: docsItem[]) {
-    const result: docsItem[] = []
-
-    docs.forEach(doc => {
-      if (doc.isDoc && doc.description) {
-        result.push(doc)
-      }
-
-      if (doc.subDocList) {
-        doc.subDocList.forEach(subDoc => {
-          result.push(subDoc)
-        })
-      }
-    })
-
-    return result
+  const docIndex = docsContent.findIndex(obj => obj.id == doc || obj.title == doc)
+  let subDocIndex: number | undefined
+  if (subDoc && docsContent[docIndex].subDocList) {
+    subDocIndex = docsContent[docIndex].subDocList.findIndex(obj => obj.id == subDoc || obj.title == subDoc)
   }
 
-  const fillteredDoc = fillterDoc(docsContent)
-  const docIndex = fillteredDoc.findIndex(obj => obj == foundDoc)
-
-  function findPrevDoc() {
-    if (docIndex > 0) {
-      return fillteredDoc[docIndex - 1]
-    } else {
-      return null
+  function findPrevDoc({ docIndex, subDocIndex }: prevNextDocFounderInterface) {
+    const prevDocSubDocList = docsContent[docIndex - 1]?.subDocList
+    if (subDocIndex && subDocIndex > 0) { //일반적인 경우
+      return { docIndex: docIndex, subDocIndex: subDocIndex - 1 }
+    } else if (docIndex == 0) { //첫 문서
+      return { docIndex: null, subDocIndex: null }
+    } else if (subDocIndex == 0) { //첫 하위 문서
+      if (docsContent[docIndex].isDoc) {  //상위 문서 존재하면
+        return { docIndex: docIndex, subDocIndex: null }
+      } else {
+        if (prevDocSubDocList) {
+          return { docIndex: docIndex - 1, subDocIndex: prevDocSubDocList.length - 1 }
+        } else {
+          return { docIndex: docIndex - 1, subDocIndex: null }
+        }
+      }
+    } else { //상위 문서
+      if (prevDocSubDocList) {
+        return { docIndex: docIndex - 1, subDocIndex: prevDocSubDocList.length - 1 }
+      } else {
+        return { docIndex: docIndex - 1, subDocIndex: null }
+      }
     }
   }
 
-  function findNextDoc() {
-    if (docIndex < fillteredDoc.length - 1) {
-      return fillteredDoc[docIndex + 1]
-    } else {
-      return null
+  function findNextDoc({ docIndex, subDocIndex }: prevNextDocFounderInterface) {
+    const CurrentDocSubDocList = docsContent[docIndex].subDocList
+    if (subDocIndex !== null && subDocIndex !== undefined && CurrentDocSubDocList && subDocIndex < CurrentDocSubDocList.length - 1) { //일반적인 경우
+      return { docIndex: docIndex, subDocIndex: subDocIndex + 1 }
+    } else if ((CurrentDocSubDocList && subDocIndex == CurrentDocSubDocList.length - 1) || !CurrentDocSubDocList) { //마지막 하위 문서 혹은 단일 상위 문서
+      if (docIndex == docsContent.length - 1) { //마지막 문서
+        return { docIndex: null, subDocIndex: null }
+      } else {
+        if (docsContent[docIndex + 1].isDoc) { //다음 상위 문서 존재
+          return { docIndex: docIndex + 1, subDocIndex: null }
+        } else {
+          return { docIndex: docIndex + 1, subDocIndex: 0 }
+        }
+      }
+    } else { //상위 문서 없음
+      return { docIndex: docIndex, subDocIndex: 0 }
     }
   }
 
-  console.log(findPrevDoc(), findNextDoc())
+  useEffect(()=>{
+    console.log(findPrevDoc({ docIndex: docIndex, subDocIndex: subDocIndex }), findNextDoc({ docIndex: docIndex, subDocIndex: subDocIndex }))
+  }, [])
 
   return (
     <div className="flex flex-row justify-between">
@@ -147,8 +183,8 @@ export function DocsPage({ doc, subDoc }: docsPageInterface) {
           ) : null}
         </div>
         <div className="flex flex-col lg:flex-row justify-between gap-7 py-4">
-          <DocsIndicator docs={findPrevDoc()} type="prev" />
-          <DocsIndicator docs={findNextDoc()} type="next" />
+          <DocsIndicator docCoordinate={findPrevDoc({ docIndex: docIndex, subDocIndex: subDocIndex })} type="prev" />
+          <DocsIndicator docCoordinate={findNextDoc({ docIndex: docIndex, subDocIndex: subDocIndex })} type="next" />
         </div>
       </div>
       <div className="hidden md:inline">

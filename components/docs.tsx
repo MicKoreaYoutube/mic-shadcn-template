@@ -6,6 +6,8 @@ import { useState, useEffect } from "react"
 
 import { CircleArrowLeft, CircleArrowRight } from "lucide-react"
 
+import ReactMarkdown from "react-markdown"
+
 import { docsContent } from "@/config/site"
 
 import { ChapterSidebar } from "@/components/sidebar"
@@ -17,6 +19,14 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb"
 
 import { docsItem } from "@/types/sidebar"
 import { cn } from "@/lib/utils"
@@ -147,13 +157,32 @@ export function DocsPage({ doc, subDoc }: docsPageInterface) {
     }
   }
 
-  useEffect(()=>{
-    console.log(findPrevDoc({ docIndex: docIndex, subDocIndex: subDocIndex }), findNextDoc({ docIndex: docIndex, subDocIndex: subDocIndex }))
-  }, [])
-
   return (
     <div className="flex flex-row justify-between">
-      <div className="w-full justify-self-stretch p-12">
+      <div className="w-full justify-self-stretch px-12 py-9">
+        <Breadcrumb className="font-SUITE-Regular">
+          <BreadcrumbList className="text-md">
+            <BreadcrumbItem>
+              <BreadcrumbLink href="/docs">docs</BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              {subDoc ? (
+                <BreadcrumbLink href={`/docs/${doc}`}>{doc}</BreadcrumbLink>
+              ) : (
+                <BreadcrumbPage>{doc}</BreadcrumbPage>
+              )}
+            </BreadcrumbItem>
+            {subDoc ? (
+              <>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbPage>{subDoc}</BreadcrumbPage>
+                </BreadcrumbItem>
+              </>
+            ) : null}
+          </BreadcrumbList>
+        </Breadcrumb>
         <div className="grid gap-2 py-4">
           <h1 className="font-KBO-Dia-Gothic_bold text-6xl">{foundDoc?.title}</h1>
           <span className="font-SUITE-Regular text-2xl">{foundDoc?.description}</span>
@@ -164,16 +193,24 @@ export function DocsPage({ doc, subDoc }: docsPageInterface) {
             foundDoc.chapterList.map((chapterItem, chapterIndex) => (
               <div key={chapterIndex} className="grid gap-6 py-4">
                 <div className="grid gap-2">
-                  <h1 className="font-KBO-Dia-Gothic_bold text-4xl" id={`chapter-${chapterItem.title}`}>{chapterItem.title}</h1>
+                  <h2 className="font-KBO-Dia-Gothic_bold text-4xl" id={`chapter-${chapterItem.title}`}>{chapterItem.title}</h2>
                   <hr />
                 </div>
-                <p className="font-SUITE-Regular text-lg">{chapterItem.content}</p>
+                <div className="font-SUITE-Regular text-lg">
+                  <ReactMarkdown>
+                    {chapterItem.content}
+                  </ReactMarkdown>
+                </div>
                 {chapterItem?.subChapterList?.length ? (
                   <div className="py-6 grid gap-12">
                     {chapterItem.subChapterList.map((subChapterItem, subChapterIndex) => (
                       <div key={subChapterIndex} className="grid gap-3">
-                        <h1 className="font-KBO-Dia-Gothic_bold text-3xl" id={`chapter-${subChapterItem.title}`}>{subChapterItem.title}</h1>
-                        <p className="font-SUITE-Regular text-md">{subChapterItem.content}</p>
+                        <h3 className="font-KBO-Dia-Gothic_bold text-3xl" id={`chapter-${subChapterItem.title}`}>{subChapterItem.title}</h3>
+                        <div className="font-SUITE-Regular text-md">
+                          <ReactMarkdown>
+                            {subChapterItem.content}
+                          </ReactMarkdown>
+                        </div>
                       </div>
                     ))}
                   </div>

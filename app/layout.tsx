@@ -33,11 +33,7 @@ export const viewport: Viewport = {
   ],
 }
 
-interface RootLayoutProps {
-  children: React.ReactNode
-}
-
-export default function RootLayout({ children }: RootLayoutProps) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
 
   // library.add(fas, far, fab)
 

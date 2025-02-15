@@ -1,10 +1,10 @@
 "use client"
 
-import { useParams, notFound } from "next/navigation"
+import { useParams } from "next/navigation"
 
 import { DocsPage } from "@/components/docs"
 
-export default function DocsTitlePage() {
+export default function DocsSubDocPage() {
 
   const params = useParams<{ doc: string, subDoc: string }>()
 

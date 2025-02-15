@@ -6,6 +6,17 @@ import { docsItem, chapterSidebarItem } from "@/types/sidebar"
 
 // import { SearchDialog } from "@/components/search"
 import { ScrollArea } from "@/components/ui/scroll-area"
+import { Calendar, Home, Inbox, Search, Settings } from "lucide-react"
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+} from "@/components/ui/sidebar"
 
 import { usePathname } from "next/navigation"
 
@@ -26,6 +37,61 @@ interface chapterSidebarInterface {
 interface ChapterSidebarTargetLinkInterface {
   to: string
   children?: string
+}
+
+export function DashbaordSidebar() {
+
+  const items = [
+    {
+      title: "Home",
+      url: "#",
+      icon: Home,
+    },
+    {
+      title: "Inbox",
+      url: "#",
+      icon: Inbox,
+    },
+    {
+      title: "Calendar",
+      url: "#",
+      icon: Calendar,
+    },
+    {
+      title: "Search",
+      url: "#",
+      icon: Search,
+    },
+    {
+      title: "Settings",
+      url: "#",
+      icon: Settings,
+    },
+  ]
+
+  return (
+    <Sidebar>
+      <SidebarContent>
+        <SidebarGroup>
+          <SidebarGroupLabel>Application</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {items.map((item) => (
+                <SidebarMenuItem key={item.title}>
+                  <SidebarMenuButton asChild>
+                    <a href={item.url}>
+                      <item.icon />
+                      <span>{item.title}</span>
+                    </a>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+      </SidebarContent>
+    </Sidebar>
+  )
 }
 
 export function DocsSidebar({ items }: docsSidebarInterface) {
@@ -66,7 +132,7 @@ function ChapterSidebarTargetLink({ to, children, ...props }: ChapterSidebarTarg
       smooth
       isDynamic
       to={to}
-      offset={-80}
+      offset={-70}
       className="font-SUITE-Regular cursor-pointer"
       duration={700}
       {...props}
@@ -77,7 +143,7 @@ function ChapterSidebarTargetLink({ to, children, ...props }: ChapterSidebarTarg
 export function ChapterSidebar({ items }: chapterSidebarInterface) {
   return (
     <div className="w-32">
-      <div className="fixed w-full py-6">
+      <div className="fixed py-10">
         <h1 className="font-KBO-Dia-Gothic_bold font-bold">Chapter</h1>
         <div className="grid gap-1">
           {items?.length ? (

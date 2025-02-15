@@ -4,11 +4,7 @@ import { siteConfig } from "@/config/site"
 
 import Logo from "@/public/logo.svg"
 
-interface AuthLayoutProps {
-  children: React.ReactNode
-}
-
-export default function AuthLayout({ children }: AuthLayoutProps) {
+export default function AuthLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <div className="flex h-full w-full justify-between lg:h-[94vh]">

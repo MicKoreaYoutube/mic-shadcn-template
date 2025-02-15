@@ -4,7 +4,7 @@ import { useParams } from "next/navigation"
 
 import { DocsPage } from "@/components/docs"
 
-export default function DocsSubjectPage() {
+export default function DocsDocPage() {
 
   const params = useParams<{ doc: string }>()
 

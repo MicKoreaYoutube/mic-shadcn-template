@@ -6,9 +6,10 @@ import { docsItem, chapterSidebarItem } from "@/types/sidebar"
 
 // import { SearchDialog } from "@/components/search"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react"
+import { Calendar, Home, Inbox, Search, Settings, ChevronDown } from "lucide-react"
 import {
   Sidebar,
+  SidebarHeader,
   SidebarContent,
   SidebarGroup,
   SidebarGroupContent,
@@ -17,6 +18,12 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
+import { 
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem
+ } from "@/components/ui/dropdown-menu"
 
 import { usePathname } from "next/navigation"
 
@@ -70,7 +77,29 @@ export function DashbaordSidebar() {
   ]
 
   return (
-    <Sidebar>
+    <Sidebar collapsible="icon">
+      <SidebarHeader>
+    <SidebarMenu>
+      <SidebarMenuItem>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <SidebarMenuButton>
+              Select Workspace
+              <ChevronDown className="ml-auto" />
+            </SidebarMenuButton>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="w-[--radix-popper-anchor-width]">
+            <DropdownMenuItem>
+              <span>Acme Inc</span>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <span>Acme Corp.</span>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </SidebarMenuItem>
+    </SidebarMenu>
+  </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel>Application</SidebarGroupLabel>

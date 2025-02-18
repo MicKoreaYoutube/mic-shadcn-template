@@ -101,7 +101,7 @@ export function DocsPage({ doc, subDoc }: docsPageInterface) {
     if (subDoc) {
       document = document?.subDocList?.find(obj => obj.id == subDoc || obj.title == subDoc)
     }
-    if (document == undefined || document == null) {
+    if (document == undefined || document == null || (document.subDocList && !document.isDoc)) {
       notFound()
     }
     setDoc(document)
@@ -167,7 +167,7 @@ export function DocsPage({ doc, subDoc }: docsPageInterface) {
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              {subDoc ? (
+              {subDoc && docsContent[docIndex].isDoc ? (
                 <BreadcrumbLink href={`/docs/${doc}`}>{doc}</BreadcrumbLink>
               ) : (
                 <BreadcrumbPage>{doc}</BreadcrumbPage>

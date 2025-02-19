@@ -18,12 +18,17 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { 
+import {
   DropdownMenu,
   DropdownMenuTrigger,
   DropdownMenuContent,
   DropdownMenuItem
- } from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu"
+import { 
+  Collapsible,
+  CollapsibleTrigger,
+  CollapsibleContent
+} from "@/components/ui/collapsible"
 
 import { usePathname } from "next/navigation"
 
@@ -79,27 +84,27 @@ export function DashbaordSidebar() {
   return (
     <Sidebar collapsible="icon">
       <SidebarHeader>
-    <SidebarMenu>
-      <SidebarMenuItem>
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <SidebarMenuButton>
-              Select Workspace
-              <ChevronDown className="ml-auto" />
-            </SidebarMenuButton>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-[--radix-popper-anchor-width]">
-            <DropdownMenuItem>
-              <span>Acme Inc</span>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <span>Acme Corp.</span>
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      </SidebarMenuItem>
-    </SidebarMenu>
-  </SidebarHeader>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <SidebarMenuButton>
+                  Select Workspace
+                  <ChevronDown className="ml-auto" />
+                </SidebarMenuButton>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-[--radix-popper-anchor-width]">
+                <DropdownMenuItem>
+                  <span>Acme Inc</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <span>Acme Corp.</span>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel>Application</SidebarGroupLabel>
@@ -118,6 +123,19 @@ export function DashbaordSidebar() {
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
+        <Collapsible defaultOpen className="group/collapsible">
+          <SidebarGroup>
+            <SidebarGroupLabel asChild>
+              <CollapsibleTrigger>
+                Help
+                <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
+              </CollapsibleTrigger>
+            </SidebarGroupLabel>
+            <CollapsibleContent>
+              <SidebarGroupContent />
+            </CollapsibleContent>
+          </SidebarGroup>
+        </Collapsible>
       </SidebarContent>
     </Sidebar>
   )

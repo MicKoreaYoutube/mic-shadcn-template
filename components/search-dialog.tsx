@@ -69,7 +69,7 @@ export function SearchDialog() {
     const result: docsItem[] = []
 
     docs.forEach(doc => {
-      if (doc.isDoc && doc.description) {
+      if (doc.isDoc) {
         result.push(doc)
       }
 
@@ -154,7 +154,7 @@ export function SearchDialog() {
                       <File className="mr-2 h-6 w-6" />
                       <div className="flex flex-col">
                         <span className="font-TheJamsil5Bold text-md">{item.item.title}</span>
-                        <span className="font-SUITE-Regular text-sm">{item.item.description.slice(0, 20)}...</span>
+                        <span className="font-SUITE-Regular text-sm">{item.item.description?.slice(0, 20)}...</span>
                       </div>
                     </CommandItem>
                   </Link>

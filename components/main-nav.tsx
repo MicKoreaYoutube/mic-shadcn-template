@@ -30,7 +30,7 @@ export function MainNav({ items }: MainNavProps) {
         <Logo className="h-7 w-7" />
         <span className="inline-block font-bold">{siteConfig.name}</span>
       </Link>
-      <div className="hidden md:flex">
+      <div className="hidden lg:flex">
         <NavigationMenu>
           <NavigationMenuList>
             {items?.length ? (

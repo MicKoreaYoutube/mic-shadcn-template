@@ -45,7 +45,9 @@ import { Button } from "@/components/ui/button"
 
 import { docsContent } from "@/config/site"
 
-import fuseAPI, { FuseResult } from "fuse.js"
+import { docsItem } from "@/types/sidebar"
+
+import Fuse, { FuseResult } from "fuse.js"
 
 export function SearchDialog() {
 
@@ -63,7 +65,61 @@ export function SearchDialog() {
     return () => document.removeEventListener("keydown", down)
   }, [])
 
+  function fillterDoc(docs: docsItem[]) {
+    const result: docsItem[] = []
 
+    docs.forEach(doc => {
+      if (doc.isDoc && doc.description) {
+        result.push(doc)
+      }
+
+      if (doc.subDocList) {
+        doc.subDocList.forEach(subDoc => {
+          result.push(subDoc)
+        })
+      }
+    })
+
+    return result
+  }
+
+  const fillteredDoc = fillterDoc(docsContent)
+
+  const [query, queryChanger] = useState("")
+
+  const fuseOptions = {
+    // isCaseSensitive: false,
+    // includeScore: false,
+    // ignoreDiacritics: false,
+    // shouldSort: true,
+    // includeMatches: false,
+    // findAllMatches: false,
+    // minMatchCharLength: 1,
+    // location: 0,
+    // threshold: 0.6,
+    // distance: 100,
+    // useExtendedSearch: false,
+    // ignoreLocation: false,
+    // ignoreFieldNorm: false,
+    // fieldNormWeight: 1,
+    keys: [
+      "title"
+    ]
+  };
+
+  const fuse = new Fuse(fillteredDoc, fuseOptions)
+
+  const [searchResult, changeResult] = useState<FuseResult<docsItem>[]>()
+
+  useEffect(() => {
+    changeResult(fuse.search(query))
+  }, [query])
+
+  useEffect(() => {
+    if (!open) {
+      queryChanger("")
+    }
+  }, [open])
 
   return (
     <>
@@ -81,53 +137,37 @@ export function SearchDialog() {
           <Input
             className="flex h-11 w-full rounded-md bg-transparent py-3 text-sm outline-hidden border-0 focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50"
             placeholder="Search anything..."
-          // onChange={(e) => {
-          //   queryChanger(e.target.value)
-          // }}
+            onChange={(e) => {
+              queryChanger(e.target.value)
+            }}
           />
         </div>
-        <ScrollArea>
+        <ScrollArea className="max-h-[60vh]">
           <CommandList>
-            <CommandEmpty>No results found.</CommandEmpty>
-            <CommandGroup heading="Docs">
-              <div className="flex flex-col gap-2">
-                {docsContent.map((item, index) => (
-                  <div key={index}>
-                    <Link href={`${item.isDoc ? `/docs/${item.id ?? item.title}` : "#"}`} onClick={() => {
-                      if (item.isDoc) {
-                        setOpen(false)
-                      }
-                    }}>
-                      <CommandItem className="cursor-pointer">
-                        {item.isDoc ? <File className="mr-2 h-4 w-4" /> : <Hash className="mr-2 h-4 w-4" />}
-                        <span>{item.title}</span>
-                      </CommandItem>
-                    </Link>
-                    <div className="ml-3">
-                      {item.subDocList?.length ? (
-                        item.subDocList.map((subDocItem, subDocIndex) => (
-                          <Link href={`/docs/${item.id ?? item.title}/${subDocItem.id ?? subDocItem.title}`} key={subDocIndex} onClick={() => {
-                            setOpen(false)
-                          }}>
-                            <CommandItem className="cursor-pointer">
-                              <File className="mr-2 h-4 w-4" />
-                              <span>{subDocItem.title}</span>
-                            </CommandItem>
-                          </Link>
-                        ))
-                      ) : null}
-                    </div>
-                  </div>
+            {searchResult?.length && query ? (
+              <CommandGroup heading="Docs">
+                {searchResult.map((item, index) => (
+                  <Link href={item.item.isDoc ? `/docs/${item.item.id ?? item.item.title}` : `/docs/${docsContent.find(doc => doc.subDocList?.includes(item.item))?.id ?? docsContent.find(doc => doc.subDocList?.includes(item.item))?.title}/${item.item.id ?? item.item.title}`} key={index} onClick={() => {
+                    setOpen(false)
+                  }}>
+                    <CommandItem className="cursor-pointer">
+                      <File className="mr-2 h-6 w-6" />
+                      <div className="flex flex-col">
+                        <span className="font-TheJamsil5Bold text-md">{item.item.title}</span>
+                        <span className="font-SUITE-Regular text-sm">{item.item.description.slice(0, 20)}...</span>
+                      </div>
+                    </CommandItem>
+                  </Link>
                 ))}
+              </CommandGroup>
+            ) : (
+              <div className="mx-12 my-24">
+                <h3 className="font-TheJamsil5Bold text-xl text-center">검색 결과가 없습니다</h3>
               </div>
-            </CommandGroup>
+            )}
           </CommandList>
         </ScrollArea>
       </CommandDialog>
     </>
   )
-}
-
-export function tlqkftlqkfwja() {
-  return "tlqkf"
 }

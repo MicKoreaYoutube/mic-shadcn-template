@@ -27,7 +27,7 @@ import {
   Menu,
   Search,
   File,
-  Hash
+  Hash,
 } from "lucide-react"
 
 import {
@@ -50,7 +50,6 @@ import { docsItem } from "@/types/sidebar"
 import Fuse, { FuseResult } from "fuse.js"
 
 export function SearchDialog() {
-
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
@@ -68,13 +67,13 @@ export function SearchDialog() {
   function fillterDoc(docs: docsItem[]) {
     const result: docsItem[] = []
 
-    docs.forEach(doc => {
+    docs.forEach((doc) => {
       if (doc.isDoc) {
         result.push(doc)
       }
 
       if (doc.subDocList) {
-        doc.subDocList.forEach(subDoc => {
+        doc.subDocList.forEach((subDoc) => {
           result.push(subDoc)
         })
       }
@@ -102,10 +101,8 @@ export function SearchDialog() {
     // ignoreLocation: false,
     // ignoreFieldNorm: false,
     // fieldNormWeight: 1,
-    keys: [
-      "title"
-    ]
-  };
+    keys: ["title"],
+  }
 
   const fuse = new Fuse(fillteredDoc, fuseOptions)
 
@@ -123,12 +120,14 @@ export function SearchDialog() {
 
   return (
     <>
-      <Button className="w-52 bg-transparent shadow-xs flex justify-between"
+      <Button
+        className="w-52 bg-transparent shadow-xs flex justify-between"
         variant="outline"
         onClick={() => {
           setOpen(true)
         }}>
-        <span>Search anything</span><span className="border border-input rounded-lg bg-background px-2 py-1">⌘K</span>
+        <span>Search anything</span>
+        <span className="border border-input rounded-lg bg-background px-2 py-1">⌘K</span>
       </Button>
       <CommandDialog open={open} onOpenChange={setOpen}>
         <DialogTitle />
@@ -147,9 +146,16 @@ export function SearchDialog() {
             {searchResult?.length && query ? (
               <CommandGroup heading="Docs">
                 {searchResult.map((item, index) => (
-                  <Link href={item.item.isDoc ? `/docs/${item.item.id ?? item.item.title}` : `/docs/${docsContent.find(doc => doc.subDocList?.includes(item.item))?.id ?? docsContent.find(doc => doc.subDocList?.includes(item.item))?.title}/${item.item.id ?? item.item.title}`} key={index} onClick={() => {
-                    setOpen(false)
-                  }}>
+                  <Link
+                    href={
+                      item.item.isDoc
+                        ? `/docs/${item.item.id ?? item.item.title}`
+                        : `/docs/${docsContent.find((doc) => doc.subDocList?.includes(item.item))?.id ?? docsContent.find((doc) => doc.subDocList?.includes(item.item))?.title}/${item.item.id ?? item.item.title}`
+                    }
+                    key={index}
+                    onClick={() => {
+                      setOpen(false)
+                    }}>
                     <CommandItem className="cursor-pointer">
                       <File className="mr-2 h-6 w-6" />
                       <div className="flex flex-col">

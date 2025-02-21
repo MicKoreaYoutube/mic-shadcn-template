@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   icons: {
-    icon: "/favicon.ico"
+    icon: "/favicon.ico",
   },
 }
 
@@ -34,18 +34,13 @@ export const viewport: Viewport = {
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-
   // library.add(fas, far, fab)
 
   return (
     <>
       <html lang="en" suppressHydrationWarning>
         <head />
-        <body
-          className={cn(
-            "min-h-screen bg-background font-sans antialiased"
-          )}
-        >
+        <body className={cn("min-h-screen bg-background font-sans antialiased")}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <div className="relative flex flex-col duration-700">
               <SiteHeader />

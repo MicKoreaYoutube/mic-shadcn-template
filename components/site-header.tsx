@@ -14,7 +14,7 @@ export function SiteHeader() {
         <MainNav items={mainNavContent} />
         <div className="hidden flex-1 items-center justify-end space-x-4 lg:flex">
           <SearchDialog />
-          <NavDropDown items={navDropDownContent}/>
+          <NavDropDown items={navDropDownContent} />
         </div>
         <div className="flex flex-1 items-center justify-end lg:hidden">
           <NavSheet items={mainNavContent} />

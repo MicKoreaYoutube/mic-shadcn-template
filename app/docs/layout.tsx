@@ -5,12 +5,7 @@ import { docsContent } from "@/config/site"
 import { Menu } from "lucide-react"
 
 import { DocsSidebar } from "@/components/sidebar"
-import {
-  Sheet,
-  SheetTitle,
-  SheetContent,
-  SheetTrigger
-} from "@/components/ui/sheet"
+import { Sheet, SheetTitle, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Button } from "@/components/ui/button"
 
 export default function DocsLayout({ children }: { children: React.ReactNode }) {

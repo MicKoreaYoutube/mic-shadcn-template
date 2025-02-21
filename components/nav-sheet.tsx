@@ -4,7 +4,7 @@ import Image from "next/image"
 import { Menu } from "lucide-react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons"
-import { faGithub, faInstagram } from "@fortawesome/free-brands-svg-icons";
+import { faGithub, faInstagram } from "@fortawesome/free-brands-svg-icons"
 
 import { NavItem } from "@/types/nav"
 import { siteConfig } from "@/config/site"
@@ -28,12 +28,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { ThemeToggle } from "@/components/theme-toggle"
 
 import { useInView } from "react-intersection-observer"
@@ -45,9 +40,8 @@ interface NavSheetProps {
 }
 
 export function NavSheet({ items }: NavSheetProps) {
-
   const [FamilySurviceRef, FamilySurviceRefInView] = useInView({
-    threshold: 1
+    threshold: 1,
   })
 
   return (
@@ -66,117 +60,118 @@ export function NavSheet({ items }: NavSheetProps) {
                 <span className="inline-block font-bold">{siteConfig.name}</span>
               </Link>
             </SheetTitle>
-            <SheetDescription>
-              {siteConfig.description}
-            </SheetDescription>
+            <SheetDescription>{siteConfig.description}</SheetDescription>
           </SheetHeader>
           <Accordion type="single" collapsible className="w-full">
             {items?.length ? (
               <>
-                {items?.map(
-                  (item, index) => (
-                    <AccordionItem key={index} value={index.toString()}>
-                      {item.href ? (
-                        <Link href={`${item.href}`} className="flex flex-1 items-center justify-between py-4 font-medium transition-all">
-                          {item.title}
-                        </Link>
-                      ) : (
-                        <>
-                          <AccordionTrigger>{item.title}</AccordionTrigger>
-                          <AccordionContent>
-                            <ScrollArea>
-                              <ul className={`${item.mainLink ? "grid-cols-[3fr_2fr] flex-row" : null} grid gap-3`}>
-                                {item.mainLink ? (
-                                  <li className="h-full">
-                                    <div className="duraition-700 h-full rounded-md transition hover:bg-accent">
-                                      <Link className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-4 no-underline outline-hidden focus:shadow-md"
-                                        href={`${item.mainLink?.href}`}>
-                                        <Logo className={`h-6 w-6 ${item.mainLink?.logo ? null : "hidden"}`} />
-                                        <div className="mb-2 mt-4 text-lg font-medium leading-tight">
-                                          {item.mainLink?.title}
-                                        </div>
-                                        <p className="text-sm leading-tight text-muted-foreground">
-                                          {item.mainLink?.description}
-                                        </p>
-                                      </Link>
-                                    </div>
-                                  </li>
-                                ) : null}
-                                <div className={`${item.mainLink ? "flex flex-col justify-between" : "grid grid-cols-2 gap-x-3 gap-y-1"}`}>
-                                  {item.linkList?.map(
-                                    (linkListItem, index) => (
-                                      <Link className={`duraition-700 flex flex-col rounded-md px-2 py-4 transition hover:bg-accent`}
-                                        key={index}
-                                        href={linkListItem.href}
-                                      >
-                                        <span className="font-medium leading-tight">{linkListItem.title}</span>
-                                        <span className="leading-tight text-muted-foreground">{linkListItem.description}</span>
-                                      </Link>
-                                    )
-                                  )}
-                                </div>
-                              </ul>
-                            </ScrollArea>
-                          </AccordionContent>
-                        </>
-                      )}
-                    </AccordionItem>
-                  )
-                )}
+                {items?.map((item, index) => (
+                  <AccordionItem key={index} value={index.toString()}>
+                    {item.href ? (
+                      <Link
+                        href={`${item.href}`}
+                        className="flex flex-1 items-center justify-between py-4 font-medium transition-all">
+                        {item.title}
+                      </Link>
+                    ) : (
+                      <>
+                        <AccordionTrigger>{item.title}</AccordionTrigger>
+                        <AccordionContent>
+                          <ScrollArea>
+                            <ul className={`${item.mainLink ? "grid-cols-[3fr_2fr] flex-row" : null} grid gap-3`}>
+                              {item.mainLink ? (
+                                <li className="h-full">
+                                  <div className="duraition-700 h-full rounded-md transition hover:bg-accent">
+                                    <Link
+                                      className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-4 no-underline outline-hidden focus:shadow-md"
+                                      href={`${item.mainLink?.href}`}>
+                                      <Logo className={`h-6 w-6 ${item.mainLink?.logo ? null : "hidden"}`} />
+                                      <div className="mb-2 mt-4 text-lg font-medium leading-tight">
+                                        {item.mainLink?.title}
+                                      </div>
+                                      <p className="text-sm leading-tight text-muted-foreground">
+                                        {item.mainLink?.description}
+                                      </p>
+                                    </Link>
+                                  </div>
+                                </li>
+                              ) : null}
+                              <div
+                                className={`${item.mainLink ? "flex flex-col justify-between" : "grid grid-cols-2 gap-x-3 gap-y-1"}`}>
+                                {item.linkList?.map((linkListItem, index) => (
+                                  <Link
+                                    className={`duraition-700 flex flex-col rounded-md px-2 py-4 transition hover:bg-accent`}
+                                    key={index}
+                                    href={linkListItem.href}>
+                                    <span className="font-medium leading-tight">{linkListItem.title}</span>
+                                    <span className="leading-tight text-muted-foreground">
+                                      {linkListItem.description}
+                                    </span>
+                                  </Link>
+                                ))}
+                              </div>
+                            </ul>
+                          </ScrollArea>
+                        </AccordionContent>
+                      </>
+                    )}
+                  </AccordionItem>
+                ))}
               </>
             ) : null}
           </Accordion>
           <SheetFooter>
             <div className="flex flex-col">
-              <span className="w-full text-sm text-muted-foreground">© 2023 <Link href="/" className="hover:underline">{siteConfig.name}™</Link>. All Rights Reserved.</span>
+              <span className="w-full text-sm text-muted-foreground">
+                © 2023{" "}
+                <Link href="/" className="hover:underline">
+                  {siteConfig.name}™
+                </Link>
+                . All Rights Reserved.
+              </span>
               <nav className="flex flex-col space-x-1 sm:flex-row">
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <Button variant="outline" className="w-36">패밀리 서비스&nbsp;<FontAwesomeIcon icon={faChevronDown} className={`h-3 w-3 shrink-0 transition-transform duration-200 ${FamilySurviceRefInView ? "rotate-180" : null}`} /></Button>
+                    <Button variant="outline" className="w-36">
+                      패밀리 서비스&nbsp;
+                      <FontAwesomeIcon
+                        icon={faChevronDown}
+                        className={`h-3 w-3 shrink-0 transition-transform duration-200 ${FamilySurviceRefInView ? "rotate-180" : null}`}
+                      />
+                    </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent className="font-RixInooAriDuriR w-1" ref={FamilySurviceRef}>
                     <DropdownMenuGroup>
                       <DropdownMenuLabel>패밀리 서비스</DropdownMenuLabel>
-                      {siteConfig.FamilySurvice?.length ? (
-                        siteConfig.FamilySurvice?.map(
-                          (item, index) =>
+                      {siteConfig.FamilySurvice?.length
+                        ? siteConfig.FamilySurvice?.map((item, index) => (
                             <Link key={index} href={item.href}>
                               <DropdownMenuItem>
                                 <span>{item.name}</span>
                               </DropdownMenuItem>
                             </Link>
-                        )
-                      ) : null}
+                          ))
+                        : null}
                     </DropdownMenuGroup>
                   </DropdownMenuContent>
                 </DropdownMenu>
                 <div>
-                  <Link
-                    href={siteConfig.links.micGithub}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
+                  <Link href={siteConfig.links.micGithub} target="_blank" rel="noreferrer">
                     <div
                       className={buttonVariants({
                         size: "icon",
                         variant: "ghost",
-                      })}
-                    >
+                      })}>
                       <FontAwesomeIcon icon={faGithub} className="h-5 w-5" />
                       <span className="sr-only">GitHub</span>
                     </div>
                   </Link>
-                  <Link
-                    href={siteConfig.links.micInstagram}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
+                  <Link href={siteConfig.links.micInstagram} target="_blank" rel="noreferrer">
                     <div
                       className={buttonVariants({
                         size: "icon",
                         variant: "ghost",
-                      })}
-                    >
+                      })}>
                       <FontAwesomeIcon icon={faInstagram} className="h-5 w-5" />
                       <span className="sr-only">Instagram</span>
                     </div>

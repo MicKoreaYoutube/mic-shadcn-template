@@ -13,9 +13,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
             <Logo className="text-background h-7 w-7" />
             {siteConfig.name}
           </h3>
-          <span className="font-SUITE-Regular w-54 text-xl text-white">
-            {siteConfig.description}
-          </span>
+          <span className="font-SUITE-Regular w-54 text-xl text-white">{siteConfig.description}</span>
         </div>
         <div className="flex h-full basis-full flex-col justify-start p-8 lg:basis-1/2 lg:justify-center">
           {children}

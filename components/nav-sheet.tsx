@@ -54,12 +54,12 @@ export function NavSheet({ items }: NavSheetProps) {
             <Menu />
           </Button>
         </SheetTrigger>
-        <SheetContent className="font-RixInooAriDuriR flex flex-col justify-between h-screen overflow-auto">
+        <SheetContent className="font-RixInooAriDuriR flex h-screen flex-col justify-between overflow-auto">
           <div>
             <SheetHeader>
               <SheetTitle>
                 <Link href="/" className="flex flex-row space-x-2">
-                  <Logo className="h-6 w-6" />
+                  <Logo className="size-6" />
                   <span className="inline-block font-bold">{siteConfig.name}</span>
                 </Link>
               </SheetTitle>
@@ -84,15 +84,15 @@ export function NavSheet({ items }: NavSheetProps) {
                               <ul className={`${item.mainLink ? "grid-cols-[3fr_2fr] flex-row" : null} grid gap-3`}>
                                 {item.mainLink ? (
                                   <li className="h-full">
-                                    <div className="duraition-700 h-full rounded-md transition hover:bg-accent">
+                                    <div className="duraition-700 hover:bg-accent h-full rounded-md transition">
                                       <Link
-                                        className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-4 no-underline outline-hidden focus:shadow-md"
+                                        className="from-muted/50 to-muted outline-hidden flex size-full select-none flex-col justify-end rounded-md bg-gradient-to-b p-4 no-underline focus:shadow-md"
                                         href={`${item.mainLink?.href}`}>
-                                        <Logo className={`h-6 w-6 ${item.mainLink?.logo ? null : "hidden"}`} />
+                                        <Logo className={`size-6 ${item.mainLink?.logo ? null : "hidden"}`} />
                                         <div className="mb-2 mt-4 text-lg font-medium leading-tight">
                                           {item.mainLink?.title}
                                         </div>
-                                        <p className="text-sm leading-tight text-muted-foreground">
+                                        <p className="text-muted-foreground text-sm leading-tight">
                                           {item.mainLink?.description}
                                         </p>
                                       </Link>
@@ -103,11 +103,11 @@ export function NavSheet({ items }: NavSheetProps) {
                                   className={`${item.mainLink ? "flex flex-col justify-between" : "grid grid-cols-2 gap-x-3 gap-y-1"}`}>
                                   {item.linkList?.map((linkListItem, index) => (
                                     <Link
-                                      className={`duraition-700 flex flex-col rounded-md px-2 py-4 transition hover:bg-accent`}
+                                      className={`duraition-700 hover:bg-accent flex flex-col rounded-md px-2 py-4 transition`}
                                       key={index}
                                       href={linkListItem.href}>
                                       <span className="font-medium leading-tight">{linkListItem.title}</span>
-                                      <span className="leading-tight text-muted-foreground">
+                                      <span className="text-muted-foreground leading-tight">
                                         {linkListItem.description}
                                       </span>
                                     </Link>
@@ -133,7 +133,7 @@ export function NavSheet({ items }: NavSheetProps) {
                       패밀리 서비스&nbsp;
                       <FontAwesomeIcon
                         icon={faChevronDown}
-                        className={`h-3 w-3 shrink-0 transition-transform duration-200 ${FamilySurviceRefInView ? "rotate-180" : null}`}
+                        className={`size-3 shrink-0 transition-transform duration-200 ${FamilySurviceRefInView ? "rotate-180" : null}`}
                       />
                     </Button>
                   </DropdownMenuTrigger>

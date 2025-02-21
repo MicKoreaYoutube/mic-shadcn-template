@@ -54,11 +54,11 @@ export function NavDropDown({ items }: dropDownProps) {
                     <LoadingComp />
                   </AvatarFallback>
                 </Avatar>
-                <TriangleDownIcon className="m-2 block h-6 w-6" />
+                <TriangleDownIcon className="m-2 block size-6" />
               </div>
             </button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-56 font-TheJamsil5Bold">
+          <DropdownMenuContent className="font-TheJamsil5Bold w-56">
             <DropdownMenuLabel>{items?.label}</DropdownMenuLabel>
             {items?.content.length ? (
               <>
@@ -75,7 +75,7 @@ export function NavDropDown({ items }: dropDownProps) {
                                   <DropdownMenuSubTrigger>
                                     <div>
                                       {itemInItem.icon ? (
-                                        <FontAwesomeIcon icon={itemInItem.icon} className="mr-2 h-4 w-4" />
+                                        <FontAwesomeIcon icon={itemInItem.icon} className="mr-2 size-4" />
                                       ) : null}
                                       <span>{itemInItem.title}</span>
                                     </div>
@@ -94,7 +94,7 @@ export function NavDropDown({ items }: dropDownProps) {
                                                   {semiDropDownItemInItem.icon ? (
                                                     <FontAwesomeIcon
                                                       icon={semiDropDownItemInItem.icon}
-                                                      className="mr-2 h-4 w-4"
+                                                      className="mr-2 size-4"
                                                     />
                                                   ) : null}
                                                   <span>{semiDropDownItemInItem.title}</span>
@@ -116,7 +116,7 @@ export function NavDropDown({ items }: dropDownProps) {
                                 <DropdownMenuItem>
                                   <Link href={`${itemInItem.href ?? null}`}>
                                     {itemInItem.icon ? (
-                                      <FontAwesomeIcon icon={itemInItem.icon} className="mr-2 h-4 w-4" />
+                                      <FontAwesomeIcon icon={itemInItem.icon} className="mr-2 size-4" />
                                     ) : null}
                                     <span>{itemInItem.title}</span>
                                     {itemInItem.shortcut ? (
@@ -139,7 +139,7 @@ export function NavDropDown({ items }: dropDownProps) {
       ) : (
         <Button asChild variant="ghost" size="icon">
           <Link href="/auth/login">
-            <FontAwesomeIcon icon={["fas", "right-to-bracket"]} className="h-5 w-5" />
+            <FontAwesomeIcon icon={["fas", "right-to-bracket"]} className="size-5" />
           </Link>
         </Button>
       )}

@@ -151,7 +151,7 @@ export function DocsSidebar({ items }: docsSidebarInterface) {
                         <Link
                           key={subDocIndex}
                           href={`/docs/${item.id ?? item.title}/${subDocItem.id ?? subDocItem.title}`}
-                          className={`font-SUITE-Regular text-md my-1 block ${decodeURI(pathName) == `/docs/${item.id}/${subDocItem.title}` || decodeURI(pathName) == `/docs/${item.title}/${subDocItem.title}` ? "font-bold text-foreground underline underline-offset-4" : "text-muted-foreground"}`}>
+                          className={`font-SUITE-Regular text-md my-1 block ${decodeURI(pathName) == `/docs/${item.id}/${subDocItem.title}` || decodeURI(pathName) == `/docs/${item.title}/${subDocItem.title}` ? "text-foreground font-bold underline underline-offset-4" : "text-muted-foreground"}`}>
                           {subDocItem.title}
                         </Link>
                       ))
@@ -193,7 +193,7 @@ export function ChapterSidebar({ items }: chapterSidebarInterface) {
                 <div key={index}>
                   <ChapterSidebarTargetLink to={`chapter-${item.title}`}>{item.title}</ChapterSidebarTargetLink>
                   {item?.subChapterList?.length ? (
-                    <div className="px-3 grid gap-1 pt-1">
+                    <div className="grid gap-1 px-3 pt-1">
                       {item?.subChapterList.map((subChapterItem, subChapterIndex) => (
                         <ChapterSidebarTargetLink to={`chapter-${subChapterItem.title}`} key={subChapterIndex}>
                           {subChapterItem.title}

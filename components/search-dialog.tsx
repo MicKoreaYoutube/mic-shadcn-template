@@ -115,20 +115,20 @@ export function SearchDialog() {
   return (
     <>
       <Button
-        className="w-52 bg-transparent shadow-xs flex justify-between"
+        className="shadow-xs flex w-52 justify-between bg-transparent"
         variant="outline"
         onClick={() => {
           setOpen(true)
         }}>
         <span>Search anything</span>
-        <span className="border border-input rounded-lg bg-background px-2 py-1">⌘K</span>
+        <span className="border-input bg-background rounded-lg border px-2 py-1">⌘K</span>
       </Button>
       <CommandDialog open={open} onOpenChange={setOpen}>
         <DialogTitle />
         <div className="flex items-center border-b px-3" cmdk-input-wrapper="">
-          <Search className="h-4 w-4 shrink-0 opacity-50" />
+          <Search className="size-4 shrink-0 opacity-50" />
           <Input
-            className="flex h-11 w-full rounded-md bg-transparent py-3 text-sm outline-hidden border-0 focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50"
+            className="outline-hidden placeholder:text-muted-foreground flex h-11 w-full rounded-md border-0 bg-transparent py-3 text-sm focus-visible:ring-0 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50"
             placeholder="Search anything..."
             onChange={(e) => {
               queryChanger(e.target.value)
@@ -151,7 +151,7 @@ export function SearchDialog() {
                       setOpen(false)
                     }}>
                     <CommandItem className="cursor-pointer">
-                      <File className="mr-2 h-6 w-6" />
+                      <File className="mr-2 size-6" />
                       <div className="flex flex-col">
                         <span className="font-TheJamsil5Bold text-md">{item.item.title}</span>
                         <span className="font-SUITE-Regular text-sm">{item.item.description?.slice(0, 20)}...</span>
@@ -162,7 +162,7 @@ export function SearchDialog() {
               </CommandGroup>
             ) : (
               <div className="mx-12 my-24">
-                <h3 className="font-TheJamsil5Bold text-xl text-center">검색 결과가 없습니다</h3>
+                <h3 className="font-TheJamsil5Bold text-center text-xl">검색 결과가 없습니다</h3>
               </div>
             )}
           </CommandList>

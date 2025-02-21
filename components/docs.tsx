@@ -69,9 +69,9 @@ function DocsIndicator({ docCoordinate, type }: docsIndicatorInterface) {
                   <CardDescription className="font-SUITE-Regular">{doc?.description?.slice(0, 15)}...</CardDescription>
                 </div>
                 {type == "prev" ? (
-                  <CircleArrowLeft className="size-9 my-auto" />
+                  <CircleArrowLeft className="my-auto size-9" />
                 ) : (
-                  <CircleArrowRight className="size-9 my-auto" />
+                  <CircleArrowRight className="my-auto size-9" />
                 )}
               </CardHeader>
             </Card>
@@ -175,7 +175,7 @@ export function DocsPage({ doc, subDoc }: docsPageInterface) {
     <div className="flex flex-row justify-between">
       <div className="w-full justify-self-stretch px-12 py-9">
         <Breadcrumb className="font-SUITE-Regular">
-          <BreadcrumbList className="text-md">
+          <BreadcrumbList className="text-base">
             <BreadcrumbItem>
               <BreadcrumbLink href="/docs">docs</BreadcrumbLink>
             </BreadcrumbItem>
@@ -216,13 +216,13 @@ export function DocsPage({ doc, subDoc }: docsPageInterface) {
                     <ReactMarkdown>{chapterItem.content}</ReactMarkdown>
                   </div>
                   {chapterItem?.subChapterList?.length ? (
-                    <div className="py-6 grid gap-12">
+                    <div className="grid gap-12 py-6">
                       {chapterItem.subChapterList.map((subChapterItem, subChapterIndex) => (
                         <div key={subChapterIndex} className="grid gap-3">
                           <h3 className="font-KBO-Dia-Gothic_bold text-3xl" id={`chapter-${subChapterItem.title}`}>
                             {subChapterItem.title}
                           </h3>
-                          <div className="font-SUITE-Regular text-md">
+                          <div className="font-SUITE-Regular text-base">
                             <ReactMarkdown>{subChapterItem.content}</ReactMarkdown>
                           </div>
                         </div>
@@ -233,7 +233,7 @@ export function DocsPage({ doc, subDoc }: docsPageInterface) {
               ))
             : null}
         </div>
-        <div className="flex flex-col lg:flex-row justify-between gap-7 py-4">
+        <div className="flex flex-col justify-between gap-7 py-4 lg:flex-row">
           <DocsIndicator
             docCoordinate={findPrevDoc({
               docIndex: docIndex,

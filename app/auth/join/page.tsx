@@ -46,7 +46,7 @@ export default function Join() {
             <span className="w-full border-t" />
           </div>
           <div className="font-SUITE-Regular relative flex justify-center">
-            <span className="bg-background px-2 text-muted-foreground">또는</span>
+            <span className="bg-background text-muted-foreground px-2">또는</span>
           </div>
         </div>
         <div className="flex justify-between">
@@ -64,15 +64,15 @@ export default function Join() {
           </Button>
         </div>
         <div className="font-SUITE-Regular flex flex-col justify-center space-y-6">
-          <span className="px-8 text-center text-sm text-muted-foreground">
+          <span className="text-muted-foreground px-8 text-center text-sm">
             계정이 이미 있나요?{" "}
             <Link href="/auth/login" className="text-blue-500 hover:text-blue-700">
               로그인→
             </Link>
           </span>
-          <p className="px-8 text-center text-sm text-muted-foreground">
+          <p className="text-muted-foreground px-8 text-center text-sm">
             회원 가입 버튼을 누르실 경우, 당신은{" "}
-            <Link href="/terms" className="underline underline-offset-4 hover:text-primary">
+            <Link href="/terms" className="hover:text-primary underline underline-offset-4">
               이용약관
             </Link>
             에 동의한 것으로 간주합니다.

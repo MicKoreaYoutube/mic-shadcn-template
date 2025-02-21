@@ -30,15 +30,15 @@ export default function Login() {
         </div>
         <hr />
         <div className="font-SUITE-Regular flex flex-col justify-center space-y-6">
-          <span className="px-8 text-center text-sm text-muted-foreground">
+          <span className="text-muted-foreground px-8 text-center text-sm">
             계정이 없나요?{" "}
             <Link href="/auth/join" className="text-blue-500 hover:text-blue-700">
               회원가입→
             </Link>
           </span>
-          <p className="px-8 text-center text-sm text-muted-foreground">
+          <p className="text-muted-foreground px-8 text-center text-sm">
             로그인 버튼을 누르실 경우, 당신은{" "}
-            <Link href="/terms" className="underline underline-offset-4 hover:text-primary">
+            <Link href="/terms" className="hover:text-primary underline underline-offset-4">
               이용약관
             </Link>
             에 동의한 것으로 간주합니다.

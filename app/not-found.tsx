@@ -10,8 +10,8 @@ export default function NotFound() {
 
   return (
     <>
-      <div className="flex h-[80vh] items-center justify-center bg-background">
-        <section className="containe">
+      <div className="bg-background flex h-[80vh] items-center justify-center">
+        <section className="container">
           <div className="flex flex-col items-center gap-2">
             <h1 className="font-KBO-Dia-Gothic_bold text-6xl font-extrabold leading-tight tracking-tighter md:text-9xl">
               404

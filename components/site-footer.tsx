@@ -41,7 +41,7 @@ export function SiteFooter() {
             </Link>
             <p className="mt-4 max-w-[400px] text-muted-foreground">{siteConfig.description}</p>
           </div>
-          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 sm:gap-24">
+          <div className="grid grid-cols-3 gap-24">
             {siteConfig.footerContent?.length ? (
               <>
                 {siteConfig.footerContent?.map((item, index) => (
@@ -68,7 +68,7 @@ export function SiteFooter() {
         </div>
         <div>
           <hr className="my-6 border-gray-200 dark:border-gray-700 sm:mx-auto lg:my-8" />
-          <div className="sm:flex sm:items-center sm:justify-between">
+          <div className="flex items-center justify-between">
             <span className="text-sm text-muted-foreground sm:text-center">
               © 2023{" "}
               <Link href="/" className="hover:underline">
@@ -76,53 +76,57 @@ export function SiteFooter() {
               </Link>
               . All Rights Reserved.
             </span>
-            <nav className="hidden items-center space-x-1 md:flex">
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="outline" className="bg-accent/50">
-                    패밀리 서비스&nbsp;
-                    <FontAwesomeIcon
-                      icon={faChevronDown}
-                      className={`h-3 w-3 shrink-0 transition-transform duration-200 ${FamilySurviceRefInView ? "rotate-180" : null}`}
-                    />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className="font-RixInooAriDuriR w-1" ref={FamilySurviceRef}>
-                  <DropdownMenuGroup>
-                    <DropdownMenuLabel>패밀리 서비스</DropdownMenuLabel>
-                    {siteConfig.FamilySurvice?.length
-                      ? siteConfig.FamilySurvice?.map((item, index) => (
-                          <Link key={index} href={item.href}>
-                            <DropdownMenuItem>
-                              <span>{item.name}</span>
-                            </DropdownMenuItem>
-                          </Link>
-                        ))
-                      : null}
-                  </DropdownMenuGroup>
-                </DropdownMenuContent>
-              </DropdownMenu>
-              <Link href={siteConfig.links.micGithub} target="_blank" rel="noreferrer">
-                <div
-                  className={buttonVariants({
-                    size: "icon",
-                    variant: "ghost",
-                  })}>
-                  <FontAwesomeIcon icon={faGithub} className="h-5 w-5" />
-                  <span className="sr-only">GitHub</span>
-                </div>
-              </Link>
-              <Link href={siteConfig.links.micInstagram} target="_blank" rel="noreferrer">
-                <div
-                  className={buttonVariants({
-                    size: "icon",
-                    variant: "ghost",
-                  })}>
-                  <FontAwesomeIcon icon={faInstagram} className="h-5 w-5" />
-                  <span className="sr-only">Instagram</span>
-                </div>
-              </Link>
-              <ThemeToggle />
+            <nav className="items-center space-x-1 flex">
+              <div className="hidden md:inline">
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="outline" className="bg-accent/50">
+                      패밀리 서비스&nbsp;
+                      <FontAwesomeIcon
+                        icon={faChevronDown}
+                        className={`h-3 w-3 shrink-0 transition-transform duration-200 ${FamilySurviceRefInView ? "rotate-180" : null}`}
+                      />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="font-RixInooAriDuriR w-1" ref={FamilySurviceRef}>
+                    <DropdownMenuGroup>
+                      <DropdownMenuLabel>패밀리 서비스</DropdownMenuLabel>
+                      {siteConfig.FamilySurvice?.length
+                        ? siteConfig.FamilySurvice?.map((item, index) => (
+                            <Link key={index} href={item.href}>
+                              <DropdownMenuItem>
+                                <span>{item.name}</span>
+                              </DropdownMenuItem>
+                            </Link>
+                          ))
+                        : null}
+                    </DropdownMenuGroup>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </div>
+              <div className="flex">
+                <Link href={siteConfig.links.micGithub} target="_blank" rel="noreferrer">
+                  <div
+                    className={buttonVariants({
+                      size: "icon",
+                      variant: "ghost",
+                    })}>
+                    <FontAwesomeIcon icon={faGithub} className="h-5 w-5" />
+                    <span className="sr-only">GitHub</span>
+                  </div>
+                </Link>
+                <Link href={siteConfig.links.micInstagram} target="_blank" rel="noreferrer">
+                  <div
+                    className={buttonVariants({
+                      size: "icon",
+                      variant: "ghost",
+                    })}>
+                    <FontAwesomeIcon icon={faInstagram} className="h-5 w-5" />
+                    <span className="sr-only">Instagram</span>
+                  </div>
+                </Link>
+                <ThemeToggle />
+              </div>
             </nav>
           </div>
         </div>

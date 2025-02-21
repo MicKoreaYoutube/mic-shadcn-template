@@ -106,12 +106,6 @@ export function SearchDialog() {
 
   const fuse = new Fuse(fillteredDoc, fuseOptions)
 
-  const [searchResult, changeResult] = useState<FuseResult<docsItem>[]>()
-
-  useEffect(() => {
-    changeResult(fuse.search(query))
-  }, [query])
-
   useEffect(() => {
     if (!open) {
       queryChanger("")
@@ -143,9 +137,9 @@ export function SearchDialog() {
         </div>
         <ScrollArea className="max-h-[60vh]">
           <CommandList>
-            {searchResult?.length && query ? (
+            {fuse.search(query)?.length && query ? (
               <CommandGroup heading="Docs">
-                {searchResult.map((item, index) => (
+                {fuse.search(query).map((item, index) => (
                   <Link
                     href={
                       item.item.isDoc

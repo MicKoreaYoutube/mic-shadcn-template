@@ -10,15 +10,15 @@ export default function NotFound() {
 
   return (
     <>
-      <div className="bg-background flex h-[80vh] items-center justify-center">
+      <div className="flex h-[80vh] items-center justify-center bg-background">
         <section className="container">
           <div className="flex flex-col items-center gap-2">
             <h1 className="font-KBO-Dia-Gothic_bold text-6xl font-extrabold leading-tight tracking-tighter md:text-9xl">
               404
             </h1>
             <div className="text-center">
-              <p className="md:6xl font-SUITE-Regular text-4xl text-slate-500">No Page Found</p>
-              <p className="md:xl font-SUITE-Regular text-lg text-slate-300">
+              <p className="font-SUITE-Regular text-4xl text-slate-500 md:text-6xl">No Page Found</p>
+              <p className="font-SUITE-Regular text-lg text-slate-300 md:text-xl">
                 The page your looking for does not exist. Please check the url or the realseNote to check out the
                 problem.
               </p>

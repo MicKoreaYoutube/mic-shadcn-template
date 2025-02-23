@@ -101,7 +101,7 @@ const NavigationMenuIndicator = React.forwardRef<
       className
     )}
     {...props}>
-    <div className="bg-border relative top-[60%] size-2 rotate-45 rounded-tl-sm shadow-md" />
+    <div className="relative top-[60%] size-2 rotate-45 rounded-tl-sm bg-border shadow-md" />
   </NavigationMenuPrimitive.Indicator>
 ))
 NavigationMenuIndicator.displayName = NavigationMenuPrimitive.Indicator.displayName
@@ -120,7 +120,7 @@ const NavigaitionMenuListItem = React.forwardRef<React.ComponentRef<"a">, React.
             href={`${href}`}
             {...props}>
             <div className="text-sm font-medium leading-none">{title}</div>
-            <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">{children}</p>
+            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">{children}</p>
           </Link>
         </NavigationMenuLink>
       </li>

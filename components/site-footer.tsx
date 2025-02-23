@@ -29,7 +29,7 @@ export function SiteFooter() {
   })
 
   return (
-    <footer className="font-RixInooAriDuriR bg-accent/50 inset-x-0 bottom-0 z-40 w-full border-t">
+    <footer className="font-RixInooAriDuriR inset-x-0 bottom-0 z-40 w-full border-t bg-accent/50">
       <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
         <div className="md:flex md:justify-between">
           <div className="mb-6 md:mb-0">
@@ -39,15 +39,15 @@ export function SiteFooter() {
                 {siteConfig.name}
               </span>
             </Link>
-            <p className="text-muted-foreground mt-4 max-w-[400px]">{siteConfig.description}</p>
+            <p className="mt-4 max-w-[400px] text-muted-foreground">{siteConfig.description}</p>
           </div>
           <div className="grid grid-cols-3 gap-24">
             {siteConfig.footerContent?.length ? (
               <>
                 {siteConfig.footerContent?.map((item, index) => (
                   <div key={index}>
-                    <h2 className="text-foreground mb-6 text-2xl font-semibold">{item.title}</h2>
-                    <ul className="text-muted-foreground font-medium">
+                    <h2 className="mb-6 text-2xl font-semibold text-foreground">{item.title}</h2>
+                    <ul className="font-medium text-muted-foreground">
                       {item.content?.length ? (
                         <>
                           {item.content?.map((contentItem, contentIndex) => (
@@ -67,9 +67,9 @@ export function SiteFooter() {
           </div>
         </div>
         <div>
-          <hr className="my-6 border-gray-200 sm:mx-auto lg:my-8 dark:border-gray-700" />
+          <hr className="my-6 border-gray-200 dark:border-gray-700 sm:mx-auto lg:my-8" />
           <div className="flex items-center justify-between">
-            <span className="text-muted-foreground text-sm sm:text-center">
+            <span className="text-sm text-muted-foreground sm:text-center">
               © 2023{" "}
               <Link href="/" className="hover:underline">
                 {siteConfig.name}™

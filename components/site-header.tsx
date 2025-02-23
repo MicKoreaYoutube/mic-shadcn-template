@@ -13,7 +13,7 @@ import Logo from "@/public/logo.svg"
 
 export function SiteHeader() {
   return (
-    <header className="font-RixInooAriDuriR bg-accent/50 sticky top-0 z-40 w-full border-b backdrop-blur-sm">
+    <header className="font-RixInooAriDuriR sticky top-0 z-40 w-full border-b bg-accent/50 backdrop-blur-sm">
       <div className="mx-auto flex h-16 max-w-[80vw] items-center space-x-4 sm:justify-between sm:space-x-0 lg:max-w-[90vw] xl:max-w-[80vw]">
         <div className="flex gap-6 md:gap-10">
           <Link href="/" className="flex items-center space-x-2">

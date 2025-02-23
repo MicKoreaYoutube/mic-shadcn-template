@@ -2,7 +2,7 @@ export function LoadingComp({ size = 36 }) {
   return (
     <svg
       aria-hidden="true"
-      className="fill-primary text-accent mx-auto block animate-spin dark:fill-gray-300 dark:text-gray-600"
+      className="mx-auto block animate-spin fill-primary text-accent dark:fill-gray-300 dark:text-gray-600"
       viewBox="0 0 100 101"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

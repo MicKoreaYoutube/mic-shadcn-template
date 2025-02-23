@@ -24,7 +24,7 @@ const eslintConfig = [
       tailwindcss: {
         // These are the default values but feel free to customize
         callees: ["classnames", "clsx", "ctl"],
-        config: "tailwind.config.js", // returned from `loadConfig()` utility if not provided
+        config: "tailwind.config.ts", // returned from `loadConfig()` utility if not provided
         cssFiles: [
           "**/*.css",
           "!**/node_modules",

@@ -151,7 +151,7 @@ export function DocsSidebar({ items }: docsSidebarInterface) {
                         <Link
                           key={subDocIndex}
                           href={`/docs/${item.id ?? item.title}/${subDocItem.id ?? subDocItem.title}`}
-                          className={`font-SUITE-Regular text-md my-1 block ${decodeURI(pathName) == `/docs/${item.id}/${subDocItem.title}` || decodeURI(pathName) == `/docs/${item.title}/${subDocItem.title}` ? "text-foreground font-bold underline underline-offset-4" : "text-muted-foreground"}`}>
+                          className={`font-SUITE-Regular my-1 block text-base ${decodeURI(pathName) == `/docs/${item.id}/${subDocItem.title}` || decodeURI(pathName) == `/docs/${item.title}/${subDocItem.title}` ? "font-bold text-foreground underline underline-offset-4" : "text-muted-foreground"}`}>
                           {subDocItem.title}
                         </Link>
                       ))

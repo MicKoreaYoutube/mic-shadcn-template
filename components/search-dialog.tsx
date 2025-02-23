@@ -115,20 +115,20 @@ export function SearchDialog() {
   return (
     <>
       <Button
-        className="shadow-xs flex w-52 justify-between bg-transparent"
+        className="flex w-52 justify-between bg-transparent shadow-md"
         variant="outline"
         onClick={() => {
           setOpen(true)
         }}>
         <span>Search anything</span>
-        <span className="border-input bg-background rounded-lg border px-2 py-1">⌘K</span>
+        <span className="rounded-lg border border-input bg-background px-2 py-1">⌘K</span>
       </Button>
       <CommandDialog open={open} onOpenChange={setOpen}>
         <DialogTitle />
         <div className="flex items-center border-b px-3" cmdk-input-wrapper="">
           <Search className="size-4 shrink-0 opacity-50" />
           <Input
-            className="outline-hidden placeholder:text-muted-foreground flex h-11 w-full rounded-md border-0 bg-transparent py-3 text-sm focus-visible:ring-0 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50"
+            className="outline-hidden flex h-11 w-full rounded-md border-0 bg-transparent py-3 text-sm placeholder:text-muted-foreground focus-visible:ring-0 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50"
             placeholder="Search anything..."
             onChange={(e) => {
               queryChanger(e.target.value)
@@ -153,7 +153,7 @@ export function SearchDialog() {
                     <CommandItem className="cursor-pointer">
                       <File className="mr-2 size-6" />
                       <div className="flex flex-col">
-                        <span className="font-TheJamsil5Bold text-md">{item.item.title}</span>
+                        <span className="font-TheJamsil5Bold text-base">{item.item.title}</span>
                         <span className="font-SUITE-Regular text-sm">{item.item.description?.slice(0, 20)}...</span>
                       </div>
                     </CommandItem>

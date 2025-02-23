@@ -48,13 +48,13 @@ export function MainNav({ items, ...props }: MainNavProps) {
                               <li className="row-span-3">
                                 <NavigationMenuLink asChild>
                                   <Link
-                                    className="from-muted/50 to-muted outline-hidden flex size-full select-none flex-col justify-center rounded-md bg-gradient-to-b p-4 no-underline focus:shadow-md"
+                                    className="outline-hidden flex size-full select-none flex-col justify-center rounded-md bg-gradient-to-b from-muted/50 to-muted p-4 no-underline focus:shadow-md"
                                     href={`${item.mainLink?.href}`}>
                                     <Logo className={`size-6 ${item.mainLink?.logo ? null : "hidden"}`} />
                                     <div className="mb-2 mt-4 text-lg font-medium leading-tight">
                                       {item.mainLink?.title}
                                     </div>
-                                    <p className="text-muted-foreground text-sm leading-tight">
+                                    <p className="text-sm leading-tight text-muted-foreground">
                                       {item.mainLink?.description}
                                     </p>
                                   </Link>

@@ -121,7 +121,7 @@ export function SearchDialog() {
           setOpen(true)
         }}>
         <span>Search anything</span>
-        <span className="rounded-lg border border-input bg-background px-2 py-1">⌘K</span>
+        <span className="rounded-lg border border-input bg-background px-2 py-1"><span className="font-black">⌘</span>K</span>
       </Button>
       <CommandDialog open={open} onOpenChange={setOpen}>
         <DialogTitle />

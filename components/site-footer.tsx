@@ -46,7 +46,7 @@ export function SiteFooter() {
               <>
                 {siteConfig.footerContent?.map((item, index) => (
                   <div key={index}>
-                    <h2 className="mb-6 text-2xl font-semibold text-foreground">{item.title}</h2>
+                    <h2 className="mb-6 text-2xl font-medium text-foreground">{item.title}</h2>
                     <ul className="font-medium text-muted-foreground">
                       {item.content?.length ? (
                         <>

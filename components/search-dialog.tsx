@@ -124,7 +124,6 @@ export function SearchDialog() {
         <span className="rounded-lg border border-input bg-background px-2 py-1"><span className="font-black">⌘</span>K</span>
       </Button>
       <CommandDialog open={open} onOpenChange={setOpen}>
-        <DialogTitle />
         <div className="flex items-center border-b px-3" cmdk-input-wrapper="">
           <Search className="size-4 shrink-0 opacity-50" />
           <Input

@@ -86,7 +86,7 @@ export function SiteFooter() {
                       패밀리 서비스
                       <FontAwesomeIcon
                         icon={faChevronDown}
-                        className={cn("size-3 shrink-0 transition-transform duration-200", FamilySurviceRefInView ? "rotate-180" : null)}
+                        className={cn("size-3 shrink-0 transition-transform duration-100", FamilySurviceRefInView ? "rotate-180" : null)}
                       />
                     </Button>
                   </DropdownMenuTrigger>

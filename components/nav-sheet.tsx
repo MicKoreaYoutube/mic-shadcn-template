@@ -1,5 +1,6 @@
 import Link from "next/link"
-import Image from "next/image"
+
+import { cn } from "@/lib/utils"
 
 import { Menu } from "lucide-react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -81,14 +82,14 @@ export function NavSheet({ items }: NavSheetProps) {
                           <AccordionTrigger>{item.title}</AccordionTrigger>
                           <AccordionContent>
                             <ScrollArea>
-                              <ul className={`${item.mainLink ? "grid-cols-[3fr_2fr] flex-row" : null} grid gap-3`}>
+                              <ul className={cn(item.mainLink ? "grid-cols-[3fr_2fr] flex-row" : null, "grid gap-3")}>
                                 {item.mainLink ? (
                                   <li className="h-full">
                                     <div className="h-full rounded-md transition duration-700 hover:bg-accent">
                                       <Link
                                         className="outline-hidden flex size-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-4 no-underline focus:shadow-md"
                                         href={`${item.mainLink?.href}`}>
-                                        <Logo className={`size-6 ${item.mainLink?.logo ? null : "hidden"}`} />
+                                        <Logo className={cn("size-6", item.mainLink?.logo ? null : "hidden")} />
                                         <div className="mb-2 mt-4 text-lg font-medium leading-tight">
                                           {item.mainLink?.title}
                                         </div>
@@ -100,10 +101,10 @@ export function NavSheet({ items }: NavSheetProps) {
                                   </li>
                                 ) : null}
                                 <div
-                                  className={`${item.mainLink ? "flex flex-col justify-between" : "grid grid-cols-2 gap-x-3 gap-y-1"}`}>
+                                  className={item.mainLink ? "flex flex-col justify-between" : "grid grid-cols-2 gap-x-3 gap-y-1"}>
                                   {item.linkList?.map((linkListItem, index) => (
                                     <Link
-                                      className={`flex flex-col rounded-md px-2 py-4 transition duration-700 hover:bg-accent`}
+                                      className="flex flex-col rounded-md px-2 py-4 transition duration-700 hover:bg-accent"
                                       key={index}
                                       href={linkListItem.href}>
                                       <span className="font-medium leading-tight">{linkListItem.title}</span>
@@ -133,7 +134,7 @@ export function NavSheet({ items }: NavSheetProps) {
                       패밀리 서비스&nbsp;
                       <FontAwesomeIcon
                         icon={faChevronDown}
-                        className={`size-3 shrink-0 transition-transform duration-200 ${FamilySurviceRefInView ? "rotate-180" : null}`}
+                        className={cn("size-3 shrink-0 transition-transform duration-200", FamilySurviceRefInView ? "rotate-180" : null)}
                       />
                     </Button>
                   </DropdownMenuTrigger>

@@ -2,8 +2,9 @@
 
 import Link from "next/link"
 
+import { cn } from "@/lib/utils"
+
 import { NavItem } from "@/types/nav"
-import { siteConfig } from "@/config/site"
 
 import {
   NavigationMenu,
@@ -34,7 +35,7 @@ export function MainNav({ items, ...props }: MainNavProps) {
               {items?.map((item, index) => (
                 <NavigationMenuItem key={index}>
                   {item.href ? (
-                    <Link href={`${item.href}`} className={`${navigationMenuTriggerStyle()} bg-transparent`}>
+                    <Link href={`${item.href}`} className={cn(navigationMenuTriggerStyle(), "bg-transparent")}>
                       {item.title}
                     </Link>
                   ) : (
@@ -43,14 +44,14 @@ export function MainNav({ items, ...props }: MainNavProps) {
                       <NavigationMenuContent>
                         <ScrollArea>
                           <ul
-                            className={`${item.mainLink ? "lg:grid-cols-[3fr_4fr]" : "md:grid-cols-2"} grid max-h-[250px] w-[300px] gap-3 p-6 md:w-[400px] lg:w-[500px]`}>
+                            className={cn(item.mainLink ? "lg:grid-cols-[3fr_4fr]" : "md:grid-cols-2", "grid max-h-[250px] w-[300px] gap-3 p-6 md:w-[400px] lg:w-[500px]")}>
                             {item.mainLink ? (
                               <li className="row-span-3">
                                 <NavigationMenuLink asChild>
                                   <Link
                                     className="outline-hidden flex size-full select-none flex-col justify-center rounded-md bg-gradient-to-b from-muted/50 to-muted p-4 no-underline focus:shadow-md"
                                     href={`${item.mainLink?.href}`}>
-                                    <Logo className={`size-6 ${item.mainLink?.logo ? null : "hidden"}`} />
+                                    <Logo className={cn("size-6", item.mainLink?.logo ? null : "hidden")} />
                                     <div className="mb-2 mt-4 text-lg font-medium leading-tight">
                                       {item.mainLink?.title}
                                     </div>

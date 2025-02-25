@@ -85,7 +85,7 @@ export function NavDropDown({ items }: dropDownProps) {
                                       {itemInItem.semiDropDown.map((semiDropDownItem, semiDropDownIndex) => (
                                         <div key={semiDropDownIndex}>
                                           <DropdownMenuSeparator
-                                            className={`${semiDropDownIndex == 0 ? "hidden" : null}`}
+                                            className={semiDropDownIndex == 0 ? "hidden" : ""}
                                           />
                                           {semiDropDownItem.map(
                                             (semiDropDownItemInItem, semiDropDownItemInItemIndex) => (

@@ -2,6 +2,8 @@
 
 import Link from "next/link"
 
+import { cn } from "@/lib/utils"
+
 import { siteConfig } from "@/config/site"
 
 import { buttonVariants, Button } from "@/components/ui/button"
@@ -81,16 +83,16 @@ export function SiteFooter() {
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <Button variant="outline" className="bg-accent/50">
-                      패밀리 서비스&nbsp;
+                      패밀리 서비스
                       <FontAwesomeIcon
                         icon={faChevronDown}
-                        className={`size-3 shrink-0 transition-transform duration-200 ${FamilySurviceRefInView ? "rotate-180" : null}`}
+                        className={cn("size-3 shrink-0 transition-transform duration-200", FamilySurviceRefInView ? "rotate-180" : null)}
                       />
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent className="font-RixInooAriDuriR w-1" ref={FamilySurviceRef}>
                     <DropdownMenuGroup>
-                      <DropdownMenuLabel>패밀리 서비스</DropdownMenuLabel>
+                      <DropdownMenuLabel className="font-medium">패밀리 서비스</DropdownMenuLabel>
                       {siteConfig.FamilySurvice?.length
                         ? siteConfig.FamilySurvice?.map((item, index) => (
                             <Link key={index} href={item.href}>

@@ -1,14 +1,14 @@
-import Link from "next/link";
+import Link from "next/link"
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils"
 
-import { Menu } from "lucide-react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
-import { faGithub, faInstagram } from "@fortawesome/free-brands-svg-icons";
+import { Menu } from "lucide-react"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons"
+import { faGithub, faInstagram } from "@fortawesome/free-brands-svg-icons"
 
-import { NavItem } from "@/types/nav";
-import { siteConfig, navDropDownContent } from "@/config/site";
+import { NavItem } from "@/types/nav"
+import { siteConfig, navDropDownContent } from "@/config/site"
 
 import {
   Sheet,
@@ -18,9 +18,9 @@ import {
   SheetFooter,
   SheetTitle,
   SheetTrigger,
-} from "@/components/ui/sheet";
-import { buttonVariants, Button } from "@/components/ui/button";
-import { ScrollArea } from "@/components/ui/scroll-area";
+} from "@/components/ui/sheet"
+import { buttonVariants, Button } from "@/components/ui/button"
+import { ScrollArea } from "@/components/ui/scroll-area"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -28,13 +28,8 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+} from "@/components/ui/dropdown-menu"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import {
   Drawer,
   DrawerClose,
@@ -44,25 +39,25 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from "@/components/ui/drawer";
+} from "@/components/ui/drawer"
 
-import { ThemeToggle } from "@/components/theme-toggle";
-import { NavDropDown } from "@/components/dropdown";
+import { ThemeToggle } from "@/components/theme-toggle"
+import { NavDropDown } from "@/components/dropdown"
 
-import { useInView } from "react-intersection-observer";
+import { useInView } from "react-intersection-observer"
 
-import { SearchDialog } from "@/components/search-dialog";
+import { SearchDialog } from "@/components/search-dialog"
 
-import Logo from "@/public/logo.svg";
+import Logo from "@/public/logo.svg"
 
 interface NavSheetProps {
-  items?: NavItem[];
+  items?: NavItem[]
 }
 
 export function NavSheet({ items }: NavSheetProps) {
   const [FamilySurviceRef, FamilySurviceRefInView] = useInView({
     threshold: 1,
-  });
+  })
 
   return (
     <>
@@ -77,9 +72,7 @@ export function NavSheet({ items }: NavSheetProps) {
             <SheetTitle>
               <Link href="/" className="flex flex-row space-x-2">
                 <Logo className="size-6" />
-                <span className="inline-block font-bold">
-                  {siteConfig.name}
-                </span>
+                <span className="inline-block font-bold">{siteConfig.name}</span>
               </Link>
             </SheetTitle>
             <SheetDescription>{siteConfig.description}</SheetDescription>
@@ -103,14 +96,7 @@ export function NavSheet({ items }: NavSheetProps) {
                           <AccordionTrigger>{item.title}</AccordionTrigger>
                           <AccordionContent>
                             <ScrollArea>
-                              <ul
-                                className={cn(
-                                  item.mainLink
-                                    ? "grid-cols-[3fr_2fr] flex-row"
-                                    : null,
-                                  "grid gap-3",
-                                )}
-                              >
+                              <ul className={cn(item.mainLink ? "grid-cols-[3fr_2fr] flex-row" : null, "grid gap-3")}>
                                 {item.mainLink ? (
                                   <li className="h-full">
                                     <div className="h-full rounded-md transition duration-700 hover:bg-accent">
@@ -118,14 +104,7 @@ export function NavSheet({ items }: NavSheetProps) {
                                         className="outline-hidden flex size-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-4 no-underline focus:shadow-md"
                                         href={`${item.mainLink?.href}`}
                                       >
-                                        <Logo
-                                          className={cn(
-                                            "size-6",
-                                            item.mainLink?.logo
-                                              ? null
-                                              : "hidden",
-                                          )}
-                                        />
+                                        <Logo className={cn("size-6", item.mainLink?.logo ? null : "hidden")} />
                                         <div className="mb-2 mt-4 text-lg font-medium leading-tight">
                                           {item.mainLink?.title}
                                         </div>
@@ -138,9 +117,7 @@ export function NavSheet({ items }: NavSheetProps) {
                                 ) : null}
                                 <div
                                   className={
-                                    item.mainLink
-                                      ? "flex flex-col justify-between"
-                                      : "grid grid-cols-2 gap-x-3 gap-y-1"
+                                    item.mainLink ? "flex flex-col justify-between" : "grid grid-cols-2 gap-x-3 gap-y-1"
                                   }
                                 >
                                   {item.linkList?.map((linkListItem, index) => (
@@ -149,9 +126,7 @@ export function NavSheet({ items }: NavSheetProps) {
                                       key={index}
                                       href={linkListItem.href}
                                     >
-                                      <span className="font-medium leading-tight">
-                                        {linkListItem.title}
-                                      </span>
+                                      <span className="font-medium leading-tight">{linkListItem.title}</span>
                                       <span className="leading-tight text-muted-foreground">
                                         {linkListItem.description}
                                       </span>
@@ -178,17 +153,17 @@ export function NavSheet({ items }: NavSheetProps) {
                   </DrawerTrigger>
                   <DrawerContent>
                     <DrawerHeader>
-                      <DrawerTitle>Are you absolutely sure?</DrawerTitle>
-                      <DrawerDescription>
-                        This action cannot be undone.
-                      </DrawerDescription>
+                      <DrawerTitle className="font-RixInooAriDuriR text-xl font-medium">패밀리 서비스</DrawerTitle>
                     </DrawerHeader>
-                    <DrawerFooter>
-                      <Button>Submit</Button>
-                      <DrawerClose asChild>
-                        <Button variant="outline">Cancel</Button>
-                      </DrawerClose>
-                    </DrawerFooter>
+                    <div className="font-RixInooAriDuriR m-4 flex flex-col gap-2 font-normal">
+                      {siteConfig.FamilySurvice?.length
+                        ? siteConfig.FamilySurvice?.map((item, index) => (
+                            <Link key={index} href={item.href} className="text-muted-foreground hover:underline">
+                              <span>{item.name}</span>
+                            </Link>
+                          ))
+                        : null}
+                    </div>
                   </DrawerContent>
                 </Drawer>
               </div>
@@ -198,5 +173,5 @@ export function NavSheet({ items }: NavSheetProps) {
         </SheetContent>
       </Sheet>
     </>
-  );
+  )
 }

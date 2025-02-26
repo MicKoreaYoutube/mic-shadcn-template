@@ -86,7 +86,10 @@ export function SiteFooter() {
                       패밀리 서비스
                       <FontAwesomeIcon
                         icon={faChevronDown}
-                        className={cn("size-3 shrink-0 transition-transform duration-100", FamilySurviceRefInView ? "rotate-180" : null)}
+                        className={cn(
+                          "size-3 shrink-0 transition-transform duration-100",
+                          FamilySurviceRefInView ? "rotate-180" : null,
+                        )}
                       />
                     </Button>
                   </DropdownMenuTrigger>
@@ -112,7 +115,8 @@ export function SiteFooter() {
                     className={buttonVariants({
                       size: "icon",
                       variant: "ghost",
-                    })}>
+                    })}
+                  >
                     <FontAwesomeIcon icon={faGithub} className="size-5" />
                     <span className="sr-only">GitHub</span>
                   </div>
@@ -122,7 +126,8 @@ export function SiteFooter() {
                     className={buttonVariants({
                       size: "icon",
                       variant: "ghost",
-                    })}>
+                    })}
+                  >
                     <FontAwesomeIcon icon={faInstagram} className="size-5" />
                     <span className="sr-only">Instagram</span>
                   </div>

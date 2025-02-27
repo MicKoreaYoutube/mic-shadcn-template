@@ -212,7 +212,7 @@ export function DocsPage({ doc, subDoc }: docsPageInterface) {
                     </h2>
                     <hr />
                   </div>
-                  <div className="font-SUITE-Regular text-lg">
+                  <div className="font-SUITE-Regular">
                     <ReactMarkdown>{chapterItem.content}</ReactMarkdown>
                   </div>
                   {chapterItem?.subChapterList?.length ? (
@@ -222,7 +222,7 @@ export function DocsPage({ doc, subDoc }: docsPageInterface) {
                           <h3 className="font-KBO-Dia-Gothic_bold text-3xl" id={`chapter-${subChapterItem.title}`}>
                             {subChapterItem.title}
                           </h3>
-                          <div className="font-SUITE-Regular text-base">
+                          <div className="font-SUITE-Regular">
                             <ReactMarkdown>{subChapterItem.content}</ReactMarkdown>
                           </div>
                         </div>

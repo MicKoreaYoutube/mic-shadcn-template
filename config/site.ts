@@ -294,8 +294,9 @@ export const docsContent: docsItem[] = [
       },
       {
         title: "시작하기 2",
-        content: `# 안녕하세요!
-  저는 현재 리액트에서 \`react-markdown\`를 이용하여 **마크다운**을 랜더링하고 있습니다.`,
+        content: `# 제목 시발아
+### 안녕하세요!
+저는 현재 리액트에서 \`react-markdown\`를 이용하여 **마크다운**을 랜더링하고 있습니다.`,
       },
       {
         title: "시작하기 3",

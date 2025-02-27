@@ -1,19 +1,26 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from "next"
+import createMDX from "@next/mdx"
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  webpack: config => {
+  pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
+  webpack: (config) => {
     config.module.rules.push({
       test: /\.svg$/,
       use: ["@svgr/webpack"],
-    });
+    })
 
-    return config;
+    return config
   },
   eslint: {
     // 개발 중에도 ESLint 경고를 띄우도록 설정
     ignoreDuringBuilds: false,
   },
-};
+}
 
-export default nextConfig;
+const withMDX = createMDX({
+  // Add markdown plugins here, as desired
+})
+
+// Merge MDX config with Next.js config
+export default withMDX(nextConfig)

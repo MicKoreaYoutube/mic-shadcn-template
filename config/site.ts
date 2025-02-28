@@ -266,7 +266,7 @@ export const docsContent: docsItem[] = [
     title: "소개",
     isDoc: true,
     id: "introduction",
-    description: "MicKoreaYoutube가 제작한 shadcn-ui 템플릿입니다!",
+    description: "MicKoreaYoutube가 제작한 shadcn-ui 템플릿입니다!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",
     chapterList: [
       {
         title: "소개 1",

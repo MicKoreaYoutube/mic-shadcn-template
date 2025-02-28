@@ -23,7 +23,7 @@ export default function Page() {
                 <h1
                   className={cn("font-KBODiaGothic_bold animate__animated text-3xl font-extrabold leading-tight tracking-tighter md:text-4xl", inView ? classToAdd : "invisible")}
                   ref={ref}>
-                  한국어로는 어떤지?? <br className="hidden sm:inline" />
+                  Beautifully designed components <br className="hidden sm:inline" />
                   built with Radix UI and Tailwind CSS.
                 </h1>
               )}
@@ -121,7 +121,7 @@ export default function Page() {
             <InView triggerOnce={true} threshold={1}>
               {({ inView, ref }) => (
                 <h1
-                  className={cn("font-KBO-Dia-Gothic_bold animate__animated text-3xl font-extrabold leading-tight tracking-tighter text-background md:text-4xl", inView ? classToAdd : "invisible")}
+                  className={cn("font-KBODiaGothic_bold animate__animated text-3xl font-extrabold leading-tight tracking-tighter text-background md:text-4xl", inView ? classToAdd : "invisible")}
                   ref={ref}>
                   Beautifully designed components <br className="hidden sm:inline" />
                   built with Radix UI and Tailwind CSS.

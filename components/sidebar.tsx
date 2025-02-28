@@ -145,7 +145,7 @@ export function DocsSidebar({ items }: docsSidebarInterface) {
                 <div key={index} className="py-2">
                   <Link
                     href={`${item.isDoc ? `/docs/${item.id ?? item.title}` : "#"}`}
-                    className={cn("font-KBO-Dia-Gothic_bold my-3 block text-lg", (decodeURI(pathName) == "/docs" && index == 0) || decodeURI(pathName) == `/docs/${item.id}` || decodeURI(pathName) == `/docs/${item.title}` ? "underline underline-offset-4" : "font-bold")}>
+                    className={cn("font-KBODiaGothic_bold my-3 block text-lg", (decodeURI(pathName) == "/docs" && index == 0) || decodeURI(pathName) == `/docs/${item.id}` || decodeURI(pathName) == `/docs/${item.title}` ? "underline underline-offset-4" : "font-bold")}>
                     {item.title}
                   </Link>
                   {item.subDocList?.length
@@ -153,7 +153,7 @@ export function DocsSidebar({ items }: docsSidebarInterface) {
                         <Link
                           key={subDocIndex}
                           href={`/docs/${item.id ?? item.title}/${subDocItem.id ?? subDocItem.title}`}
-                          className={cn("font-SUITE-Regular my-1 block text-base", decodeURI(pathName) == `/docs/${item.id}/${subDocItem.title}` || decodeURI(pathName) == `/docs/${item.title}/${subDocItem.title}` ? "font-bold text-foreground underline underline-offset-4" : "text-muted-foreground")}>
+                          className={cn("font-SUITE_Regular my-1 block text-base", decodeURI(pathName) == `/docs/${item.id}/${subDocItem.title}` || decodeURI(pathName) == `/docs/${item.title}/${subDocItem.title}` ? "font-bold text-foreground underline underline-offset-4" : "text-muted-foreground")}>
                           {subDocItem.title}
                         </Link>
                       ))

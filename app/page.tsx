@@ -21,19 +21,19 @@ export default function Page() {
             <InView triggerOnce={true} threshold={1}>
               {({ inView, ref }) => (
                 <h1
-                  className={cn("font-KBO-Dia-Gothic_bold animate__animated text-3xl font-extrabold leading-tight tracking-tighter md:text-4xl", inView ? classToAdd : "invisible")}
+                  className={cn("font-KBODiaGothic_bold animate__animated text-3xl font-extrabold leading-tight tracking-tighter md:text-4xl", inView ? classToAdd : "invisible")}
                   ref={ref}>
-                  Beautifully designed components <br className="hidden sm:inline" />
+                  한국어로는 어떤지?? <br className="hidden sm:inline" />
                   built with Radix UI and Tailwind CSS.
                 </h1>
               )}
             </InView>
-            <p className="font-SUITE-Regular text-lg text-muted-foreground">
+            <p className="font-SUITE_Regular text-lg text-muted-foreground">
               Accessible and customizable components that you can copy and paste into your apps. Free. Open Source. And
               Next.js 13 Ready.
             </p>
           </div>
-          <div className="font-TheJamsil5Bold flex gap-4">
+          <div className="flex gap-4 font-TheJamsil5Bold">
             <Link href={siteConfig.links.shadcnuiDocs} target="_blank" rel="noreferrer" className={buttonVariants()}>
               Documentation
             </Link>
@@ -53,19 +53,19 @@ export default function Page() {
             <InView triggerOnce={true} threshold={1}>
               {({ inView, ref }) => (
                 <h1
-                  className={cn("font-KBO-Dia-Gothic_bold animate__animated text-3xl font-extrabold leading-tight tracking-tighter text-background md:text-4xl", inView ? classToAdd : "invisible")}
+                  className={cn("font-KBODiaGothic_bold animate__animated text-3xl font-extrabold leading-tight tracking-tighter text-background md:text-4xl", inView ? classToAdd : "invisible")}
                   ref={ref}>
                   Beautifully designed components <br className="hidden sm:inline" />
                   built with Radix UI and Tailwind CSS.
                 </h1>
               )}
             </InView>
-            <p className="font-SUITE-Regular text-lg text-muted-foreground">
+            <p className="font-SUITE_Regular text-lg text-muted-foreground">
               Accessible and customizable components that you can copy and paste into your apps. Free. Open Source. And
               Next.js 13 Ready.
             </p>
           </div>
-          <div className="font-TheJamsil5Bold flex gap-4">
+          <div className="flex gap-4 font-TheJamsil5Bold">
             <Link
               href={siteConfig.links.shadcnuiDocs}
               target="_blank"
@@ -89,19 +89,19 @@ export default function Page() {
             <InView triggerOnce={true} threshold={1}>
               {({ inView, ref }) => (
                 <h1
-                  className={cn("font-KBO-Dia-Gothic_bold animate__animated text-3xl font-extrabold leading-tight tracking-tighter md:text-4xl", inView ? classToAdd : "invisible")}
+                  className={cn("font-KBODiaGothic_bold animate__animated text-3xl font-extrabold leading-tight tracking-tighter md:text-4xl", inView ? classToAdd : "invisible")}
                   ref={ref}>
                   Beautifully designed components <br className="hidden sm:inline" />
                   built with Radix UI and Tailwind CSS.
                 </h1>
               )}
             </InView>
-            <p className=" font-SUITE-Regular text-lg text-muted-foreground">
+            <p className=" font-SUITE_Regular text-lg text-muted-foreground">
               Accessible and customizable components that you can copy and paste into your apps. Free. Open Source. And
               Next.js 13 Ready.
             </p>
           </div>
-          <div className="font-TheJamsil5Bold flex gap-4">
+          <div className="flex gap-4 font-TheJamsil5Bold">
             <Link href={siteConfig.links.shadcnuiDocs} target="_blank" rel="noreferrer" className={buttonVariants()}>
               Documentation
             </Link>
@@ -128,12 +128,12 @@ export default function Page() {
                 </h1>
               )}
             </InView>
-            <p className="font-SUITE-Regular text-lg text-muted-foreground">
+            <p className="font-SUITE_Regular text-lg text-muted-foreground">
               Accessible and customizable components that you can copy and paste into your apps. Free. Open Source. And
               Next.js 13 Ready.
             </p>
           </div>
-          <div className="font-TheJamsil5Bold flex gap-4">
+          <div className="flex gap-4 font-TheJamsil5Bold">
             <Link
               href={siteConfig.links.shadcnuiDocs}
               target="_blank"

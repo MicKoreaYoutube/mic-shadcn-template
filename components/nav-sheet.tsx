@@ -67,7 +67,7 @@ export function NavSheet({ items }: NavSheetProps) {
             <Menu />
           </Button>
         </SheetTrigger>
-        <SheetContent className="font-RixInooAriDuriR flex h-screen flex-col overflow-auto">
+        <SheetContent className="flex h-screen flex-col overflow-auto font-RixInooAriDuriR">
           <SheetHeader className="flex-none">
             <SheetTitle>
               <Link href="/" className="flex flex-row space-x-2">
@@ -155,7 +155,7 @@ export function NavSheet({ items }: NavSheetProps) {
                     <DrawerHeader>
                       <DrawerTitle className="font-RixInooAriDuriR text-xl font-medium">패밀리 서비스</DrawerTitle>
                     </DrawerHeader>
-                    <div className="font-RixInooAriDuriR m-4 flex flex-col gap-2 font-normal">
+                    <div className="m-4 flex flex-col gap-2 font-RixInooAriDuriR font-normal">
                       {siteConfig.FamilySurvice?.length
                         ? siteConfig.FamilySurvice?.map((item, index) => (
                             <Link key={index} href={item.href} className="text-muted-foreground hover:underline">

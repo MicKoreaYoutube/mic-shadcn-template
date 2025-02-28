@@ -19,7 +19,7 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
             </Button>
           </SheetTrigger>
           <SheetContent side="left">
-            <SheetTitle className="font-KBO-Dia-Gothic_bold text-3xl">문서</SheetTitle>
+            <SheetTitle className="font-KBODiaGothic_bold text-3xl">문서</SheetTitle>
             <DocsSidebar items={docsContent} />
           </SheetContent>
         </Sheet>

@@ -11,9 +11,9 @@ export default function Login() {
     <>
       <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
         <div className="flex flex-col space-y-2 text-center">
-          <h1 className="font-KBO-Dia-Gothic_bold text-2xl font-semibold tracking-tight">로그인</h1>
+          <h1 className="font-KBODiaGothic_bold text-2xl font-semibold tracking-tight">로그인</h1>
         </div>
-        <div className="font-SUITE-Regular flex flex-col justify-center space-y-6">
+        <div className="flex flex-col justify-center space-y-6 font-SUITE_Regular">
           <div>
             <Label htmlFor="id" className="p-1">
               아이디
@@ -29,7 +29,7 @@ export default function Login() {
           <Button>로그인</Button>
         </div>
         <hr />
-        <div className="font-SUITE-Regular flex flex-col justify-center space-y-6">
+        <div className="flex flex-col justify-center space-y-6 font-SUITE_Regular">
           <span className="px-8 text-center text-sm text-muted-foreground">
             계정이 없나요?{" "}
             <Link href="/auth/join" className="text-blue-500 hover:text-blue-700">

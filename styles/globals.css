@@ -138,19 +138,6 @@
   font-style: normal;
 }
 
-.font-KBO-Dia-Gothic_bold {
-  font-family: "KBO-Dia-Gothic_bold";
-}
-.font-SUITE-Regular {
-  font-family: "SUITE-Regular";
-}
-.font-TheJamsil5Bold {
-  font-family: "TheJamsil5Bold";
-}
-.font-RixInooAriDuriR {
-  font-family: "RixInooAriDuriR";
-}
-
 @layer base {
   * {
     @apply border-border outline-ring/50;

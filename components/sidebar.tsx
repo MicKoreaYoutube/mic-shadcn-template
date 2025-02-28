@@ -176,7 +176,7 @@ function ChapterSidebarTargetLink({ to, children, ...props }: ChapterSidebarTarg
       isDynamic
       to={to}
       offset={-70}
-      className="font-SUITE-Regular cursor-pointer"
+      className="cursor-pointer font-SUITE_Regular"
       duration={700}
       {...props}>
       {children}
@@ -188,7 +188,7 @@ export function ChapterSidebar({ items }: chapterSidebarInterface) {
   return (
     <div className="w-32">
       <div className="fixed py-10">
-        <h1 className="font-KBO-Dia-Gothic_bold font-bold">Chapter</h1>
+        <h1 className="font-KBODiaGothic_bold font-bold">Chapter</h1>
         <div className="grid gap-1">
           {items?.length
             ? items.map((item, index) => (

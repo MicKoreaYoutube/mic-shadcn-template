@@ -11,7 +11,7 @@ export default function Loading() {
             <LoadingComp size={96} />
             <span className="sr-only">Loading...</span>
           </div>
-          <h1 className="font-KBO-Dia-Gothic_bold text-center text-6xl font-extrabold">loading...</h1>
+          <h1 className="text-center font-KBODiaGothic_bold text-6xl font-extrabold">loading...</h1>
         </section>
       </div>
     </>

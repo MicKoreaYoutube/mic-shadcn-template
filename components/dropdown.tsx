@@ -58,7 +58,7 @@ export function NavDropDown({ items }: dropDownProps) {
               </div>
             </button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="font-TheJamsil5Bold w-56">
+          <DropdownMenuContent className="w-56 font-TheJamsil5Bold">
             <DropdownMenuLabel>{items?.label}</DropdownMenuLabel>
             {items?.content.length ? (
               <>

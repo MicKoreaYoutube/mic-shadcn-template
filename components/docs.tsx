@@ -65,8 +65,8 @@ function DocsIndicator({ docCoordinate, type }: docsIndicatorInterface) {
               <CardHeader
                 className={cn("flex flex-row justify-between gap-3", type == "prev" ? "flex-row-reverse" : null)}>
                 <div className="flex flex-col">
-                  <CardTitle className="font-KBO-Dia-Gothic_bold">{doc?.title.slice(0, 8)}...</CardTitle>
-                  <CardDescription className="font-SUITE-Regular">{doc?.description?.slice(0, 15)}...</CardDescription>
+                  <CardTitle className="font-KBODiaGothic_bold">{doc?.title.slice(0, 8)}...</CardTitle>
+                  <CardDescription className="font-SUITE_Regular">{doc?.description?.slice(0, 15)}...</CardDescription>
                 </div>
                 {type == "prev" ? (
                   <CircleArrowLeft className="my-auto size-9" />
@@ -174,7 +174,7 @@ export function DocsPage({ doc, subDoc }: docsPageInterface) {
   return (
     <div className="flex flex-row justify-between">
       <div className="w-full justify-self-stretch px-12 py-9">
-        <Breadcrumb className="font-SUITE-Regular">
+        <Breadcrumb className="font-SUITE_Regular">
           <BreadcrumbList className="text-base">
             <BreadcrumbItem>
               <BreadcrumbLink href="/docs">docs</BreadcrumbLink>
@@ -198,8 +198,8 @@ export function DocsPage({ doc, subDoc }: docsPageInterface) {
           </BreadcrumbList>
         </Breadcrumb>
         <div className="grid gap-2 py-4">
-          <h1 className="font-KBO-Dia-Gothic_bold text-6xl">{foundDoc?.title}</h1>
-          <span className="font-SUITE-Regular text-2xl">{foundDoc?.description}</span>
+          <h1 className="font-KBODiaGothic_bold text-6xl">{foundDoc?.title}</h1>
+          <span className="font-SUITE_Regular text-2xl">{foundDoc?.description}</span>
           <hr />
         </div>
         <div className="grid gap-16 py-4">
@@ -207,22 +207,22 @@ export function DocsPage({ doc, subDoc }: docsPageInterface) {
             ? foundDoc.chapterList.map((chapterItem, chapterIndex) => (
                 <div key={chapterIndex} className="grid gap-6 py-4">
                   <div className="grid gap-2">
-                    <h2 className="font-KBO-Dia-Gothic_bold text-4xl" id={`chapter-${chapterItem.title}`}>
+                    <h2 className="font-KBODiaGothic_bold text-4xl" id={`chapter-${chapterItem.title}`}>
                       {chapterItem.title}
                     </h2>
                     <hr />
                   </div>
-                  <div className="font-SUITE-Regular">
+                  <div className="font-SUITE_Regular">
                     <ReactMarkdown>{chapterItem.content}</ReactMarkdown>
                   </div>
                   {chapterItem?.subChapterList?.length ? (
                     <div className="grid gap-12 py-6">
                       {chapterItem.subChapterList.map((subChapterItem, subChapterIndex) => (
                         <div key={subChapterIndex} className="grid gap-3">
-                          <h3 className="font-KBO-Dia-Gothic_bold text-3xl" id={`chapter-${subChapterItem.title}`}>
+                          <h3 className="font-KBODiaGothic_bold text-3xl" id={`chapter-${subChapterItem.title}`}>
                             {subChapterItem.title}
                           </h3>
-                          <div className="font-SUITE-Regular">
+                          <div className="font-SUITE_Regular">
                             <ReactMarkdown>{subChapterItem.content}</ReactMarkdown>
                           </div>
                         </div>

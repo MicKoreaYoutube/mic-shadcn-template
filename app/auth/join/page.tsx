@@ -14,11 +14,11 @@ export default function Join() {
     <>
       <div className="mx-auto flex h-screen w-full flex-col justify-center space-y-6 sm:w-[350px]">
         <div className="flex flex-col space-y-2 text-center">
-          <h1 className="font-KBO-Dia-Gothic_bold text-2xl font-semibold tracking-tight">회원 가입</h1>
+          <h1 className="font-KBODiaGothic_bold text-2xl font-semibold tracking-tight">회원 가입</h1>
         </div>
-        <div className="font-SUITE-Regular flex flex-col justify-center space-y-6">
+        <div className="flex flex-col justify-center space-y-6 font-SUITE_Regular">
           <div>
-            <div className="font-SUITE-Regular flex flex-col justify-center space-y-6">
+            <div className="flex flex-col justify-center space-y-6 font-SUITE_Regular">
               <div>
                 <Label htmlFor="id" className="p-1">
                   아이디
@@ -45,7 +45,7 @@ export default function Join() {
           <div className="absolute inset-0 flex items-center">
             <span className="w-full border-t" />
           </div>
-          <div className="font-SUITE-Regular relative flex justify-center">
+          <div className="relative flex justify-center font-SUITE_Regular">
             <span className="bg-background px-2 text-muted-foreground">또는</span>
           </div>
         </div>
@@ -63,7 +63,7 @@ export default function Join() {
             <FontAwesomeIcon icon={faApple} className="text-lg font-bold" />
           </Button>
         </div>
-        <div className="font-SUITE-Regular flex flex-col justify-center space-y-6">
+        <div className="flex flex-col justify-center space-y-6 font-SUITE_Regular">
           <span className="px-8 text-center text-sm text-muted-foreground">
             계정이 이미 있나요?{" "}
             <Link href="/auth/login" className="text-blue-500 hover:text-blue-700">

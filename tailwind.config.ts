@@ -90,6 +90,12 @@ export default {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      fontFamily: {
+        KBODiaGothic_bold: ["KBO-Dia-Gothic_bold"],
+        SUITE_Regular: ["SUITE-Regular"],
+        TheJamsil5Bold: ["TheJamsil5Bold"],
+        RixInooAriDuriR: ["RixInooAriDuriR"],
+      },
     },
   },
   plugins: [animate]

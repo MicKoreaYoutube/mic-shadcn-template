@@ -31,7 +31,7 @@ export function SiteFooter() {
   })
 
   return (
-    <footer className="font-RixInooAriDuriR inset-x-0 bottom-0 z-40 w-full border-t bg-accent/50">
+    <footer className="inset-x-0 bottom-0 z-40 w-full border-t bg-accent/50 font-RixInooAriDuriR">
       <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
         <div className="md:flex md:justify-between">
           <div className="mb-6 md:mb-0">
@@ -93,7 +93,7 @@ export function SiteFooter() {
                       />
                     </Button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent className="font-RixInooAriDuriR w-1" ref={FamilySurviceRef}>
+                  <DropdownMenuContent className="w-1 font-RixInooAriDuriR" ref={FamilySurviceRef}>
                     <DropdownMenuGroup>
                       <DropdownMenuLabel className="font-medium">패밀리 서비스</DropdownMenuLabel>
                       {siteConfig.FamilySurvice?.length

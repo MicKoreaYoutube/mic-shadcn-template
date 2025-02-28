@@ -153,7 +153,7 @@ export function SearchDialog() {
                       <File className="mr-2 size-6" />
                       <div className="flex flex-col">
                         <span className="font-TheJamsil5Bold text-base">{item.item.title}</span>
-                        <span className="font-SUITE-Regular text-sm">{item.item.description?.slice(0, 20)}...</span>
+                        <span className="font-SUITE_Regular text-sm">{item.item.description?.slice(0, 20)}...</span>
                       </div>
                     </CommandItem>
                   </Link>
@@ -161,7 +161,7 @@ export function SearchDialog() {
               </CommandGroup>
             ) : (
               <div className="mx-12 my-24">
-                <h3 className="font-TheJamsil5Bold text-center text-xl">검색 결과가 없습니다</h3>
+                <h3 className="text-center font-TheJamsil5Bold text-xl">검색 결과가 없습니다</h3>
               </div>
             )}
           </CommandList>

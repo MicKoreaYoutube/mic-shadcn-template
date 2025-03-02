@@ -86,10 +86,7 @@
       "calt" 1;
   }
   * {
-    word-break: keep-all;
-  }
-  * {
-    @apply border-border;
+    word-break: break-word;
   }
   :root {
     --sidebar-background: 0 0% 98%;

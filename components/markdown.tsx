@@ -15,7 +15,7 @@ export async function Markdown({ path }: markdownPropsInterface) {
 
     return (
       <ReactMarkdown
-        className="mx-auto p-8"
+        className="mx-auto p-8 lg:w-[65vw]"
         remarkPlugins={[remarkGfm]}
         components={{
           h1: ({ node, ...props }) => <h1 className="mb-4 mt-9 border-b pb-3 font-KBODiaGothic_bold text-4xl font-extrabold leading-tight tracking-tighter md:text-5xl" {...props} />,

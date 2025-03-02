@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button"
 
 export default function DocsLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="relative mx-auto flex w-full flex-col md:flex-row xl:w-3/4">
+    <div className="relative mx-auto flex w-full flex-col md:flex-row xl:w-[75vw]">
       <div className="inline px-12 pt-8 md:hidden">
         <Sheet>
           <SheetTrigger asChild>

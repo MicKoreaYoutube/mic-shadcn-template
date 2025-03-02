@@ -55,10 +55,6 @@ interface NavSheetProps {
 }
 
 export function NavSheet({ items }: NavSheetProps) {
-  const [FamilySurviceRef, FamilySurviceRefInView] = useInView({
-    threshold: 1,
-  })
-
   return (
     <>
       <Sheet>

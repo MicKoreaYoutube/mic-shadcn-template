@@ -39,7 +39,7 @@
     "**/*.js",
     "**/*.jsx",
     ".next/types/**/*.ts"
-  ],
+, "app/docs2/page.mdx", "app/terms/page.mdx"  ],
   "exclude": [
     "node_modules"
   ]

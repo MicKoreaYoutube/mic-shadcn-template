@@ -3,52 +3,78 @@ import Link from 'next/link'
  
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
-    h1: ({ node, ...props }) => (
+    h1: ({ node, children, ...props }) => (
       <h1
         className="mb-4 mt-9 border-b pb-3 font-KBODiaGothic_bold text-4xl font-extrabold leading-tight tracking-tighter md:text-5xl"
         {...props}
-      />
+      >
+        {children}
+      </h1>
     ),
-    h2: ({ node, ...props }) => (
+    h2: ({ node, children, ...props }) => (
       <h2
         className="mb-3 mt-8 border-b pb-2 font-KBODiaGothic_bold text-3xl font-extrabold leading-tight tracking-tighter md:text-4xl"
         {...props}
-      />
+      >
+        {children}
+      </h2>
     ),
-    h3: ({ node, ...props }) => (
+    h3: ({ node, children, ...props }) => (
       <h3
         className="font-KBODiaGothic_bold text-2xl font-extrabold leading-tight tracking-tighter md:text-3xl"
         {...props}
-      />
+      >
+        {children}
+      </h3>
     ),
-    h4: ({ node, ...props }) => (
+    h4: ({ node, children, ...props }) => (
       <h4
         className="font-KBODiaGothic_bold text-xl font-extrabold leading-tight tracking-tighter md:text-2xl"
         {...props}
-      />
+      >
+        {children}
+      </h4>
     ),
-    p: ({ node, ...props }) => (
-      <p className="my-4 font-SUITE_Regular text-lg text-muted-foreground md:text-xl" {...props} />
+    p: ({ node, children, ...props }) => (
+      <p className="my-4 font-SUITE_Regular text-lg text-muted-foreground md:text-xl" {...props}>
+        {children}
+      </p>
     ),
-    blockquote: ({ node, ...props }) => (
-      <blockquote className="border-l-2 pl-6 font-TheJamsil5Bold italic" {...props} />
+    blockquote: ({ node, children, ...props }) => (
+      <blockquote className="border-l-2 pl-6 font-TheJamsil5Bold italic" {...props}>
+        {children}
+      </blockquote>
     ),
-    pre: ({ node, ...props }) => (
-      <pre className="m-5 rounded-lg bg-muted p-2 font-mono text-sm font-semibold" {...props} />
+    pre: ({ node, children, ...props }) => (
+      <pre className="m-5 rounded-lg bg-gray-300 p-2 font-mono text-sm font-semibold" {...props}>
+        {children}
+      </pre>
     ),
-    code: ({ node, ...props }) => (
-      <code className="rounded bg-muted px-2 py-1 font-mono text-sm font-semibold" {...props} />
+    code: ({ node, children, ...props }) => (
+      <code className="rounded bg-muted px-2 py-1 font-mono text-sm font-semibold" {...props}>
+        {children}
+      </code>
     ),
-    a: ({ node, href, ...props }) => (
-      <Link className="text-primary hover:underline" href={href ?? "#"} {...props} />
+    a: ({ node, href, children, ...props }) => (
+      <Link className="text-primary hover:underline" href={href ?? "#"} {...props}>
+        {children}
+      </Link>
     ),
-    ul: ({ node, ...props }) => (
-      <ul className="my-4 block list-disc px-9 font-SUITE_Regular text-muted-foreground" {...props} />
+    ul: ({ node, children, ...props }) => (
+      <ul className="my-4 block list-disc px-9 font-SUITE_Regular text-muted-foreground" {...props}>
+        {children}
+      </ul>
     ),
-    ol: ({ node, ...props }) => (
-      <ol className="my-4 block list-decimal px-9 font-SUITE_Regular text-muted-foreground" {...props} />
+    ol: ({ node, children, ...props }) => (
+      <ol className="my-4 block list-decimal px-9 font-SUITE_Regular text-muted-foreground" {...props}>
+        {children}
+      </ol>
     ),
-    li: ({ node, ...props }) => <li className="marker:text-foreground" {...props} />,
+    li: ({ node, children, ...props }) => (
+      <li className="marker:text-foreground" {...props}>
+        {children}
+      </li>
+    ),
     ...components,
   }
 }

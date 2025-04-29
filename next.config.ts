@@ -1,6 +1,7 @@
 import type { NextConfig } from "next"
 import createMDX from "@next/mdx"
 import remarkGfm from "remark-gfm"
+import rehypeSlug from "rehype-slug"
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
@@ -23,7 +24,7 @@ const withMDX = createMDX({
   // Add markdown plugins here, as desired
   options: {
     remarkPlugins: [remarkGfm],
-    rehypePlugins: [],
+    rehypePlugins: [rehypeSlug],
   },
 })
 

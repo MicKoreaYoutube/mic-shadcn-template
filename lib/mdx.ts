@@ -7,7 +7,7 @@ import rehypeSlug from "rehype-slug"
 import { compileMDX } from "next-mdx-remote/rsc"
 import { MDXComponents } from "@/mdx-components"
 
-export async function getDocsContent(slug: string[]) {
+export async function getMdxContent(slug: string[]) {
   const decodedSlug = slug.map(segment => decodeURIComponent(segment))
 
   const mdxPath = path.join(process.cwd(), "docs", ...decodedSlug) + ".mdx"

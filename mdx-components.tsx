@@ -1,7 +1,7 @@
 import type { MDXComponents } from "mdx/types"
 import Link from "next/link"
 
-export function MDXComponents(components: MDXComponents): MDXComponents {
+export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     h1: ({ node, children, ...props }) => (
       <h1

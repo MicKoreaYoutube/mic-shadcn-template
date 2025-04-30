@@ -5,7 +5,7 @@ import remarkGfm from "remark-gfm"
 import rehypeSlug from "rehype-slug"
 
 import { compileMDX } from "next-mdx-remote/rsc"
-import { MDXComponents } from "@/mdx-components"
+import { useMDXComponents } from "@/mdx-components"
 
 export async function getDocsContent(slug: string[]) {
   const decodedSlug = slug.map(segment => decodeURIComponent(segment))
@@ -22,7 +22,7 @@ export async function getDocsContent(slug: string[]) {
         rehypePlugins: [rehypeSlug],
       },
     },
-    components: MDXComponents({}),
+    components: useMDXComponents,
   })
 
   return content

@@ -1,8 +1,5 @@
-export interface chapterSidebarItem {
-  title: string
-  content: string
-  subChapterList?: Array<{
-    title: string
-    content: string
-  }>
+export interface sidebarItem {
+  name: string
+  isDoc?: true
+  children?: sidebarItem[]
 }

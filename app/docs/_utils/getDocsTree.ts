@@ -7,18 +7,18 @@ interface docsStaticParamsItem {
 
 const docsPath = path.join(process.cwd(), "docs")
 
-export function getDocsTree({ currentPath }: { currentPath: string }) {
+export async function getDocsTree({ currentPath }: { currentPath: string }) {
   const docsStaticParams: docsStaticParamsItem[] = []
   const directory = fs.readdirSync(currentPath, { withFileTypes: true })
 
-  directory.forEach((element) => {
+  directory.forEach(async (element) => {
     if (element.isFile() && element.name.endsWith(".mdx")) {
       const currentFilePath = path.relative(docsPath, path.join(element.parentPath, element.name.replace(".mdx", "")))
       const docParamsArray = currentFilePath.split("/")
       docsStaticParams.push({ doc: docParamsArray })
     } else if (element.isDirectory()) {
       const subDocs = getDocsTree({ currentPath: path.join(currentPath, element.name) })
-      docsStaticParams.push(...subDocs)
+      docsStaticParams.push(...await subDocs)
     }
   })
 

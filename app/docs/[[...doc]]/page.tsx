@@ -8,7 +8,7 @@ export default async function DocPage({ params }: { params: { doc: string[] } })
   const { default: Document } = await import(`@/docs/${path}.mdx`)
 
   return (
-    <article className="p-10 lg:w-[65vw]">
+    <article className="mx-auto p-10 lg:w-[65vw]">
       <Document />
     </article>
   )
@@ -17,9 +17,10 @@ export default async function DocPage({ params }: { params: { doc: string[] } })
 export async function generateStaticParams() {
   const docsPath = path.join(process.cwd(), "docs")
 
-  const allSlugs = getDocsTree({ currentPath: docsPath })
+  const allSlugs = getDocsTree({ currentPath: docsPath });
+  (await allSlugs).push({ doc: undefined })
 
-  return [...allSlugs, { doc: undefined }]
+  return allSlugs
 }
 
 export const dynamicParams = false

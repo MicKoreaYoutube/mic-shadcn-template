@@ -1,8 +1,5 @@
 export interface docsItem {
-  title: string
-  id?: string
-  description?: string
+  id: string
   isDoc?: boolean
-  content?: string
   subDocList?: docsItem[]
 }

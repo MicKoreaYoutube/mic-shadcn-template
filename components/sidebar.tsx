@@ -5,8 +5,6 @@ import { cn } from "@/lib/utils"
 import fs from "fs"
 import path from "path"
 
-import { sidebarItem } from "@/types/sidebar"
-
 // import { SearchDialog } from "@/components/search"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Calendar, Home, Inbox, Search, Settings, ChevronDown } from "lucide-react"
@@ -132,33 +130,6 @@ export function DashbaordSidebar() {
       </SidebarContent>
     </Sidebar>
   )
-}
-
-const docsDir = path.join(process.cwd(), "docs")
-
-export function getDocsTree(dir = docsDir, basePath = ""): sidebarItem[] {
-  const entries = fs.readdirSync(dir, { withFileTypes: true })
-  const itemsMap: Record<string, sidebarItem> = {}
-
-  for (const entry of entries) {
-    const fullPath = path.join(dir, entry.name)
-    const relativeName = entry.name.replace(/\.mdx$/, "")
-
-    if (entry.isDirectory()) {
-      const children = getDocsTree(fullPath, path.join(basePath, relativeName))
-      if (!itemsMap[relativeName]) {
-        itemsMap[relativeName] = { name: relativeName }
-      }
-      itemsMap[relativeName].children = children
-    } else if (entry.isFile() && entry.name.endsWith(".mdx")) {
-      if (!itemsMap[relativeName]) {
-        itemsMap[relativeName] = { name: relativeName }
-      }
-      itemsMap[relativeName].isDoc = true
-    }
-  }
-
-  return Object.values(itemsMap)
 }
 
 // export function DocsSidebar({ items }: docsSidebarInterface) {

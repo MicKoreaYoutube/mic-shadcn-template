@@ -43,9 +43,9 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 
-import { docsContent } from "@/config/site"
+// import { docsContent } from "@/config/site"
 
-import { docsItem } from "@/types/sidebar"
+// import { docsItem } from "@/types/sidebar"
 
 import Fuse, { FuseResult } from "fuse.js"
 
@@ -64,25 +64,25 @@ export function SearchDialog() {
     return () => document.removeEventListener("keydown", down)
   }, [])
 
-  function fillterDoc(docs: docsItem[]) {
-    const result: docsItem[] = []
+  // function fillterDoc(docs: docsItem[]) {
+  //   const result: docsItem[] = []
 
-    docs.forEach((doc) => {
-      if (doc.isDoc) {
-        result.push(doc)
-      }
+  //   docs.forEach((doc) => {
+  //     if (doc.isDoc) {
+  //       result.push(doc)
+  //     }
 
-      if (doc.subDocList) {
-        doc.subDocList.forEach((subDoc) => {
-          result.push(subDoc)
-        })
-      }
-    })
+  //     if (doc.subDocList) {
+  //       doc.subDocList.forEach((subDoc) => {
+  //         result.push(subDoc)
+  //       })
+  //     }
+  //   })
 
-    return result
-  }
+  //   return result
+  // }
 
-  const fillteredDoc = fillterDoc(docsContent)
+  // const fillteredDoc = fillterDoc(docsContent)
 
   const [query, queryChanger] = useState("")
 
@@ -104,7 +104,7 @@ export function SearchDialog() {
     keys: ["title"],
   }
 
-  const fuse = new Fuse(fillteredDoc, fuseOptions)
+  // const fuse = new Fuse(fillteredDoc, fuseOptions)
 
   useEffect(() => {
     if (!open) {
@@ -136,7 +136,7 @@ export function SearchDialog() {
         </div>
         <ScrollArea className="max-h-[60vh]">
           <CommandList>
-            {fuse.search(query)?.length && query ? (
+            {/* {fuse.search(query)?.length && query ? (
               <CommandGroup heading="Docs">
                 {fuse.search(query).map((item, index) => (
                   <Link
@@ -163,7 +163,7 @@ export function SearchDialog() {
               <div className="mx-12 my-24">
                 <h3 className="text-center font-TheJamsil5Bold text-xl">검색 결과가 없습니다</h3>
               </div>
-            )}
+            )} */}
           </CommandList>
         </ScrollArea>
       </CommandDialog>

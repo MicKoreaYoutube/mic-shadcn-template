@@ -18,7 +18,7 @@ export async function generateStaticParams() {
   const docsPath = path.join(process.cwd(), "docs")
 
   const allSlugs = getDocsTree({ currentPath: docsPath })
-  allSlugs.push({ doc: undefined })
+  allSlugs.push({ doc: [] })
 
   return allSlugs
 }

@@ -6,8 +6,8 @@ interface docsStaticParamsItem {
   doc: string[] | undefined
 }
 
-export default async function DocPage({ params }: { params: { doc: string[] | undefined } }) {
-  const slug = params.doc?.length ? params.doc : ["introduction"]
+export default async function DocPage({ doc }: { doc: string[] | undefined }) {
+  const slug = doc?.length ? doc : ["introduction"]
   const path = decodeURI(slug.join("/"))
 
   const { default: Document } = await import(`@/docs/${path}.mdx`)

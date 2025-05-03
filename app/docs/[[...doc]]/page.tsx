@@ -6,7 +6,7 @@ interface docsStaticParamsItem {
   doc: string[] | undefined
 }
 
-export default async function DocPage({ doc }: { doc: string[] | undefined }) {
+export default async function DocPage({ doc }: { doc: string[] }) {
   const slug = doc?.length ? doc : ["introduction"]
   const path = decodeURI(slug.join("/"))
 

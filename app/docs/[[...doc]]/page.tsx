@@ -2,7 +2,11 @@ import { getDocsTree } from "@/app/docs/_utils/getDocsTree"
 import fs from "fs"
 import path from "path"
 
-export default async function DocPage({ params }: { params: { doc: string[] } }) {
+interface docsStaticParamsItem {
+  doc: string[] | undefined
+}
+
+export default async function DocPage({ params }: { params: { doc: string[] | undefined } }) {
   const slug = params.doc?.length ? params.doc : ["introduction"]
   const path = decodeURI(slug.join("/"))
 
@@ -15,41 +19,31 @@ export default async function DocPage({ params }: { params: { doc: string[] } })
   )
 }
 
-// export async function generateStaticParams() {
-//   const docsPath = path.join(process.cwd(), "docs")
-
-//   const allSlugs = getDocsTree({ currentPath: docsPath });
-//   (await allSlugs).push({ doc: undefined })
-
-//   return allSlugs
-// }
-
 export async function generateStaticParams() {
-  const docsDir = path.join(process.cwd(), "docs")
+  const docsPath = path.join(process.cwd(), "docs")
 
-  const walk = (dir: string): string[][] => {
-    const entries = fs.readdirSync(dir, { withFileTypes: true })
-    const result: string[][] = []
-
-    for (const entry of entries) {
-      const fullPath = path.join(dir, entry.name)
-      if (entry.isDirectory()) {
-        result.push(...walk(fullPath))
-      } else if (entry.isFile() && entry.name.endsWith(".mdx")) {
-        const relativePath = path.relative(docsDir, fullPath)
-        const slugArray = relativePath.replace(/\.mdx$/, "").split(path.sep)
-        result.push(slugArray)
+  async function getDocsTree({ currentPath }: { currentPath: string }) {
+    const docsStaticParams: docsStaticParamsItem[] = []
+    const directory = fs.readdirSync(currentPath, { withFileTypes: true })
+  
+    directory.forEach(async (element) => {
+      if (element.isFile() && element.name.endsWith(".mdx")) {
+        const currentFilePath = path.relative(docsPath, path.join(element.parentPath, element.name.replace(".mdx", "")))
+        const docParamsArray = currentFilePath.split("/")
+        docsStaticParams.push({ doc: docParamsArray })
+      } else if (element.isDirectory()) {
+        const subDocs = getDocsTree({ currentPath: path.join(currentPath, element.name) })
+        docsStaticParams.push(...await subDocs)
       }
-    }
-
-    return result
+    })
+  
+    return docsStaticParams
   }
 
-  const allSlugs = walk(docsDir)
+  const allSlugs = getDocsTree({ currentPath: docsPath });
+  (await allSlugs).push({ doc: undefined })
 
-  return [...allSlugs, undefined].map((slug) => ({
-    doc: slug,
-  }))
+  return allSlugs
 }
 
 export const dynamicParams = false

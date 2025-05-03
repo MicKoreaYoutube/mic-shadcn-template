@@ -1,4 +1,5 @@
 import { getDocsTree } from "@/app/docs/_utils/getDocsTree"
+import fs from "fs"
 import path from "path"
 
 export default async function DocPage({ params }: { params: { doc: string[] } }) {
@@ -14,13 +15,41 @@ export default async function DocPage({ params }: { params: { doc: string[] } })
   )
 }
 
+// export async function generateStaticParams() {
+//   const docsPath = path.join(process.cwd(), "docs")
+
+//   const allSlugs = getDocsTree({ currentPath: docsPath });
+//   (await allSlugs).push({ doc: undefined })
+
+//   return allSlugs
+// }
+
 export async function generateStaticParams() {
-  const docsPath = path.join(process.cwd(), "docs")
+  const docsDir = path.join(process.cwd(), "docs")
 
-  const allSlugs = getDocsTree({ currentPath: docsPath });
-  (await allSlugs).push({ doc: undefined })
+  const walk = (dir: string): string[][] => {
+    const entries = fs.readdirSync(dir, { withFileTypes: true })
+    const result: string[][] = []
 
-  return allSlugs
+    for (const entry of entries) {
+      const fullPath = path.join(dir, entry.name)
+      if (entry.isDirectory()) {
+        result.push(...walk(fullPath))
+      } else if (entry.isFile() && entry.name.endsWith(".mdx")) {
+        const relativePath = path.relative(docsDir, fullPath)
+        const slugArray = relativePath.replace(/\.mdx$/, "").split(path.sep)
+        result.push(slugArray)
+      }
+    }
+
+    return result
+  }
+
+  const allSlugs = walk(docsDir)
+
+  return [...allSlugs, undefined].map((slug) => ({
+    doc: slug,
+  }))
 }
 
 export const dynamicParams = false

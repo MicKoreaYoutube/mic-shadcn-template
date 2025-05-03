@@ -6,8 +6,9 @@ interface docsStaticParamsItem {
   doc: string[] | undefined
 }
 
-export default async function DocPage({ doc }: { doc: string[] }) {
-  const slug = doc?.length ? doc : ["introduction"]
+export default async function DocPage({ params }: { params: Promise<{ doc: string[] | undefined }> }) {
+  const resolvedParams = await params
+  const slug = resolvedParams.doc?.length ? resolvedParams.doc : ["introduction"]
   const path = decodeURI(slug.join("/"))
 
   const { default: Document } = await import(`@/docs/${path}.mdx`)
@@ -25,7 +26,7 @@ export async function generateStaticParams() {
   async function getDocsTree({ currentPath }: { currentPath: string }) {
     const docsStaticParams: docsStaticParamsItem[] = []
     const directory = fs.readdirSync(currentPath, { withFileTypes: true })
-  
+
     directory.forEach(async (element) => {
       if (element.isFile() && element.name.endsWith(".mdx")) {
         const currentFilePath = path.relative(docsPath, path.join(element.parentPath, element.name.replace(".mdx", "")))
@@ -33,15 +34,15 @@ export async function generateStaticParams() {
         docsStaticParams.push({ doc: docParamsArray })
       } else if (element.isDirectory()) {
         const subDocs = getDocsTree({ currentPath: path.join(currentPath, element.name) })
-        docsStaticParams.push(...await subDocs)
+        docsStaticParams.push(...(await subDocs))
       }
     })
-  
+
     return docsStaticParams
   }
 
-  const allSlugs = getDocsTree({ currentPath: docsPath });
-  (await allSlugs).push({ doc: undefined })
+  const allSlugs = getDocsTree({ currentPath: docsPath })
+  ;(await allSlugs).push({ doc: undefined })
 
   return allSlugs
 }

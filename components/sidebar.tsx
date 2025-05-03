@@ -1,14 +1,16 @@
+"use client"
+
 import Link from "next/link"
 
 import { cn } from "@/lib/utils"
 
-import fs from "fs"
-import path from "path"
+import { docsItem } from "@/types/docs"
 
 // import { SearchDialog } from "@/components/search"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { Calendar, Home, Inbox, Search, Settings, ChevronDown } from "lucide-react"
+import { Calendar, Home, Inbox, Search, Settings, ChevronDown, ChevronRight, File, Folder } from "lucide-react"
 import {
+  SidebarProvider,
   Sidebar,
   SidebarHeader,
   SidebarContent,
@@ -18,6 +20,8 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarMenuSub,
+  SidebarMenuSubItem,
 } from "@/components/ui/sidebar"
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu"
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible"
@@ -30,9 +34,9 @@ import { Link as TargetLink } from "react-scroll"
 //   items?: dashboardSidebarItem[]
 // }
 
-// interface docsSidebarInterface {
-//   items?: docsItem[]
-// }
+interface docsSidebarInterface {
+  items?: docsItem[]
+}
 
 // interface chapterSidebarInterface {
 //   items?: chapterSidebarItem[]
@@ -132,39 +136,82 @@ export function DashbaordSidebar() {
   )
 }
 
-// export function DocsSidebar({ items }: docsSidebarInterface) {
-//   const pathName = usePathname()
+export function DocsSidebar({ items }: docsSidebarInterface) {
+  const data = {
+    changes: [
+      {
+        file: "README.md",
+        state: "M",
+      },
+      {
+        file: "api/hello/route.ts",
+        state: "U",
+      },
+      {
+        file: "app/layout.tsx",
+        state: "M",
+      },
+    ],
+    tree: [
+      ["app", ["api", ["hello", ["route.ts"]], "page.tsx", "layout.tsx", ["blog", ["page.tsx"]]]],
+      ["components", ["ui", "button.tsx", "card.tsx"], "header.tsx", "footer.tsx"],
+      ["lib", ["util.ts"]],
+      ["public", "favicon.ico", "vercel.svg"],
+      ".eslintrc.json",
+      ".gitignore",
+      "next.config.js",
+      "tailwind.config.js",
+      "package.json",
+      "README.md",
+    ],
+  }
 
-//   return (
-//     <>
-//       <ScrollArea className="h-[80vh] w-48">
-//         <div className="m-8">
-//           {items?.length
-//             ? items.map((item, index) => (
-//                 <div key={index} className="py-2">
-//                   <Link
-//                     href={`${item.isDoc ? `/docs/${item.id ?? item.title}` : "#"}`}
-//                     className={cn("font-KBODiaGothic_bold my-3 block text-lg", (decodeURI(pathName) == "/docs" && index == 0) || decodeURI(pathName) == `/docs/${item.id}` || decodeURI(pathName) == `/docs/${item.title}` ? "underline underline-offset-4" : "font-bold")}>
-//                     {item.title}
-//                   </Link>
-//                   {item.subDocList?.length
-//                     ? item.subDocList.map((subDocItem, subDocIndex) => (
-//                         <Link
-//                           key={subDocIndex}
-//                           href={`/docs/${item.id ?? item.title}/${subDocItem.id ?? subDocItem.title}`}
-//                           className={cn("font-SUITE_Regular my-1 block text-base", decodeURI(pathName) == `/docs/${item.id}/${subDocItem.title}` || decodeURI(pathName) == `/docs/${item.title}/${subDocItem.title}` ? "font-bold text-foreground underline underline-offset-4" : "text-muted-foreground")}>
-//                           {subDocItem.title}
-//                         </Link>
-//                       ))
-//                     : null}
-//                 </div>
-//               ))
-//             : null}
-//         </div>
-//       </ScrollArea>
-//     </>
-//   )
-// }
+  const pathName = usePathname()
+
+  return (
+    <>
+      <ScrollArea className="w-64">
+        <div className="m-8">
+          <SidebarProvider>
+            <SidebarMenu>
+              {items?.length ? (
+                items.map((item, index) => (
+                  <Tree key={index} item={item} />
+                ))
+              ) : null}
+            </SidebarMenu>
+          </SidebarProvider>
+        </div>
+      </ScrollArea>
+    </>
+  )
+}
+
+function Tree({ item }: { item: docsItem }) {
+  if (item.subDocList) {
+    return (
+      <SidebarMenuItem>
+        <Collapsible className="group/collapsible [&[data-state=open]>button>svg:first-child]:rotate-90">
+          <CollapsibleTrigger asChild>
+            <SidebarMenuButton>
+              {item.id}
+              <ChevronRight className="transition-transform" />
+            </SidebarMenuButton>
+          </CollapsibleTrigger>
+          <CollapsibleContent>
+            <SidebarMenuSub>
+              {item.subDocList.map((subItem, index) => (
+                <Tree key={index} item={subItem} />
+              ))}
+            </SidebarMenuSub>
+          </CollapsibleContent>
+        </Collapsible>
+      </SidebarMenuItem>
+    )
+  } else {
+    return <SidebarMenuButton className="data-[active=true]:bg-transparent"><Link href="">{item.id}</Link></SidebarMenuButton>
+  }
+}
 
 function ChapterSidebarTargetLink({ to, children, ...props }: ChapterSidebarTargetLinkInterface) {
   return (
@@ -177,7 +224,8 @@ function ChapterSidebarTargetLink({ to, children, ...props }: ChapterSidebarTarg
       offset={-70}
       className="cursor-pointer font-SUITE_Regular"
       duration={700}
-      {...props}>
+      {...props}
+    >
       {children}
     </TargetLink>
   )

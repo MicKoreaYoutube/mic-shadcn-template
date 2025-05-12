@@ -2,7 +2,11 @@ import React from "react"
 
 import fs from "fs"
 import path from "path"
-import matter from "gray-matter"
+import { unified } from "unified"
+import remarkParse from "remark-parse"
+import { Root, Heading, Text } from "mdast"
+
+import { toTitleCase } from "@/lib/utils"
 
 import {
   Breadcrumb,
@@ -12,6 +16,11 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
+
+interface tocListItem {
+  depth: number
+  text: string
+}
 
 interface docsStaticParamsItem {
   doc: string[] | undefined
@@ -25,23 +34,40 @@ export default async function DocPage({ params }: { params: Promise<{ doc: strin
   const resolvedParams = await params
 
   const slug = resolvedParams.doc?.length ? resolvedParams.doc : ["introduction"]
-  const slugPath = decodeURI(slug.join("/")).replaceAll("-", " ")
+  const slugPath = decodeURI(slug.join("/")).replaceAll("-", " ") + ".mdx"
 
-  // 1. 컴포넌트로 불러오기
-  const { default: Document, frontmatter } = await import(`@/docs/${slugPath}.mdx`)
+  const { default: Document, frontmatter } = await import(`@/docs/${slugPath}`)
+
+  const fullPath = path.join(process.cwd(), "docs", slugPath)
+  const fileContent = fs.readFileSync(fullPath, "utf8")
+
+  const tree = unified()
+    .use(remarkParse)
+    .parse(fileContent) as Root
+
+  const toc = tree.children.filter((node) => node.type == "heading")
+  console.log(toc)
+  
+  const headings: tocListItem[] = []
+
+  toc.forEach((node) => {
+    if (node.children[0].type == "text") headings.push({ depth: node.depth, text: node.children[0].value })
+  })
+
+  console.log(headings)
 
   return (
     <article className="mx-auto p-10 lg:w-[65vw]">
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
-            <BreadcrumbLink href="/docs">docs</BreadcrumbLink>
+            <BreadcrumbLink href="/docs">Docs</BreadcrumbLink>
           </BreadcrumbItem>
           {slug.map((item, index) => (
             <React.Fragment key={index}>
               <BreadcrumbSeparator />
               <BreadcrumbItem>
-                <BreadcrumbLink href={`/${item}`}>{decodeURI(item).replaceAll("-", " ")}</BreadcrumbLink>
+                <BreadcrumbLink href={`/${item}`}>{toTitleCase(decodeURI(item).replaceAll("-", " "))}</BreadcrumbLink>
               </BreadcrumbItem>
             </React.Fragment>
           ))}

@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 
-import { cn } from "@/lib/utils"
+import { cn, toTitleCase } from "@/lib/utils"
 
 import { docsItem } from "@/types/docs"
 
@@ -165,7 +165,7 @@ function Tree({ item, parentPath = "/docs" }: { item: docsItem, parentPath?: str
         <Collapsible className="group/collapsible [&[data-state=open]>button>svg:last-child]:rotate-90">
           <CollapsibleTrigger asChild>
             <SidebarMenuButton>
-              <Link href={item.isDoc ? currentPath.replaceAll(" ", "-") : ""}>{item.id}</Link>
+              <Link href={item.isDoc ? currentPath.replaceAll(" ", "-") : ""}>{toTitleCase(item.id)}</Link>
               <ChevronRight className="transition-transform" />
             </SidebarMenuButton>
           </CollapsibleTrigger>
@@ -182,7 +182,7 @@ function Tree({ item, parentPath = "/docs" }: { item: docsItem, parentPath?: str
   } else {
     return (
       <SidebarMenuButton className="data-[active=true]:bg-transparent">
-        <Link href={item.isDoc ? currentPath.replaceAll(" ", "-") : ""}>{item.id}</Link>
+        <Link href={item.isDoc ? currentPath.replaceAll(" ", "-") : ""}>{toTitleCase(item.id)}</Link>
       </SidebarMenuButton>
     )
   }

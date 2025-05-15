@@ -3,3 +3,8 @@ export interface docsItem {
   isDoc?: boolean
   subDocList?: docsItem[]
 }
+
+export interface tocListItem {
+  depth: number
+  text: string
+}

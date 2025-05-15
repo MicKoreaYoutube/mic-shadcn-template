@@ -57,7 +57,7 @@ export default async function DocsLayout({ children }: { children: React.ReactNo
       <div className="hidden lg:inline">
         <DocsSidebar items={docsTree} />
       </div>
-      <div className="inline px-10 pt-10 lg:hidden">
+      <div className="inline px-6 pt-10 lg:hidden">
         <Sheet>
           <SheetTrigger asChild>
             <Button variant="secondary" size="icon">

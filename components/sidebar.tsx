@@ -4,7 +4,7 @@ import Link from "next/link"
 
 import { cn, toTitleCase } from "@/lib/utils"
 
-import { docsItem } from "@/types/docs"
+import { docsItem, tocListItem } from "@/types/docs"
 
 // import { SearchDialog } from "@/components/search"
 import { ScrollArea } from "@/components/ui/scroll-area"
@@ -29,6 +29,7 @@ import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/component
 import { usePathname } from "next/navigation"
 
 import { Link as TargetLink } from "react-scroll"
+import React from "react"
 
 // interface dashboardSidebarInterface {
 //   items?: dashboardSidebarItem[]
@@ -38,12 +39,13 @@ interface docsSidebarInterface {
   items?: docsItem[]
 }
 
-// interface chapterSidebarInterface {
-//   items?: chapterSidebarItem[]
-// }
+interface chapterSidebarInterface {
+  items?: tocListItem[]
+}
 
 interface ChapterSidebarTargetLinkInterface {
   to: string
+  className?: string
   children?: string
 }
 
@@ -137,7 +139,6 @@ export function DashbaordSidebar() {
 }
 
 export function DocsSidebar({ items }: docsSidebarInterface) {
-
   const pathName = usePathname()
 
   return (
@@ -155,8 +156,7 @@ export function DocsSidebar({ items }: docsSidebarInterface) {
   )
 }
 
-function Tree({ item, parentPath = "/docs" }: { item: docsItem, parentPath?: string }) {
-
+function Tree({ item, parentPath = "/docs" }: { item: docsItem; parentPath?: string }) {
   const currentPath = `${parentPath}/${item.id}`
 
   if (item.subDocList) {
@@ -206,30 +206,21 @@ function ChapterSidebarTargetLink({ to, children, ...props }: ChapterSidebarTarg
   )
 }
 
-// export function ChapterSidebar({ items }: chapterSidebarInterface) {
-//   return (
-//     <div className="w-32">
-//       <div className="fixed py-10">
-//         <h1 className="font-KBODiaGothic_bold font-bold">Chapter</h1>
-//         <div className="grid gap-1">
-//           {items?.length
-//             ? items.map((item, index) => (
-//                 <div key={index}>
-//                   <ChapterSidebarTargetLink to={`chapter-${item.title}`}>{item.title}</ChapterSidebarTargetLink>
-//                   {item?.subChapterList?.length ? (
-//                     <div className="grid gap-1 px-3 pt-1">
-//                       {item?.subChapterList.map((subChapterItem, subChapterIndex) => (
-//                         <ChapterSidebarTargetLink to={`chapter-${subChapterItem.title}`} key={subChapterIndex}>
-//                           {subChapterItem.title}
-//                         </ChapterSidebarTargetLink>
-//                       ))}
-//                     </div>
-//                   ) : null}
-//                 </div>
-//               ))
-//             : null}
-//         </div>
-//       </div>
-//     </div>
-//   )
-// }
+export function ChapterSidebar({ items }: chapterSidebarInterface) {
+  return (
+    <div className="w-32">
+      <h1 className="font-KBODiaGothic_bold font-bold">Chapter</h1>
+      <div className="grid gap-1">
+        {items?.length
+          ? items.map((item, index) => (
+              <div key={index} style={{ marginLeft: (item.depth - 1) * 8 }}>
+                <ChapterSidebarTargetLink to={`heading-${item.text.replaceAll(" ", "-")}`}>
+                  {item.text}
+                </ChapterSidebarTargetLink>
+              </div>
+            ))
+          : null}
+      </div>
+    </div>
+  )
+}

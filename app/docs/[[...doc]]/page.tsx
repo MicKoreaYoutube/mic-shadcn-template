@@ -4,9 +4,10 @@ import fs from "fs"
 import path from "path"
 import { unified } from "unified"
 import remarkParse from "remark-parse"
-import { Root, Heading, Text } from "mdast"
+import { Root } from "mdast"
 
 import { toTitleCase } from "@/lib/utils"
+import { tocListItem } from "@/types/docs"
 
 import {
   Breadcrumb,
@@ -16,11 +17,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
-
-interface tocListItem {
-  depth: number
-  text: string
-}
+import { ChapterSidebar } from "@/components/sidebar"
 
 interface docsStaticParamsItem {
   doc: string[] | undefined
@@ -41,46 +38,47 @@ export default async function DocPage({ params }: { params: Promise<{ doc: strin
   const fullPath = path.join(process.cwd(), "docs", slugPath)
   const fileContent = fs.readFileSync(fullPath, "utf8")
 
-  const tree = unified()
-    .use(remarkParse)
-    .parse(fileContent) as Root
+  const tree = unified().use(remarkParse).parse(fileContent) as Root
 
   const toc = tree.children.filter((node) => node.type == "heading")
   console.log(toc)
-  
+
   const headings: tocListItem[] = []
 
   toc.forEach((node) => {
     if (node.children[0].type == "text") headings.push({ depth: node.depth, text: node.children[0].value })
   })
 
-  console.log(headings)
+  const headingList = headings
 
   return (
-    <article className="mx-auto p-10 lg:w-[65vw]">
-      <Breadcrumb>
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/docs">Docs</BreadcrumbLink>
-          </BreadcrumbItem>
-          {slug.map((item, index) => (
-            <React.Fragment key={index}>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbLink href={`/${item}`}>{toTitleCase(decodeURI(item).replaceAll("-", " "))}</BreadcrumbLink>
-              </BreadcrumbItem>
-            </React.Fragment>
-          ))}
-        </BreadcrumbList>
-      </Breadcrumb>
-      <div className="mb-12">
-        <h1 className="mb-4 mt-9 border-b pb-3 font-KBODiaGothic_bold text-4xl font-extrabold leading-tight tracking-tighter md:text-5xl">
-          {frontmatter?.title}
-        </h1>
-        <p className="my-4 font-SUITE_Regular text-lg text-muted-foreground md:text-xl">{frontmatter?.description}</p>
-      </div>
-      <Document />
-    </article>
+    <div className="flex gap-2 p-6 lg:p-10">
+      <article className="mx-auto w-full lg:w-[65vw]">
+        <Breadcrumb>
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink href="/docs">Docs</BreadcrumbLink>
+            </BreadcrumbItem>
+            {slug.map((item, index) => (
+              <React.Fragment key={index}>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbLink href={`/${item}`}>{toTitleCase(decodeURI(item).replaceAll("-", " "))}</BreadcrumbLink>
+                </BreadcrumbItem>
+              </React.Fragment>
+            ))}
+          </BreadcrumbList>
+        </Breadcrumb>
+        <div className="mb-12">
+          <h1 className="mb-4 mt-9 border-b pb-3 font-KBODiaGothic_bold text-4xl font-extrabold leading-tight tracking-tighter md:text-5xl">
+            {frontmatter?.title}
+          </h1>
+          <p className="my-4 font-SUITE_Regular text-lg text-muted-foreground md:text-xl">{frontmatter?.description}</p>
+        </div>
+        <Document />
+      </article>
+      <ChapterSidebar items={headingList} />
+    </div>
   )
 }
 

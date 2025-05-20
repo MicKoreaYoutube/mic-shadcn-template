@@ -139,8 +139,6 @@ export function DashbaordSidebar() {
 }
 
 export function DocsSidebar({ items }: docsSidebarInterface) {
-  const pathName = usePathname()
-
   return (
     <>
       <ScrollArea className="w-64">
@@ -157,6 +155,8 @@ export function DocsSidebar({ items }: docsSidebarInterface) {
 }
 
 function Tree({ item, parentPath = "/docs" }: { item: docsItem; parentPath?: string }) {
+  const pathName = usePathname()
+  
   const currentPath = `${parentPath}/${item.id}`
 
   if (item.subDocList) {
@@ -165,7 +165,7 @@ function Tree({ item, parentPath = "/docs" }: { item: docsItem; parentPath?: str
         <Collapsible className="group/collapsible [&[data-state=open]>button>svg:last-child]:rotate-90">
           <CollapsibleTrigger asChild>
             <SidebarMenuButton>
-              <Link href={item.isDoc ? currentPath.replaceAll(" ", "-") : ""}>{toTitleCase(item.id)}</Link>
+              <Link href={item.isDoc ? currentPath.replaceAll(" ", "-") : ""} className={`${decodeURI(pathName) == currentPath.replaceAll(" ", "-") ? "font-bold" : ""}`}>{toTitleCase(item.id)}</Link>
               <ChevronRight className="transition-transform" />
             </SidebarMenuButton>
           </CollapsibleTrigger>
@@ -182,7 +182,7 @@ function Tree({ item, parentPath = "/docs" }: { item: docsItem; parentPath?: str
   } else {
     return (
       <SidebarMenuButton className="data-[active=true]:bg-transparent">
-        <Link href={item.isDoc ? currentPath.replaceAll(" ", "-") : ""}>{toTitleCase(item.id)}</Link>
+        <Link href={item.isDoc ? currentPath.replaceAll(" ", "-") : ""} className={`${decodeURI(pathName) == currentPath.replaceAll(" ", "-") ? "font-bold" : ""}`}>{toTitleCase(item.id)}</Link>
       </SidebarMenuButton>
     )
   }

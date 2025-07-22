@@ -8,7 +8,8 @@ import { docsItem } from "@/types/docs"
 import { DocsSidebar } from "@/components/sidebar"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Button } from "@/components/ui/button"
-
+import { SidebarProvider, Sidebar } from "@/components/ui/sidebar"
+import { ScrollArea } from "@/components/ui/scroll-area"
 
 interface getDocsTreeFunctionType {
   currentPath: string
@@ -53,23 +54,27 @@ export default async function DocsLayout({ children }: { children: React.ReactNo
   const docsTree = getDocsTree({ currentPath: docsPath })
 
   return (
-    <div className="flex flex-col justify-center lg:flex-row">
-      <div className="hidden lg:inline">
-        <DocsSidebar items={docsTree} />
-      </div>
-      <div className="inline px-6 pt-10 lg:hidden">
-        <Sheet>
-          <SheetTrigger asChild>
-            <Button variant="secondary" size="icon">
-              <Menu />
-            </Button>
-          </SheetTrigger>
-          <SheetContent side="left">
+    <SidebarProvider>
+      <div className="flex flex-col justify-center lg:flex-row">
+        <Sidebar className="sticky top-16 overflow-hidden">
+          <div className="hidden lg:inline">
             <DocsSidebar items={docsTree} />
-          </SheetContent>
-        </Sheet>
+          </div>
+        </Sidebar>
+        <div className="inline px-6 pt-10 lg:hidden">
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant="secondary" size="icon">
+                <Menu />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="left">
+              <DocsSidebar items={docsTree} />
+            </SheetContent>
+          </Sheet>
+        </div>
+        <main>{children}</main>
       </div>
-      <main>{children}</main>
-    </div>
+    </SidebarProvider>
   )
 }

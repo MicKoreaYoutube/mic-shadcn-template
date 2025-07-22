@@ -18,6 +18,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
+import { ScrollArea } from "@/components/ui/scroll-area"
 import { ChapterSidebar } from "@/components/sidebar"
 
 interface docsStaticParamsItem {
@@ -62,7 +63,7 @@ export default async function DocPage({ params }: { params: Promise<{ doc: strin
         </div>
         <Document />
       </article>
-      <div className="hidden lg:inline">
+      <div className="fixed right-6 hidden h-64 lg:inline">
         <ChapterSidebar items={toc} />
       </div>
     </div>

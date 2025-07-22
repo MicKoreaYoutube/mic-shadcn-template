@@ -79,7 +79,7 @@ export function DashbaordSidebar() {
   ]
 
   return (
-    <Sidebar collapsible="icon">
+    <Sidebar collapsible="icon" className="sticky top-16 overflow-hidden">
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
@@ -141,22 +141,16 @@ export function DashbaordSidebar() {
 export function DocsSidebar({ items }: docsSidebarInterface) {
   return (
     <>
-      <ScrollArea className="w-64">
-        <div className="lg:my-8">
-          <SidebarProvider>
-            <SidebarMenu>
-              {items?.length ? items.map((item, index) => <Tree key={index} item={item} />) : null}
-            </SidebarMenu>
-          </SidebarProvider>
-        </div>
-      </ScrollArea>
+      <SidebarMenu className="p-4">
+        <ScrollArea>{items?.length ? items.map((item, index) => <Tree key={index} item={item} />) : null}</ScrollArea>
+      </SidebarMenu>
     </>
   )
 }
 
 function Tree({ item, parentPath = "/docs" }: { item: docsItem; parentPath?: string }) {
   const pathName = usePathname()
-  
+
   const currentPath = `${parentPath}/${item.id}`
 
   if (item.subDocList) {
@@ -165,7 +159,12 @@ function Tree({ item, parentPath = "/docs" }: { item: docsItem; parentPath?: str
         <Collapsible className="group/collapsible [&[data-state=open]>button>svg:last-child]:rotate-90">
           <CollapsibleTrigger asChild>
             <SidebarMenuButton>
-              <Link href={item.isDoc ? currentPath.replaceAll(" ", "-") : ""} className={`${decodeURI(pathName) == currentPath.replaceAll(" ", "-") ? "font-bold" : ""}`}>{toTitleCase(item.id)}</Link>
+              <Link
+                href={item.isDoc ? currentPath.replaceAll(" ", "-") : ""}
+                className={`${decodeURI(pathName) == currentPath.replaceAll(" ", "-") ? "font-bold" : ""}`}
+              >
+                {toTitleCase(item.id)}
+              </Link>
               <ChevronRight className="transition-transform" />
             </SidebarMenuButton>
           </CollapsibleTrigger>
@@ -182,7 +181,12 @@ function Tree({ item, parentPath = "/docs" }: { item: docsItem; parentPath?: str
   } else {
     return (
       <SidebarMenuButton className="data-[active=true]:bg-transparent">
-        <Link href={item.isDoc ? currentPath.replaceAll(" ", "-") : ""} className={`${decodeURI(pathName) == currentPath.replaceAll(" ", "-") ? "font-bold" : ""}`}>{toTitleCase(item.id)}</Link>
+        <Link
+          href={item.isDoc ? currentPath.replaceAll(" ", "-") : ""}
+          className={`${decodeURI(pathName) == currentPath.replaceAll(" ", "-") ? "font-bold" : ""}`}
+        >
+          {toTitleCase(item.id)}
+        </Link>
       </SidebarMenuButton>
     )
   }
@@ -208,19 +212,21 @@ function ChapterSidebarTargetLink({ to, children, ...props }: ChapterSidebarTarg
 
 export function ChapterSidebar({ items }: chapterSidebarInterface) {
   return (
-    <div className="w-32">
-      <h1 className="font-KBODiaGothic_bold font-bold">Chapter</h1>
-      <div className="grid gap-1">
-        {items?.length
-          ? items.map((item, index) => (
-              <div key={index} style={{ marginLeft: (item.depth - 1) * 8 }}>
-                <ChapterSidebarTargetLink to={`heading-${item.text.replaceAll(" ", "-")}`}>
-                  {item.text}
-                </ChapterSidebarTargetLink>
-              </div>
-            ))
-          : null}
+    <ScrollArea className="h-full">
+      <div className="w-32">
+        <h1 className="font-KBODiaGothic_bold font-bold">Chapter</h1>
+        <div className="grid gap-1">
+          {items?.length
+            ? items.map((item, index) => (
+                <div key={index} style={{ marginLeft: (item.depth - 1) * 8 }}>
+                  <ChapterSidebarTargetLink to={`heading-${item.text.replaceAll(" ", "-")}`}>
+                    {item.text}
+                  </ChapterSidebarTargetLink>
+                </div>
+              ))
+            : null}
+        </div>
       </div>
-    </div>
+    </ScrollArea>
   )
 }

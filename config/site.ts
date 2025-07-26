@@ -79,11 +79,9 @@ const siteConfig = {
   },
 }
 
-export { siteConfig }
-
 import { NavItem } from "@/types/nav"
 
-export const mainNavContent: NavItem[] = [
+const mainNavContent: NavItem[] = [
   {
     title: "Home",
     mainLink: {
@@ -153,7 +151,7 @@ export const mainNavContent: NavItem[] = [
 
 import { dropDownItem } from "@/types/dropdown"
 
-export const navDropDownContent: dropDownItem = {
+const navDropDownContent: dropDownItem = {
   label: "My Account",
   content: [
     [
@@ -258,3 +256,42 @@ export const navDropDownContent: dropDownItem = {
     ],
   ],
 }
+
+import { docsItem } from "@/types/docs"
+
+const docsTree: docsItem[] = [
+  {
+    id: "introduction",
+    isDoc: true,
+  },
+  {
+    id: "get-started",
+    isDoc: true,
+    subDocList: [
+      {
+        id: "시작하기-하위-페이지-1",
+        isDoc: true,
+      },
+      {
+        id: "sub-folder",
+        subDocList: [
+          {
+            id: "sub-markdown",
+            isDoc: true,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "test",
+    subDocList: [
+      {
+        id: "test1",
+        isDoc: true,
+      },
+    ],
+  },
+]
+
+export { siteConfig, mainNavContent, navDropDownContent, docsTree }

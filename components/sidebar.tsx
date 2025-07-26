@@ -160,10 +160,10 @@ function Tree({ item, parentPath = "/docs" }: { item: docsItem; parentPath?: str
           <CollapsibleTrigger asChild>
             <SidebarMenuButton>
               <Link
-                href={item.isDoc ? currentPath.replaceAll(" ", "-") : ""}
-                className={`${decodeURI(pathName) == currentPath.replaceAll(" ", "-") ? "font-bold" : ""}`}
+                href={item.isDoc ? currentPath : ""}
+                className={`${decodeURI(pathName) == currentPath ? "font-bold" : ""}`}
               >
-                {toTitleCase(item.id)}
+                {toTitleCase(item.id.replaceAll("-", " "))}
               </Link>
               <ChevronRight className="transition-transform" />
             </SidebarMenuButton>
@@ -182,10 +182,10 @@ function Tree({ item, parentPath = "/docs" }: { item: docsItem; parentPath?: str
     return (
       <SidebarMenuButton className="data-[active=true]:bg-transparent">
         <Link
-          href={item.isDoc ? currentPath.replaceAll(" ", "-") : ""}
-          className={`${decodeURI(pathName) == currentPath.replaceAll(" ", "-") ? "font-bold" : ""}`}
+          href={item.isDoc ? currentPath : ""}
+          className={`${decodeURI(pathName) == currentPath ? "font-bold" : ""}`}
         >
-          {toTitleCase(item.id)}
+          {toTitleCase(item.id.replaceAll("-", " "))}
         </Link>
       </SidebarMenuButton>
     )

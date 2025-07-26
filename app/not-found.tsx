@@ -1,12 +1,10 @@
-"use client"
-
 import Link from "next/link"
-import { useRouter } from "next/navigation"
 
-import { Button, buttonVariants } from "@/components/ui/button"
+import { buttonVariants } from "@/components/ui/button"
+import { BackwardButton } from "@/components/util-components"
 
 export default function NotFound() {
-  const router = useRouter()
+  
 
   return (
     <>
@@ -28,14 +26,7 @@ export default function NotFound() {
             <Link href="/" rel="noreferrer" className={buttonVariants()}>
               Go to home
             </Link>
-            <Button
-              variant={"outline"}
-              rel="noreferrer"
-              onClick={() => {
-                router.back()
-              }}>
-              Go back to recent page
-            </Button>
+            <BackwardButton variant="outline">go back to recent page</BackwardButton>
           </div>
         </section>
       </div>

@@ -20,7 +20,6 @@ export async function mdxUtils({ rootPath, slugPath }: mdxUtilsProps) {
   const tree = unified().use(remarkParse).parse(fileContent) as Root
 
   const toc = tree.children.filter((node) => node.type == "heading")
-  console.log(toc)
 
   const headings: tocListItem[] = []
 

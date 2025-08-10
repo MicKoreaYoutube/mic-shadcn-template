@@ -2,14 +2,13 @@ import React from "react"
 
 import { toTitleCase } from "@/lib/utils"
 import { mdxUtils } from "@/lib/mdx"
-import { docsItem, tocListItem } from "@/types/docs"
+import { docsItem } from "@/types/docs"
 
 import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
-  BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
 import { ChapterSidebar } from "@/components/sidebar"
@@ -34,8 +33,8 @@ export default async function DocPage({ params }: { params: Promise<docsStaticPa
   const { Document, frontmatter, toc } = await mdxUtils({ rootPath: "docs", slugPath: slugPath })
 
   return (
-    <div className="flex w-full p-6 justify-between lg:p-10">
-      <article className="mx-auto w-full lg:w-[65vw]">
+    <div className="flex w-full gap-7 p-6 lg:p-10">
+      <article className="grow">
         <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem>
@@ -45,7 +44,7 @@ export default async function DocPage({ params }: { params: Promise<docsStaticPa
               <React.Fragment key={index}>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
-                  <BreadcrumbLink href={`/${item}`}>{toTitleCase(decodeURI(item).replaceAll("-", " "))}</BreadcrumbLink>
+                  <BreadcrumbLink href={`/docs/${slug.slice(0, index + 1).join("/")}`}>{toTitleCase(decodeURI(item).replaceAll("-", " "))}</BreadcrumbLink>
                 </BreadcrumbItem>
               </React.Fragment>
             ))}
@@ -63,7 +62,7 @@ export default async function DocPage({ params }: { params: Promise<docsStaticPa
         ) : null}
         <Document />
       </article>
-      <div className="hidden h-64 lg:inline">
+      <div className="sticky top-24 hidden h-full lg:inline">
         <ChapterSidebar items={toc} />
       </div>
     </div>

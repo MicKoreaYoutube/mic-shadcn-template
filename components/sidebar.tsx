@@ -212,9 +212,9 @@ function ChapterSidebarTargetLink({ to, children, ...props }: ChapterSidebarTarg
 
 export function ChapterSidebar({ items }: chapterSidebarInterface) {
   return (
-    <ScrollArea className="h-full">
-      <div className="w-32">
-        <h1 className="font-KBODiaGothic_bold font-bold">Chapter</h1>
+    <div className="w-32">
+      <h1 className="font-KBODiaGothic_bold font-bold">Chapter</h1>
+      <ScrollArea className="h-60">
         <div className="grid gap-1">
           {items?.length
             ? items.map((item, index) => (
@@ -226,7 +226,7 @@ export function ChapterSidebar({ items }: chapterSidebarInterface) {
               ))
             : null}
         </div>
-      </div>
-    </ScrollArea>
+      </ScrollArea>
+    </div>
   )
 }

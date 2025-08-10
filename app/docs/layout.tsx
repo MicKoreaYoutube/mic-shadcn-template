@@ -1,23 +1,18 @@
-import fs from "fs"
-import path from "path"
-
 import { Menu } from "lucide-react"
 
 import { docsTree } from "@/config/site"
-import { docsItem } from "@/types/docs"
 
 import { DocsSidebar } from "@/components/sidebar"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Button } from "@/components/ui/button"
 import { SidebarProvider, Sidebar } from "@/components/ui/sidebar"
-import { ScrollArea } from "@/components/ui/scroll-area"
 
 export default async function DocsLayout({ children }: { children: React.ReactNode }) {
   return (
     <SidebarProvider>
-      <div className="flex flex-col justify-center lg:flex-row">
-        <div className="hidden lg:inline">
-          <Sidebar className="sticky top-16 overflow-hidden">
+      <div className="flex size-full flex-col lg:flex-row">
+        <div className="sticky top-16 hidden h-[calc(100dvh-4rem)] lg:inline">
+          <Sidebar>
             <DocsSidebar items={docsTree} />
           </Sidebar>
         </div>
@@ -33,7 +28,7 @@ export default async function DocsLayout({ children }: { children: React.ReactNo
             </SheetContent>
           </Sheet>
         </div>
-        <main>{children}</main>
+        <main className="grow">{children}</main>
       </div>
     </SidebarProvider>
   )

@@ -4,6 +4,8 @@ import Link from "next/link"
 
 import { cn } from "@/lib/utils"
 
+import { ChevronDown, Github, Instagram } from "lucide-react"
+
 import { siteConfig } from "@/config/site"
 
 import { buttonVariants, Button } from "@/components/ui/button"
@@ -18,7 +20,6 @@ import {
 import { ThemeToggle } from "@/components/theme-toggle"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faChevronDown } from "@fortawesome/free-solid-svg-icons"
 import { faGithub, faInstagram } from "@fortawesome/free-brands-svg-icons"
 
 import { useInView } from "react-intersection-observer"
@@ -84,8 +85,7 @@ export function SiteFooter() {
                   <DropdownMenuTrigger asChild>
                     <Button variant="outline" className="bg-accent/50">
                       패밀리 서비스
-                      <FontAwesomeIcon
-                        icon={faChevronDown}
+                      <ChevronDown
                         className={cn(
                           "size-3 shrink-0 transition-transform duration-100",
                           FamilySurviceRefInView ? "rotate-180" : null,
@@ -117,7 +117,7 @@ export function SiteFooter() {
                       variant: "ghost",
                     })}
                   >
-                    <FontAwesomeIcon icon={faGithub} className="size-5" />
+                    <Github className="size-5" />
                     <span className="sr-only">GitHub</span>
                   </div>
                 </Link>
@@ -128,7 +128,7 @@ export function SiteFooter() {
                       variant: "ghost",
                     })}
                   >
-                    <FontAwesomeIcon icon={faInstagram} className="size-5" />
+                    <Instagram className="size-5" />
                     <span className="sr-only">Instagram</span>
                   </div>
                 </Link>

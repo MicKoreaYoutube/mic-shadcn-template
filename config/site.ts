@@ -151,111 +151,162 @@ const mainNavContent: NavItem[] = [
 
 import { dropDownItem } from "@/types/dropdown"
 
-const navDropDownContent: dropDownItem = {
-  label: "My Account",
-  content: [
-    [
-      {
-        icon: ["fas", "house"],
-        title: "11번 내용",
-        href: "/11",
-        shortcut: "",
-      },
-      {
-        icon: ["fas", "house"],
-        title: "12번 내용",
-        href: "/12",
-        shortcut: "",
-      },
-      {
-        icon: ["fas", "house"],
-        title: "13번 내용",
-        href: "/13",
-        shortcut: "",
-      },
-    ],
-    [
-      {
-        icon: ["fas", "house"],
-        title: "21번 내용",
-        href: "/21",
-        shortcut: "",
-      },
-      {
-        icon: ["fas", "house"],
-        title: "22번 내용",
-        href: "/22",
-        shortcut: "",
-        semiDropDown: [
-          [
-            {
-              icon: ["fas", "house"],
-              title: "22-1번 내용",
-              href: "/22-1",
-              shortcut: "",
-            },
-          ],
-          [
-            {
-              icon: ["fas", "house"],
-              title: "22-21번 내용",
-              href: "/22-21",
-              shortcut: "",
-            },
-            {
-              icon: ["fas", "house"],
-              title: "22-22번 내용",
-              href: "/22-22",
-              shortcut: "",
-            },
-          ],
-          [
-            {
-              icon: ["fas", "house"],
-              title: "22-23번 내용",
-              href: "/22-23",
-              shortcut: "",
-            },
-          ],
+import { Home, Settings, FileText, Users, HelpCircle, Folder, BookOpen, Wrench, Package, Layers } from "lucide-react"
+
+const navDropDownContent: dropDownItem[][] = [
+  [
+    {
+      title: "Home",
+      icon: Home,
+      href: "/",
+    },
+    {
+      title: "Documents",
+      icon: FileText,
+      href: "/docs",
+      subDropDown: [
+        [
+          {
+            title: "Getting Started",
+            icon: BookOpen,
+            href: "/docs/getting-started",
+            subDropDown: [
+              [
+                {
+                  title: "Installation",
+                  href: "/docs/getting-started/installation",
+                },
+                {
+                  title: "Quick Start",
+                  href: "/docs/getting-started/quick-start",
+                },
+              ],
+            ],
+          },
+          {
+            title: "API Reference",
+            icon: Wrench,
+            href: "/docs/api",
+            subDropDown: [
+              [
+                {
+                  title: "v1",
+                  href: "/docs/api/v1",
+                  subDropDown: [
+                    [
+                      {
+                        title: "Endpoints",
+                        href: "/docs/api/v1/endpoints",
+                      },
+                      {
+                        title: "Authentication",
+                        href: "/docs/api/v1/auth",
+                      },
+                    ],
+                  ],
+                },
+                {
+                  title: "v2",
+                  href: "/docs/api/v2",
+                },
+              ],
+            ],
+          },
         ],
-      },
-      {
-        icon: ["fas", "house"],
-        title: "23번 내용",
-        href: "/23",
-        shortcut: "",
-      },
-    ],
-    [
-      {
-        icon: ["fas", "house"],
-        title: "31번 내용",
-        href: "/31",
-        shortcut: "",
-      },
-      {
-        icon: ["fas", "house"],
-        title: "32번 내용",
-        href: "/32",
-        shortcut: "",
-      },
-      {
-        icon: ["fas", "house"],
-        title: "33번 내용",
-        href: "/33",
-        shortcut: "",
-      },
-    ],
-    [
-      {
-        icon: ["fas", "house"],
-        title: "로그아웃",
-        href: "/4",
-        shortcut: "",
-      },
-    ],
+      ],
+    },
   ],
-}
+  [
+    {
+      title: "Team",
+      icon: Users,
+      href: "/team",
+    },
+    {
+      title: "Projects",
+      icon: Folder,
+      href: "/projects",
+      subDropDown: [
+        [
+          {
+            title: "Active",
+            href: "/projects/active",
+            subDropDown: [
+              [
+                {
+                  title: "Frontend",
+                  href: "/projects/active/frontend",
+                },
+                {
+                  title: "Backend",
+                  href: "/projects/active/backend",
+                },
+              ],
+            ],
+          },
+          {
+            title: "Archived",
+            href: "/projects/archived",
+          },
+        ],
+      ],
+    },
+  ],
+  [
+    {
+      title: "Settings",
+      icon: Settings,
+      href: "/settings",
+    },
+    {
+      title: "Help",
+      icon: HelpCircle,
+      href: "/help",
+    },
+    {
+      title: "Packages",
+      icon: Package,
+      href: "/packages",
+      subDropDown: [
+        [
+          {
+            title: "Core",
+            icon: Layers,
+            href: "/packages/core",
+          },
+          {
+            title: "Extensions",
+            href: "/packages/extensions",
+            subDropDown: [
+              [
+                {
+                  title: "UI Components",
+                  href: "/packages/extensions/ui",
+                },
+                {
+                  title: "CLI Tools",
+                  href: "/packages/extensions/cli",
+                },
+              ],
+              [
+                {
+                  title: "More...",
+                  href: "/packages/extensions/more"
+                }
+              ]
+            ],
+          },
+        ],
+      ],
+    },
+  ],
+  [
+    {
+      title: "Log Out",
+      href: "/logout"
+    }
+  ]
+]
 
 import { docsItem } from "@/types/docs"
 
@@ -270,6 +321,10 @@ const docsTree: docsItem[] = [
     subDocList: [
       {
         id: "시작하기-하위-페이지-1",
+        isDoc: true,
+      },
+      {
+        id: "시작하기-하위-페이지-2",
         isDoc: true,
       },
       {

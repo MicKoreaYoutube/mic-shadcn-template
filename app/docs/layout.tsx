@@ -11,9 +11,9 @@ export default async function DocsLayout({ children }: { children: React.ReactNo
   return (
     <SidebarProvider>
       <div className="flex size-full flex-col lg:flex-row">
-        <div className="sticky top-16 hidden h-[calc(100dvh-4rem)] lg:inline">
-          <Sidebar>
-            <DocsSidebar items={docsTree} />
+        <div className="sticky top-16 hidden h-dvh lg:inline">
+          <Sidebar className="overflow-hidden">
+            <DocsSidebar items={docsTree} rootPath="/docs" />
           </Sidebar>
         </div>
         <div className="inline px-6 pt-10 lg:hidden">
@@ -24,7 +24,7 @@ export default async function DocsLayout({ children }: { children: React.ReactNo
               </Button>
             </SheetTrigger>
             <SheetContent side="left">
-              <DocsSidebar items={docsTree} />
+              <DocsSidebar items={docsTree} rootPath="/docs" />
             </SheetContent>
           </Sheet>
         </div>

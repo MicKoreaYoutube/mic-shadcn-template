@@ -2,6 +2,8 @@
 
 import Link from "next/link"
 
+import { Command } from "lucide-react"
+
 import { cn, toTitleCase } from "@/lib/utils"
 
 import { docsItem, tocListItem } from "@/types/docs"
@@ -36,6 +38,7 @@ import React from "react"
 // }
 
 interface docsSidebarInterface {
+  rootPath: string
   items?: docsItem[]
 }
 
@@ -79,26 +82,21 @@ export function DashbaordSidebar() {
   ]
 
   return (
-    <Sidebar collapsible="icon" className="sticky top-16 overflow-hidden">
+    <Sidebar collapsible="icon">
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <SidebarMenuButton>
-                  Select Workspace
-                  <ChevronDown className="ml-auto" />
-                </SidebarMenuButton>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-[--radix-popper-anchor-width]">
-                <DropdownMenuItem>
-                  <span>Acme Inc</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <span>Acme Corp.</span>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <SidebarMenuButton size="lg" asChild>
+              <a href="#">
+                <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
+                  <Command className="size-4" />
+                </div>
+                <div className="grid flex-1 text-left text-sm leading-tight">
+                  <span className="truncate font-medium">Acme Inc</span>
+                  <span className="truncate text-xs">Enterprise</span>
+                </div>
+              </a>
+            </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
@@ -138,17 +136,17 @@ export function DashbaordSidebar() {
   )
 }
 
-export function DocsSidebar({ items }: docsSidebarInterface) {
+export function DocsSidebar({ items, rootPath }: docsSidebarInterface) {
   return (
     <>
       <SidebarMenu className="p-4">
-        <ScrollArea>{items?.length ? items.map((item, index) => <Tree key={index} item={item} />) : null}</ScrollArea>
+        <ScrollArea>{items?.length ? items.map((item, index) => <DocsTree key={index} item={item} parentPath={rootPath} />) : null}</ScrollArea>
       </SidebarMenu>
     </>
   )
 }
 
-function Tree({ item, parentPath = "/docs" }: { item: docsItem; parentPath?: string }) {
+function DocsTree({ item, parentPath }: { item: docsItem; parentPath?: string }) {
   const pathName = usePathname()
 
   const currentPath = `${parentPath}/${item.id}`
@@ -171,7 +169,7 @@ function Tree({ item, parentPath = "/docs" }: { item: docsItem; parentPath?: str
           <CollapsibleContent>
             <SidebarMenuSub>
               {item.subDocList.map((subItem, index) => (
-                <Tree key={index} item={subItem} parentPath={currentPath} />
+                <DocsTree key={index} item={subItem} parentPath={currentPath} />
               ))}
             </SidebarMenuSub>
           </CollapsibleContent>

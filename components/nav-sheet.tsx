@@ -42,7 +42,7 @@ import {
 } from "@/components/ui/drawer"
 
 import { ThemeToggle } from "@/components/theme-toggle"
-import { NavDropDown } from "@/components/dropdown"
+import { DropDown } from "@/components/dropdown"
 
 import { useInView } from "react-intersection-observer"
 
@@ -163,7 +163,7 @@ export function NavSheet({ items }: NavSheetProps) {
                   </DrawerContent>
                 </Drawer>
               </div>
-              <NavDropDown items={navDropDownContent} />
+              <DropDown label="My Account" items={navDropDownContent} />
             </div>
           </SheetFooter>
         </SheetContent>

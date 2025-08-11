@@ -5,7 +5,7 @@ import Link from "next/link"
 import { siteConfig, mainNavContent, navDropDownContent } from "@/config/site"
 
 import { MainNav } from "@/components/main-nav"
-import { NavDropDown } from "@/components/dropdown"
+import { DropDown } from "@/components/dropdown"
 import { NavSheet } from "@/components/nav-sheet"
 import { SearchDialog } from "@/components/search-dialog"
 
@@ -24,7 +24,7 @@ export function SiteHeader() {
         </div>
         <div className="hidden flex-1 items-center justify-end space-x-4 lg:flex">
           {/* <SearchDialog /> */}
-          <NavDropDown items={navDropDownContent} />
+          <DropDown label="My Account" items={navDropDownContent} />
         </div>
         <div className="flex flex-1 items-center justify-end lg:hidden">
           <NavSheet items={mainNavContent} />

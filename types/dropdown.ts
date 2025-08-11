@@ -1,17 +1,9 @@
-import { IconProp } from "@fortawesome/fontawesome-svg-core"
+import { LucideIcon } from "lucide-react"
 
 export interface dropDownItem {
-  label: string
-  content: {
-    title: string
-    icon?: IconProp
-    href?: string
-    shortcut?: string
-    semiDropDown?: {
-      title: string
-      icon?: IconProp
-      href?: string
-      shortcut?: string
-    }[][]
-  }[][]
+  title: string
+  icon?: LucideIcon
+  href?: string
+  shortcut?: string
+  subDropDown?: dropDownItem[][]
 }

@@ -35,7 +35,7 @@ export default async function DocPage({ params }: { params: Promise<docsStaticPa
   return (
     <div className="flex w-full gap-7 p-6 lg:p-10">
       <article className="grow">
-        <Breadcrumb>
+        <Breadcrumb className="font-TheJamsil5Bold">
           <BreadcrumbList>
             <BreadcrumbItem>
               <BreadcrumbLink href="/docs">Docs</BreadcrumbLink>

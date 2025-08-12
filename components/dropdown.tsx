@@ -5,8 +5,7 @@ import React, { useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 
-import { TriangleDownIcon } from "@radix-ui/react-icons"
-import { LogIn } from "lucide-react"
+import { ChevronDown, LogIn } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -52,7 +51,7 @@ export function DropDown({ label, items }: dropDownProps) {
                     <LoadingComp />
                   </AvatarFallback>
                 </Avatar>
-                <TriangleDownIcon className="m-2 block size-6" />
+                <ChevronDown className="m-2 block size-6" />
               </div>
             </button>
           </DropdownMenuTrigger>
@@ -86,7 +85,10 @@ function DropDownTree({ items }: dropDownTreeProps) {
                   <React.Fragment key={subIndex}>
                     {item.subDropDown ? (
                       <DropdownMenuSub>
-                        <DropdownMenuSubTrigger onClick={() => router.push(item.href ?? "#")}>{item.icon ? <item.icon /> : null}{item.title}</DropdownMenuSubTrigger>
+                        <DropdownMenuSubTrigger onClick={() => router.push(item.href ?? "#")} disabled={item.disable} className={item.disable ? "cursor-not-allowed" : undefined}>
+                          {item.icon ? <item.icon /> : null}
+                          {item.title}
+                        </DropdownMenuSubTrigger>
                         <DropdownMenuPortal>
                           <DropdownMenuSubContent>
                             <DropDownTree items={item.subDropDown} />
@@ -94,7 +96,7 @@ function DropDownTree({ items }: dropDownTreeProps) {
                         </DropdownMenuPortal>
                       </DropdownMenuSub>
                     ) : (
-                      <DropdownMenuItem onClick={() => router.push(item.href ?? "#")}>
+                      <DropdownMenuItem onClick={() => router.push(item.href ?? "#")} disabled={item.disable} className={item.disable ? "cursor-not-allowed" : undefined}>
                         {item.icon ? <item.icon /> : null}
                         {item.title}
                         <DropdownMenuShortcut>{item.shortcut}</DropdownMenuShortcut>

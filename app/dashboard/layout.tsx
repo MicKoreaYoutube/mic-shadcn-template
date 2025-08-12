@@ -1,5 +1,3 @@
-"use client"
-
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { DashbaordSidebar } from "@/components/sidebar"

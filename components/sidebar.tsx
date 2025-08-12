@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 
-import { Command } from "lucide-react"
+import Logo from "@/public/logo.svg"
 
 import { cn, toTitleCase } from "@/lib/utils"
 
@@ -53,81 +53,184 @@ interface ChapterSidebarTargetLinkInterface {
 }
 
 export function DashbaordSidebar() {
-  const items = [
-    {
-      title: "Home",
-      url: "#",
-      icon: Home,
-    },
-    {
-      title: "Inbox",
-      url: "#",
-      icon: Inbox,
-    },
-    {
-      title: "Calendar",
-      url: "#",
-      icon: Calendar,
-    },
-    {
-      title: "Search",
-      url: "#",
-      icon: Search,
-    },
-    {
-      title: "Settings",
-      url: "#",
-      icon: Settings,
-    },
-  ]
+  const data = {
+    versions: ["1.0.1", "1.1.0-alpha", "2.0.0-beta1"],
+    navMain: [
+      {
+        title: "Getting Started",
+        url: "#",
+        items: [
+          {
+            title: "Installation",
+            url: "#",
+          },
+          {
+            title: "Project Structure",
+            url: "#",
+          },
+        ],
+      },
+      {
+        title: "Building Your Application",
+        url: "#",
+        items: [
+          {
+            title: "Routing",
+            url: "#",
+          },
+          {
+            title: "Data Fetching",
+            url: "#",
+            isActive: true,
+          },
+          {
+            title: "Rendering",
+            url: "#",
+          },
+          {
+            title: "Caching",
+            url: "#",
+          },
+          {
+            title: "Styling",
+            url: "#",
+          },
+          {
+            title: "Optimizing",
+            url: "#",
+          },
+          {
+            title: "Configuring",
+            url: "#",
+          },
+          {
+            title: "Testing",
+            url: "#",
+          },
+          {
+            title: "Authentication",
+            url: "#",
+          },
+          {
+            title: "Deploying",
+            url: "#",
+          },
+          {
+            title: "Upgrading",
+            url: "#",
+          },
+          {
+            title: "Examples",
+            url: "#",
+          },
+        ],
+      },
+      {
+        title: "API Reference",
+        url: "#",
+        items: [
+          {
+            title: "Components",
+            url: "#",
+          },
+          {
+            title: "File Conventions",
+            url: "#",
+          },
+          {
+            title: "Functions",
+            url: "#",
+          },
+          {
+            title: "next.config.js Options",
+            url: "#",
+          },
+          {
+            title: "CLI",
+            url: "#",
+          },
+          {
+            title: "Edge Runtime",
+            url: "#",
+          },
+        ],
+      },
+      {
+        title: "Architecture",
+        url: "#",
+        items: [
+          {
+            title: "Accessibility",
+            url: "#",
+          },
+          {
+            title: "Fast Refresh",
+            url: "#",
+          },
+          {
+            title: "Next.js Compiler",
+            url: "#",
+          },
+          {
+            title: "Supported Browsers",
+            url: "#",
+          },
+          {
+            title: "Turbopack",
+            url: "#",
+          },
+        ],
+      },
+      {
+        title: "Community",
+        url: "#",
+        items: [
+          {
+            title: "Contribution Guide",
+            url: "#",
+          },
+        ],
+      },
+    ],
+  }
 
   return (
-    <Sidebar collapsible="icon">
+    <Sidebar collapsible="icon" className="font-TheJamsil5Bold">
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton size="lg" asChild>
-              <a href="#">
-                <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-                  <Command className="size-4" />
+            <SidebarMenuButton size="lg">
+              <div className="flex items-center gap-2">
+                <Logo className="size-7" />
+                <div className="flex flex-col">
+                  <span className="text-base">Username</span>
+                  <span className="text-xs">Description</span>
                 </div>
-                <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-medium">Acme Inc</span>
-                  <span className="truncate text-xs">Enterprise</span>
-                </div>
-              </a>
+              </div>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
-      <SidebarContent>
-        <SidebarGroup>
-          <SidebarGroupLabel>Application</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {items.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <a href={item.url}>
-                      <item.icon />
-                      <span>{item.title}</span>
-                    </a>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
-        <Collapsible defaultOpen className="group/collapsible">
+      <SidebarContent className="gap-0">
+        <Collapsible title="테스트" defaultOpen className="group/collapsible">
           <SidebarGroup>
-            <SidebarGroupLabel asChild>
+            <SidebarGroupLabel
+              asChild
+              className="group/label text-sm text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+            >
               <CollapsibleTrigger>
-                Help
-                <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
+                테스트 텍스트
+                <ChevronRight className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-90" />
               </CollapsibleTrigger>
             </SidebarGroupLabel>
             <CollapsibleContent>
-              <SidebarGroupContent />
+              <SidebarGroupContent>
+                <SidebarMenu>
+                  <SidebarMenuItem>
+                    <SidebarMenuButton>테스트 텍스트</SidebarMenuButton>
+                  </SidebarMenuItem>
+                </SidebarMenu>
+              </SidebarGroupContent>
             </CollapsibleContent>
           </SidebarGroup>
         </Collapsible>
@@ -139,8 +242,12 @@ export function DashbaordSidebar() {
 export function DocsSidebar({ items, rootPath }: docsSidebarInterface) {
   return (
     <>
-      <SidebarMenu className="p-4">
-        <ScrollArea>{items?.length ? items.map((item, index) => <DocsTree key={index} item={item} parentPath={rootPath} />) : null}</ScrollArea>
+      <SidebarMenu className="p-4 font-TheJamsil5Bold">
+        <ScrollArea>
+          {items?.length
+            ? items.map((item, index) => <DocsTree key={index} item={item} parentPath={rootPath} />)
+            : null}
+        </ScrollArea>
       </SidebarMenu>
     </>
   )

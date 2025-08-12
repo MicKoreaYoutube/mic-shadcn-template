@@ -5,5 +5,6 @@ export interface dropDownItem {
   icon?: LucideIcon
   href?: string
   shortcut?: string
+  disable?: boolean
   subDropDown?: dropDownItem[][]
 }

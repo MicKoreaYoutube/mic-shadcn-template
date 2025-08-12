@@ -201,6 +201,7 @@ const navDropDownContent: dropDownItem[][] = [
                       {
                         title: "Authentication",
                         href: "/docs/api/v1/auth",
+                        disable: true
                       },
                     ],
                   ],

@@ -5,15 +5,10 @@ import { Metadata } from "next"
 import type { Viewport } from "next"
 
 import { siteConfig } from "@/config/site"
-import { cn } from "@/lib/utils"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
-// import { library } from '@fortawesome/fontawesome-svg-core'
-// import { fas } from '@fortawesome/free-solid-svg-icons'
-// import { far } from '@fortawesome/free-regular-svg-icons'
-// import { fab } from '@fortawesome/free-brands-svg-icons'
 
 export const metadata: Metadata = {
   title: {
@@ -34,13 +29,11 @@ export const viewport: Viewport = {
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  // library.add(fas, far, fab)
-
   return (
     <>
       <html lang="ko" suppressHydrationWarning>
         <head />
-        <body className="min-h-screen bg-background font-sans antialiased">
+        <body className="min-h-screen font-sans antialiased">
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <div className="relative flex flex-col duration-700">
               <SiteHeader />

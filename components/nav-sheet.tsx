@@ -63,7 +63,7 @@ export function NavSheet({ items }: NavSheetProps) {
             <Menu />
           </Button>
         </SheetTrigger>
-        <SheetContent className="flex h-screen flex-col overflow-auto font-RixInooAriDuriR">
+        <SheetContent className="flex h-dvh flex-col overflow-auto font-RixInooAriDuriR">
           <SheetHeader className="flex-none">
             <SheetTitle>
               <Link href="/" className="flex flex-row space-x-2">
@@ -74,7 +74,6 @@ export function NavSheet({ items }: NavSheetProps) {
             <SheetDescription>{siteConfig.description}</SheetDescription>
           </SheetHeader>
           <div className="grow">
-            <SearchDialog />
             <Accordion type="single" collapsible className="w-full">
               {items?.length ? (
                 <>

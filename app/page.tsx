@@ -1,7 +1,4 @@
-"use client"
-
 import Link from "next/link"
-import { useTheme } from "next-themes"
 
 import { siteConfig } from "@/config/site"
 
@@ -10,13 +7,9 @@ import { IntersectionObserverComp } from "@/components/util-components"
 
 export default function Page() {
   const classToAdd = "animate__animated animate__fadeIn"
-
-  const { theme } = useTheme()
-  const inverted = theme === "dark" ? "light" : "dark"
-
   return (
     <>
-      <div className="bg-background flex flex-col gap-2 p-8 md:p-10" data-theme={inverted}>
+      <div className="bg-background flex flex-col gap-2 p-8 md:p-10">
         <IntersectionObserverComp triggerOnce={true} threshold={1} originalClass="invisible" addedClass={classToAdd}>
           <h1 className="font-KBODiaGothic_bold text-3xl font-extrabold tracking-tighter md:text-4xl">
             Beautifully designed components <br className="hidden sm:inline" />

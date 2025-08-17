@@ -3,9 +3,6 @@ import Link from "next/link"
 import { cn } from "@/lib/utils"
 
 import { Menu } from "lucide-react"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faChevronDown } from "@fortawesome/free-solid-svg-icons"
-import { faGithub, faInstagram } from "@fortawesome/free-brands-svg-icons"
 
 import { NavItem } from "@/types/nav"
 import { siteConfig, navDropDownContent } from "@/config/site"

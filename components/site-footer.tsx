@@ -19,9 +19,6 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { ThemeToggle } from "@/components/theme-toggle"
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faGithub, faInstagram } from "@fortawesome/free-brands-svg-icons"
-
 import { useInView } from "react-intersection-observer"
 
 import Logo from "@/public/logo.svg"

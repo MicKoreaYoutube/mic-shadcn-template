@@ -18,6 +18,12 @@ const nextConfig: NextConfig = {
     // 개발 중에도 ESLint 경고를 띄우도록 설정
     ignoreDuringBuilds: false,
   },
+  outputFileTracingExcludes: {
+    "*": [
+      "./.next/cache/webpack/**",
+      "./.next/cache/images/**",
+    ],
+  },
 }
 
 const withMDX = createMDX({

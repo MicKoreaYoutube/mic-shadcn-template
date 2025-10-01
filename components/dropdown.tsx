@@ -5,7 +5,11 @@ import React, { useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 
+import { useInView } from "react-intersection-observer"
+
 import { ChevronDown, LogIn } from "lucide-react"
+
+import { cn } from "@/lib/utils"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -31,15 +35,18 @@ interface dropDownTreeProps {
   items?: dropDownItem[][]
 }
 
-interface dropDownProps extends dropDownTreeProps {
+interface dropDownProps extends dropDownTreeProps, React.HTMLAttributes<HTMLDivElement> {
   label: string
 }
 
-export function DropDown({ label, items }: dropDownProps) {
+export function DropDown({ label, items, ...props }: dropDownProps) {
   const [isLogin, changeLoginState] = useState(true)
+  const [DropDownRef, DropDownRefInView] = useInView({
+    threshold: 1,
+  })
 
   return (
-    <>
+    <div {...props}>
       {isLogin ? (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -51,11 +58,11 @@ export function DropDown({ label, items }: dropDownProps) {
                     <LoadingComp />
                   </AvatarFallback>
                 </Avatar>
-                <ChevronDown className="m-2 block size-6" />
+                <ChevronDown className={cn("m-2 block size-6 transition-transform duration-100", DropDownRefInView ? "rotate-180" : null)} />
               </div>
             </button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-56 font-TheJamsil5Bold">
+          <DropdownMenuContent className="w-56 font-TheJamsil5Bold" ref={DropDownRef}>
             <DropdownMenuLabel>{label}</DropdownMenuLabel>
             <DropDownTree items={items} />
           </DropdownMenuContent>
@@ -67,7 +74,7 @@ export function DropDown({ label, items }: dropDownProps) {
           </Link>
         </Button>
       )}
-    </>
+    </div>
   )
 }
 

@@ -14,7 +14,6 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
-  NavigaitionMenuListItem,
 } from "@/components/ui/navigation-menu"
 import { ScrollArea } from "@/components/ui/scroll-area"
 
@@ -30,52 +29,68 @@ export function MainNav({ items, ...props }: MainNavProps) {
     <div {...props}>
       <NavigationMenu>
         <NavigationMenuList>
-          {items?.length ? (
-            <>
-              {items?.map((item, index) => (
-                <NavigationMenuItem key={index}>
-                  {item.href ? (
-                    <Link href={`${item.href}`} className={cn(navigationMenuTriggerStyle(), "bg-transparent")}>
-                      {item.title}
-                    </Link>
-                  ) : (
-                    <>
-                      <NavigationMenuTrigger className="bg-transparent">{item.title}</NavigationMenuTrigger>
-                      <NavigationMenuContent>
-                        <ScrollArea>
+          {items?.map((item, index) => (
+            <NavigationMenuItem key={index}>
+              {item.href ? (
+                <Link href={`${item.href}`} className={cn(navigationMenuTriggerStyle(), "bg-transparent")}>
+                  {item.title}
+                </Link>
+              ) : (
+                <>
+                  <NavigationMenuTrigger className="bg-transparent">{item.title}</NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <ul
+                      className={cn(
+                        "grid gap-2 p-6 h-55",
+                        item.mainLink ? "grid-cols-[3fr_4fr]" : null,
+                        !item.mainLink && item.linkList && item.linkList.length <= 3 ? "w-75" : "w-125",
+                      )}
+                    >
+                      {item.mainLink ? (
+                        <li>
+                          <NavigationMenuLink asChild>
+                            <Link
+                              className="flex flex-col justify-center rounded-md p-4 no-underline outline-hidden select-none focus:shadow-md"
+                              href={`${item.mainLink?.href}`}
+                            >
+                              {item.mainLink.logo ? <item.mainLink.logo className="size-6" /> : null}
+                              <h1 className="my-2 text-lg leading-tight font-medium">{item.mainLink?.title}</h1>
+                              <p className="text-muted-foreground text-sm leading-tight">
+                                {item.mainLink?.description}
+                              </p>
+                            </Link>
+                          </NavigationMenuLink>
+                        </li>
+                      ) : null}
+                      <li className="h-full">
+                        <ScrollArea className="h-44">
                           <ul
-                            className={cn(item.mainLink ? "lg:grid-cols-[3fr_4fr]" : "md:grid-cols-2", "grid max-h-[250px] w-[300px] gap-3 p-6 md:w-[400px] lg:w-[500px]")}>
-                            {item.mainLink ? (
-                              <li className="row-span-3">
+                            className={cn(
+                              "grid gap-2",
+                              item.mainLink || (item.linkList && item.linkList.length <= 3) ? null : "grid-cols-2",
+                            )}
+                          >
+                            {item.linkList?.map((linkListItem, index) => (
+                              <li key={index}>
                                 <NavigationMenuLink asChild>
-                                  <Link
-                                    className="outline-hidden flex size-full select-none flex-col justify-center rounded-md p-4 no-underline focus:shadow-md"
-                                    href={`${item.mainLink?.href}`}>
-                                    <Logo className={cn("size-6", item.mainLink?.logo ? null : "hidden")} />
-                                    <div className="mb-2 mt-4 text-lg font-medium leading-tight">
-                                      {item.mainLink?.title}
-                                    </div>
-                                    <p className="text-sm leading-tight text-muted-foreground">
-                                      {item.mainLink?.description}
+                                  <Link href={linkListItem.href}>
+                                    <h1 className="text-sm leading-none font-medium">{linkListItem.title}</h1>
+                                    <p className="text-muted-foreground line-clamp-2 text-sm">
+                                      {linkListItem.description}
                                     </p>
                                   </Link>
                                 </NavigationMenuLink>
                               </li>
-                            ) : null}
-                            {item.linkList?.map((linkListItem, index) => (
-                              <NavigaitionMenuListItem key={index} title={linkListItem.title} href={linkListItem.href}>
-                                {linkListItem.description}
-                              </NavigaitionMenuListItem>
                             ))}
                           </ul>
                         </ScrollArea>
-                      </NavigationMenuContent>
-                    </>
-                  )}
-                </NavigationMenuItem>
-              ))}
-            </>
-          ) : null}
+                      </li>
+                    </ul>
+                  </NavigationMenuContent>
+                </>
+              )}
+            </NavigationMenuItem>
+          ))}
         </NavigationMenuList>
       </NavigationMenu>
     </div>

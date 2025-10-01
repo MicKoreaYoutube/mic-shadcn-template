@@ -80,12 +80,13 @@ const siteConfig = {
 }
 
 import { NavItem } from "@/types/nav"
+import Logo from "@/public/logo.svg"
 
 const mainNavContent: NavItem[] = [
   {
     title: "Home",
     mainLink: {
-      logo: true,
+      logo: Logo,
       title: siteConfig.name,
       description: siteConfig.description,
       href: "/",
@@ -105,6 +106,11 @@ const mainNavContent: NavItem[] = [
         title: "13번 링크",
         description: "13번 설명",
         href: "/13",
+      },
+      {
+        title: "14번 링크",
+        description: "14번 설명",
+        href: "/14",
       },
     ],
   },
@@ -141,6 +147,51 @@ const mainNavContent: NavItem[] = [
         description: "26번 설명",
         href: "/26",
       },
+      {
+        title: "27번 링크",
+        description: "27번 설명",
+        href: "/27",
+      },
+      {
+        title: "28번 링크",
+        description: "28번 설명",
+        href: "/28",
+      },
+      {
+        title: "29번 링크",
+        description: "29번 설명",
+        href: "/29",
+      },
+      {
+        title: "211번 링크",
+        description: "211번 설명",
+        href: "/211",
+      },
+      {
+        title: "26번 링크",
+        description: "26번 설명",
+        href: "/26",
+      },
+    ],
+  },
+  {
+    title: "test",
+    linkList: [
+      {
+        title: "test",
+        description: "/test",
+        href: "/test",
+      },
+      {
+        title: "32번 링크",
+        description: "32번 설명",
+        href: "/32",
+      },
+      {
+        title: "33번 링크",
+        description: "33번 설명",
+        href: "/33",
+      }
     ],
   },
   {

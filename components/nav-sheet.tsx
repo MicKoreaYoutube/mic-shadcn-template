@@ -1,4 +1,5 @@
 import Link from "next/link"
+import React from "react"
 
 import { cn } from "@/lib/utils"
 
@@ -47,7 +48,7 @@ import { SearchDialog } from "@/components/search-dialog"
 
 import Logo from "@/public/logo.svg"
 
-interface NavSheetProps {
+interface NavSheetProps extends React.HTMLAttributes<HTMLDivElement> {
   items?: NavItem[]
 }
 

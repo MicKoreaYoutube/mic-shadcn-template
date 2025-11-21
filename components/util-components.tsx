@@ -6,7 +6,8 @@ import React, { ReactElement, ReactNode } from "react"
 
 import { InView, IntersectionObserverProps, useInView } from "react-intersection-observer"
 
-import { Button, ButtonProps } from "@/components/ui/button"
+import { Button, buttonVariants } from "@/components/ui/button"
+import { type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
 
@@ -20,7 +21,16 @@ interface ReverseThemeProps extends React.HTMLAttributes<HTMLDivElement> {
   className?: string
 }
 
-function BackwardButton(props: ButtonProps) {
+function BackwardButton({
+  className,
+  variant,
+  size,
+  asChild = false,
+  ...props
+}: React.ComponentProps<"button"> &
+  VariantProps<typeof buttonVariants> & {
+    asChild?: boolean
+  }) {
   const router = useRouter()
 
   return <Button rel="noreferrer" onClick={() => router.back()} {...props} />

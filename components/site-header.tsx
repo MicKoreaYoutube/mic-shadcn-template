@@ -5,7 +5,7 @@ import Link from "next/link"
 
 import { useMediaQuery } from "react-responsive"
 
-import { MainNav } from "@/components/main-nav"
+import { Nav } from "@/components/nav"
 import { DropDown } from "@/components/dropdown"
 import { NavSheet } from "@/components/nav-sheet"
 
@@ -32,7 +32,7 @@ export function SiteHeader() {
           <Logo className="size-7" />
           <span className="font-bold">{siteConfig.name}</span>
         </Link>
-        {mounted && isLg && <MainNav items={mainNavContent} />}
+        {mounted && isLg && <Nav items={mainNavContent} />}
       </div>
       <div className="flex items-center gap-10">
         {/* <SearchDialog /> */}

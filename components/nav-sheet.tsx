@@ -30,6 +30,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { NavigationMenuStyle } from "@/components/ui/navigation-menu"
 
 import { ThemeToggle } from "@/components/theme-toggle"
 import { DropDown } from "@/components/dropdown"
@@ -56,8 +57,8 @@ export function NavSheet({ items, ...props }: NavSheetProps) {
             <Menu />
           </Button>
         </SheetTrigger>
-        <SheetContent className="flex h-dvh flex-col overflow-auto font-RixInooAriDuriR">
-          <SheetHeader className="flex-none">
+        <SheetContent className="font-RixInooAriDuriR flex h-dvh flex-col justify-between overflow-auto">
+          <SheetHeader>
             <SheetTitle>
               <Link href="/" className="flex flex-row space-x-2">
                 <Logo className="size-6" />
@@ -66,75 +67,73 @@ export function NavSheet({ items, ...props }: NavSheetProps) {
             </SheetTitle>
             <SheetDescription>{siteConfig.description}</SheetDescription>
           </SheetHeader>
-          <div className="grow">
-            <Accordion type="single" collapsible className="w-full">
-              {items?.length ? (
-                <>
-                  {items?.map((item, index) => (
-                    <AccordionItem key={index} value={index.toString()}>
-                      {item.href ? (
-                        <Link
-                          href={`${item.href}`}
-                          className="flex flex-1 items-center justify-between py-4 font-medium transition-all"
-                        >
-                          {item.title}
-                        </Link>
-                      ) : (
-                        <>
-                          <AccordionTrigger>{item.title}</AccordionTrigger>
-                          <AccordionContent>
-                            <ScrollArea>
-                              <ul className={cn(item.mainLink ? "grid-cols-[3fr_2fr] flex-row" : null, "grid gap-3")}>
-                                {item.mainLink ? (
-                                  <li className="h-full">
-                                    <div className="h-full rounded-md transition duration-700 hover:bg-accent">
-                                      <Link
-                                        className="outline-hidden flex size-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-4 no-underline focus:shadow-md"
-                                        href={`${item.mainLink?.href}`}
-                                      >
-                                        <Logo className={cn("size-6", item.mainLink?.logo ? null : "hidden")} />
-                                        <div className="mb-2 mt-4 text-lg font-medium leading-tight">
-                                          {item.mainLink?.title}
-                                        </div>
-                                        <p className="text-sm leading-tight text-muted-foreground">
-                                          {item.mainLink?.description}
-                                        </p>
-                                      </Link>
-                                    </div>
-                                  </li>
-                                ) : null}
-                                <div
-                                  className={
-                                    item.mainLink ? "flex flex-col justify-between" : "grid grid-cols-2 gap-x-3 gap-y-1"
-                                  }
+          <Accordion type="single" collapsible className="w-full flex-1">
+            {items?.length && (
+              <>
+                {items?.map((item, index) => (
+                  <AccordionItem key={index} value={index.toString()}>
+                    {item.href ? (
+                      <Link
+                        href={`${item.href}`}
+                        className="flex flex-1 items-center justify-between py-4 font-medium transition-all"
+                      >
+                        {item.title}
+                      </Link>
+                    ) : (
+                      <>
+                        <AccordionTrigger>{item.title}</AccordionTrigger>
+                        <AccordionContent>
+                          <ul className={cn("", item.mainLink && "grid grid-cols-[3fr_2fr] gap-2")}>
+                            {item.mainLink && (
+                              <li>
+                                <Link
+                                  className={cn(NavigationMenuStyle, "h-full flex flex-col justify-center rounded-md p-4 no-underline outline-hidden select-none focus:shadow-md")}
+                                  href={`${item.mainLink?.href}`}
                                 >
+                                  {item.mainLink.logo && <item.mainLink.logo className="size-6" />}
+                                  <h1 className="my-2 text-lg leading-tight font-medium">{item.mainLink?.title}</h1>
+                                  <p className="text-muted-foreground text-sm leading-tight">
+                                    {item.mainLink?.description}
+                                  </p>
+                                </Link>
+                              </li>
+                            )}
+                            <li>
+                              <ScrollArea className="h-40">
+                                <ul className={cn("grid gap-2", !item.mainLink && item.linkList && "grid-cols-2")}>
                                   {item.linkList?.map((linkListItem, index) => (
-                                    <Link
-                                      className="flex flex-col rounded-md px-2 py-4 transition duration-700 hover:bg-accent"
-                                      key={index}
-                                      href={linkListItem.href}
-                                    >
-                                      <span className="font-medium leading-tight">{linkListItem.title}</span>
-                                      <span className="leading-tight text-muted-foreground">
-                                        {linkListItem.description}
-                                      </span>
-                                    </Link>
+                                    <li key={index}>
+                                      <Link
+                                        href={linkListItem.href}
+                                        className={cn(NavigationMenuStyle, "flex flex-row items-center")}
+                                      >
+                                        {linkListItem.icon && (
+                                          <linkListItem.icon className="text-accent-foreground size-7" />
+                                        )}
+                                        <div className="flex flex-col justify-center gap-1">
+                                          <h1 className="text-sm leading-none font-medium">{linkListItem.title}</h1>
+                                          <p className="text-muted-foreground text-sm leading-none">
+                                            {linkListItem.description}
+                                          </p>
+                                        </div>
+                                      </Link>
+                                    </li>
                                   ))}
-                                </div>
-                              </ul>
-                            </ScrollArea>
-                          </AccordionContent>
-                        </>
-                      )}
-                    </AccordionItem>
-                  ))}
-                </>
-              ) : null}
-            </Accordion>
-          </div>
-          <SheetFooter className="flex-none">
-            <div className="flex justify-between md:justify-end">
-              {!useMediaQuery({ query: `(min-width: ${tailwindBreakPoints.md}px)` }) && <FamilyService />}
+                                </ul>
+                              </ScrollArea>
+                            </li>
+                          </ul>
+                        </AccordionContent>
+                      </>
+                    )}
+                  </AccordionItem>
+                ))}
+              </>
+            )}
+          </Accordion>
+          <SheetFooter>
+            <div className="w-full flex justify-between md:justify-end">
+              {!useMediaQuery({ minWidth: tailwindBreakPoints["md"] }) && <FamilyService />}
               <DropDown label="My Account" items={navDropDownContent} />
             </div>
           </SheetFooter>

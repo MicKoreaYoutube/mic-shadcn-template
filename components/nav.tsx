@@ -17,11 +17,11 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 
 import React from "react"
 
-interface MainNavProps extends React.HTMLAttributes<HTMLDivElement> {
+interface NavProps extends React.HTMLAttributes<HTMLDivElement> {
   items?: NavItem[]
 }
 
-export function MainNav({ items, ...props }: MainNavProps) {
+export function Nav({ items, ...props }: NavProps) {
   return (
     <div {...props}>
       <NavigationMenu>
@@ -38,8 +38,8 @@ export function MainNav({ items, ...props }: MainNavProps) {
                   <NavigationMenuContent>
                     <ul
                       className={cn(
-                        "grid h-55 gap-2 p-6",
-                        item.mainLink && "grid-cols-[3fr_4fr]",
+                        "p-6",
+                        item.mainLink && "grid grid-cols-[3fr_4fr] gap-2",
                         !item.mainLink && item.linkList && item.linkList.length <= 3 ? "w-75" : "w-125",
                       )}
                     >
@@ -59,8 +59,8 @@ export function MainNav({ items, ...props }: MainNavProps) {
                           </NavigationMenuLink>
                         </li>
                       )}
-                      <li className="h-full">
-                        <ScrollArea className="h-44">
+                      <li>
+                        <ScrollArea className="h-45">
                           <ul
                             className={cn(
                               "grid gap-2",

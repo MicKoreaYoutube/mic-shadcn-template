@@ -10,6 +10,7 @@ export interface NavItem {
     href?: string
   }
   linkList?: Array<{
+    icon?: LucideIcon | React.FC<React.SVGProps<SVGSVGElement>>
     title: string
     description: string
     href: string

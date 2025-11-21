@@ -80,6 +80,7 @@ const siteConfig = {
 }
 
 import { NavItem } from "@/types/nav"
+import { PcCase } from "lucide-react"
 import Logo from "@/public/logo.svg"
 
 const mainNavContent: NavItem[] = [
@@ -96,6 +97,7 @@ const mainNavContent: NavItem[] = [
         title: "11번 링크",
         description: "11번 설명",
         href: "/11",
+        icon: PcCase
       },
       {
         title: "12번 링크",

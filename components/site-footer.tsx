@@ -2,24 +2,20 @@
 
 import Link from "next/link"
 
-import { cn } from "@/lib/utils"
+import { useMediaQuery } from "react-responsive"
 
-import { ChevronDown, Github, Instagram } from "lucide-react"
+import { Github, Instagram } from "lucide-react"
 
 import { siteConfig } from "@/config/site"
 
-import { buttonVariants, Button } from "@/components/ui/button"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuLabel,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+import { buttonVariants } from "@/components/ui/button"
 import { ThemeToggle } from "@/components/theme-toggle"
 
 import { useInView } from "react-intersection-observer"
+
+import { tailwindBreakPoints } from "@/lib/tailwind"
+
+import { FamilyService } from "@/components/family-service"
 
 import Logo from "@/public/logo.svg"
 
@@ -77,35 +73,7 @@ export function SiteFooter() {
               . All Rights Reserved.
             </span>
             <nav className="flex items-center space-x-1">
-              <div className="hidden md:inline">
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button variant="outline" className="bg-accent/50">
-                      패밀리 서비스
-                      <ChevronDown
-                        className={cn(
-                          "size-3 shrink-0 transition-transform duration-100",
-                          FamilySurviceRefInView ? "rotate-180" : null,
-                        )}
-                      />
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent className="w-1 font-RixInooAriDuriR" ref={FamilySurviceRef}>
-                    <DropdownMenuGroup>
-                      <DropdownMenuLabel className="font-medium">패밀리 서비스</DropdownMenuLabel>
-                      {siteConfig.FamilySurvice?.length
-                        ? siteConfig.FamilySurvice?.map((item, index) => (
-                            <Link key={index} href={item.href}>
-                              <DropdownMenuItem>
-                                <span>{item.name}</span>
-                              </DropdownMenuItem>
-                            </Link>
-                          ))
-                        : null}
-                    </DropdownMenuGroup>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              </div>
+              {useMediaQuery({ query: `(min-width: ${tailwindBreakPoints.md}px)` }) && <FamilyService />}
               <div className="flex">
                 <Link href={siteConfig.links.micGithub} target="_blank" rel="noreferrer">
                   <div

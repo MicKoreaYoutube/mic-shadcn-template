@@ -1,6 +1,8 @@
 import Link from "next/link"
 import React from "react"
 
+import { useMediaQuery } from "react-responsive"
+
 import { cn } from "@/lib/utils"
 
 import { Menu } from "lucide-react"
@@ -28,23 +30,16 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from "@/components/ui/drawer"
 
 import { ThemeToggle } from "@/components/theme-toggle"
 import { DropDown } from "@/components/dropdown"
 
 import { useInView } from "react-intersection-observer"
 
+import { tailwindBreakPoints } from "@/lib/tailwind"
+
 import { SearchDialog } from "@/components/search-dialog"
+import { FamilyService } from "@/components/family-service"
 
 import Logo from "@/public/logo.svg"
 
@@ -52,11 +47,11 @@ interface NavSheetProps extends React.HTMLAttributes<HTMLDivElement> {
   items?: NavItem[]
 }
 
-export function NavSheet({ items }: NavSheetProps) {
+export function NavSheet({ items, ...props }: NavSheetProps) {
   return (
     <>
-      <Sheet>
-        <SheetTrigger asChild>
+      <Sheet {...props}>
+        <SheetTrigger asChild className="lg:hidden">
           <Button variant="ghost" size="icon">
             <Menu />
           </Button>
@@ -139,27 +134,7 @@ export function NavSheet({ items }: NavSheetProps) {
           </div>
           <SheetFooter className="flex-none">
             <div className="flex justify-between md:justify-end">
-              <div className="md:hidden">
-                <Drawer>
-                  <DrawerTrigger asChild>
-                    <Button variant="outline">패밀리 서비스</Button>
-                  </DrawerTrigger>
-                  <DrawerContent>
-                    <DrawerHeader>
-                      <DrawerTitle className="font-RixInooAriDuriR text-xl font-medium">패밀리 서비스</DrawerTitle>
-                    </DrawerHeader>
-                    <div className="m-4 flex flex-col gap-2 font-RixInooAriDuriR font-normal">
-                      {siteConfig.FamilySurvice?.length
-                        ? siteConfig.FamilySurvice?.map((item, index) => (
-                            <Link key={index} href={item.href} className="text-muted-foreground hover:underline">
-                              <span>{item.name}</span>
-                            </Link>
-                          ))
-                        : null}
-                    </div>
-                  </DrawerContent>
-                </Drawer>
-              </div>
+              {!useMediaQuery({ query: `(min-width: ${tailwindBreakPoints.md}px)` }) && <FamilyService />}
               <DropDown label="My Account" items={navDropDownContent} />
             </div>
           </SheetFooter>

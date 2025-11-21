@@ -49,20 +49,18 @@ export function DropDown({ label, items, ...props }: dropDownProps) {
     <div {...props}>
       {isLogin ? (
         <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <button>
-              <div className="flex">
-                <Avatar>
-                  <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-                  <AvatarFallback>
-                    <LoadingComp />
-                  </AvatarFallback>
-                </Avatar>
-                <ChevronDown className={cn("m-2 block size-6 transition-transform duration-100", DropDownRefInView ? "rotate-180" : null)} />
-              </div>
-            </button>
+          <DropdownMenuTrigger className="flex items-center">
+            <Avatar>
+              <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+              <AvatarFallback>
+                <LoadingComp />
+              </AvatarFallback>
+            </Avatar>
+            <ChevronDown
+              className={cn("m-2 block size-6 transition-transform duration-100", DropDownRefInView && "rotate-180")}
+            />
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-56 font-TheJamsil5Bold" ref={DropDownRef}>
+          <DropdownMenuContent className="font-TheJamsil5Bold w-56" ref={DropDownRef}>
             <DropdownMenuLabel>{label}</DropdownMenuLabel>
             <DropDownTree items={items} />
           </DropdownMenuContent>
@@ -83,38 +81,45 @@ function DropDownTree({ items }: dropDownTreeProps) {
 
   return (
     <div className="font-TheJamsil5Bold">
-      {items?.length
-        ? items.map((group, index) => (
-            <React.Fragment key={index}>
-              {index != 0 ? <DropdownMenuSeparator /> : null}
-              <DropdownMenuGroup>
-                {group.map((item, subIndex) => (
-                  <React.Fragment key={subIndex}>
-                    {item.subDropDown ? (
-                      <DropdownMenuSub>
-                        <DropdownMenuSubTrigger onClick={() => router.push(item.href ?? "#")} disabled={item.disable} className={item.disable ? "cursor-not-allowed" : undefined}>
-                          {item.icon ? <item.icon /> : null}
-                          {item.title}
-                        </DropdownMenuSubTrigger>
-                        <DropdownMenuPortal>
-                          <DropdownMenuSubContent>
-                            <DropDownTree items={item.subDropDown} />
-                          </DropdownMenuSubContent>
-                        </DropdownMenuPortal>
-                      </DropdownMenuSub>
-                    ) : (
-                      <DropdownMenuItem onClick={() => router.push(item.href ?? "#")} disabled={item.disable} className={item.disable ? "cursor-not-allowed" : undefined}>
-                        {item.icon ? <item.icon /> : null}
+      {items?.length &&
+        items.map((group, index) => (
+          <React.Fragment key={index}>
+            {index != 0 && <DropdownMenuSeparator />}
+            <DropdownMenuGroup>
+              {group.map((item, subIndex) => (
+                <React.Fragment key={subIndex}>
+                  {item.subDropDown ? (
+                    <DropdownMenuSub>
+                      <DropdownMenuSubTrigger
+                        onClick={() => router.push(item.href ?? "#")}
+                        disabled={item.disable}
+                        className={`${item.disable && "cursor-not-allowed"}`}
+                      >
+                        {item.icon && <item.icon />}
                         {item.title}
-                        <DropdownMenuShortcut>{item.shortcut}</DropdownMenuShortcut>
-                      </DropdownMenuItem>
-                    )}
-                  </React.Fragment>
-                ))}
-              </DropdownMenuGroup>
-            </React.Fragment>
-          ))
-        : null}
+                      </DropdownMenuSubTrigger>
+                      <DropdownMenuPortal>
+                        <DropdownMenuSubContent>
+                          <DropDownTree items={item.subDropDown} />
+                        </DropdownMenuSubContent>
+                      </DropdownMenuPortal>
+                    </DropdownMenuSub>
+                  ) : (
+                    <DropdownMenuItem
+                      onClick={() => router.push(item.href ?? "#")}
+                      disabled={item.disable}
+                      className={`${item.disable && "cursor-not-allowed"}`}
+                    >
+                      {item.icon && <item.icon />}
+                      {item.title}
+                      <DropdownMenuShortcut>{item.shortcut}</DropdownMenuShortcut>
+                    </DropdownMenuItem>
+                  )}
+                </React.Fragment>
+              ))}
+            </DropdownMenuGroup>
+          </React.Fragment>
+        ))}
     </div>
   )
 }

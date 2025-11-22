@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils"
 
 import { Menu } from "lucide-react"
 
-import { NavItem } from "@/types/nav"
+import { HeaderNavItem } from "@/types/nav"
 import { siteConfig, navDropDownContent } from "@/config/site"
 
 import {
@@ -45,7 +45,7 @@ import { FamilyService } from "@/components/family-service"
 import Logo from "@/public/logo.svg"
 
 interface NavSheetProps extends React.HTMLAttributes<HTMLDivElement> {
-  items?: NavItem[]
+  items?: HeaderNavItem[]
 }
 
 export function NavSheet({ items, ...props }: NavSheetProps) {

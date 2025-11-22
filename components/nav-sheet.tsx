@@ -29,7 +29,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger, AccordionTriggerStyle } from "@/components/ui/accordion"
 import { NavigationMenuStyle } from "@/components/ui/navigation-menu"
 
 import { ThemeToggle } from "@/components/theme-toggle"
@@ -75,19 +75,19 @@ export function NavSheet({ items, ...props }: NavSheetProps) {
                     {item.href ? (
                       <Link
                         href={`${item.href}`}
-                        className="flex flex-1 items-center justify-between py-4 font-medium transition-all"
+                        className={AccordionTriggerStyle()}
                       >
                         {item.title}
                       </Link>
                     ) : (
                       <>
-                        <AccordionTrigger>{item.title}</AccordionTrigger>
+                        <AccordionTrigger className="">{item.title}</AccordionTrigger>
                         <AccordionContent>
                           <ul className={cn("", item.mainLink && "grid grid-cols-[3fr_2fr] gap-2")}>
                             {item.mainLink && (
                               <li>
                                 <Link
-                                  className={cn(NavigationMenuStyle, "h-full flex flex-col justify-center rounded-md p-4 no-underline outline-hidden select-none focus:shadow-md")}
+                                  className={cn(NavigationMenuStyle(), "h-full flex flex-col justify-center rounded-md p-4 no-underline outline-hidden select-none bg-linear-to-b from-transparent to-primary/50")}
                                   href={`${item.mainLink?.href}`}
                                 >
                                   {item.mainLink.logo && <item.mainLink.logo className="size-6" />}
@@ -105,7 +105,7 @@ export function NavSheet({ items, ...props }: NavSheetProps) {
                                     <li key={index}>
                                       <Link
                                         href={linkListItem.href}
-                                        className={cn(NavigationMenuStyle, "flex flex-row items-center")}
+                                        className={cn(NavigationMenuStyle(), "flex flex-row items-center")}
                                       >
                                         {linkListItem.icon && (
                                           <linkListItem.icon className="text-accent-foreground size-7" />

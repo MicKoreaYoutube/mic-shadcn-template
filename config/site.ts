@@ -3,59 +3,6 @@ export type SiteConfig = typeof siteConfig
 const siteConfig = {
   name: "Next.js Template",
   description: "A nextjs template by MicKoreaYoutube based on shadcn-ui",
-  footerContent: [
-    {
-      title: "1번줄",
-      content: [
-        {
-          title: "1번 내용",
-          href: "/11",
-        },
-        {
-          title: "2번 내용",
-          href: "/12",
-        },
-        {
-          title: "3번 내용",
-          href: "/13",
-        },
-      ],
-    },
-    {
-      title: "2번줄",
-      content: [
-        {
-          title: "1번 내용",
-          href: "/21",
-        },
-        {
-          title: "2번 내용",
-          href: "/22",
-        },
-        {
-          title: "3번 내용",
-          href: "/23",
-        },
-      ],
-    },
-    {
-      title: "3번줄",
-      content: [
-        {
-          title: "1번 내용",
-          href: "/31",
-        },
-        {
-          title: "2번 내용",
-          href: "/32",
-        },
-        {
-          title: "3번 내용",
-          href: "/33",
-        },
-      ],
-    },
-  ],
   FamilySurvice: [
     {
       name: "1번 서비스",
@@ -79,11 +26,11 @@ const siteConfig = {
   },
 }
 
-import { NavItem } from "@/types/nav"
+import { HeaderNavItem, FooterNavItem } from "@/types/nav"
 import { PcCase } from "lucide-react"
 import Logo from "@/public/logo.svg"
 
-const mainNavContent: NavItem[] = [
+const headerNavContent: HeaderNavItem[] = [
   {
     title: "Home",
     mainLink: {
@@ -97,7 +44,7 @@ const mainNavContent: NavItem[] = [
         title: "11번 링크",
         description: "11번 설명",
         href: "/11",
-        icon: PcCase
+        icon: PcCase,
       },
       {
         title: "12번 링크",
@@ -193,12 +140,66 @@ const mainNavContent: NavItem[] = [
         title: "33번 링크",
         description: "33번 설명",
         href: "/33",
-      }
+      },
     ],
   },
   {
     title: "documenation",
     href: "/docs",
+  },
+]
+
+const footerNavContent: FooterNavItem[] = [
+  {
+    title: "1번줄",
+    content: [
+      {
+        title: "1번 내용",
+        href: "/11",
+      },
+      {
+        title: "2번 내용",
+        href: "/12",
+      },
+      {
+        title: "3번 내용",
+        href: "/13",
+      },
+    ],
+  },
+  {
+    title: "2번줄",
+    content: [
+      {
+        title: "1번 내용",
+        href: "/21",
+      },
+      {
+        title: "2번 내용",
+        href: "/22",
+      },
+      {
+        title: "3번 내용",
+        href: "/23",
+      },
+    ],
+  },
+  {
+    title: "3번줄",
+    content: [
+      {
+        title: "1번 내용",
+        href: "/31",
+      },
+      {
+        title: "2번 내용",
+        href: "/32",
+      },
+      {
+        title: "3번 내용",
+        href: "/33",
+      },
+    ],
   },
 ]
 
@@ -254,7 +255,7 @@ const navDropDownContent: dropDownItem[][] = [
                       {
                         title: "Authentication",
                         href: "/docs/api/v1/auth",
-                        disable: true
+                        disable: true,
                       },
                     ],
                   ],
@@ -345,9 +346,9 @@ const navDropDownContent: dropDownItem[][] = [
               [
                 {
                   title: "More...",
-                  href: "/packages/extensions/more"
-                }
-              ]
+                  href: "/packages/extensions/more",
+                },
+              ],
             ],
           },
         ],
@@ -357,9 +358,9 @@ const navDropDownContent: dropDownItem[][] = [
   [
     {
       title: "Log Out",
-      href: "/logout"
-    }
-  ]
+      href: "/logout",
+    },
+  ],
 ]
 
 import { docsItem } from "@/types/docs"
@@ -403,4 +404,4 @@ const docsTree: docsItem[] = [
   },
 ]
 
-export { siteConfig, mainNavContent, navDropDownContent, docsTree }
+export { siteConfig, headerNavContent, footerNavContent, navDropDownContent, docsTree }

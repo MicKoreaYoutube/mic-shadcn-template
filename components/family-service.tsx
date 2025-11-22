@@ -32,7 +32,10 @@ export function FamilyService() {
   const [FamilySurviceRef, FamilySurviceRefInView] = useInView({
     threshold: 1,
   })
-  if (useMediaQuery({ query: `(min-width: ${tailwindBreakPoints.md}px)` })) {
+
+  const isMd = useMediaQuery({ minWidth: tailwindBreakPoints["md"] })
+
+  if (isMd) {
     return (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>

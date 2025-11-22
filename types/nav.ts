@@ -1,6 +1,6 @@
 import { LucideIcon } from "lucide-react"
 
-export interface NavItem {
+interface HeaderNavItem {
   title?: string
   href?: string
   mainLink?: {
@@ -16,3 +16,13 @@ export interface NavItem {
     href: string
   }>
 }
+
+interface FooterNavItem {
+  title: string
+  content: Array<{
+    title: string
+    href: string
+  }>
+}
+
+export { type HeaderNavItem, type FooterNavItem }

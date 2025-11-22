@@ -35,7 +35,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <head />
         <body className="min-h-screen font-sans antialiased">
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <div className="relative flex flex-col duration-700">
+            <div className="relative flex flex-col transition duration-700">
               <SiteHeader />
               {children}
               <SiteFooter />

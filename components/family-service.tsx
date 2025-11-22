@@ -44,7 +44,7 @@ export function FamilyService() {
             <ChevronDown
               className={cn(
                 "size-3 shrink-0 transition-transform duration-100",
-                FamilySurviceRefInView ? "rotate-180" : null,
+                FamilySurviceRefInView && "rotate-180",
               )}
             />
           </Button>

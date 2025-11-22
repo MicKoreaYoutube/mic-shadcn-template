@@ -1,5 +1,6 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import Link from "next/link"
 
 import { useMediaQuery } from "react-responsive"
@@ -21,11 +22,15 @@ import { FamilyService } from "@/components/family-service"
 import Logo from "@/public/logo.svg"
 
 export function SiteFooter() {
+  const [mounted, setMounted] = useState(false)
+    useEffect(() => {
+      setMounted(true)
+    }, [])
 
   const isMd = useMediaQuery({ minWidth: tailwindBreakPoints["md"] })
 
   return (
-    <footer className="bg-accent/50 font-RixInooAriDuriR z-40 flex w-full flex-col justify-center gap-10 border-t px-15 py-10 md:px-20 2xl:px-35">
+    <footer className="bg-accent/50 font-RixInooAriDuriR z-40 flex w-full flex-col justify-center gap-10 border-t p-5 py-5 md:px-20 md:py-10 2xl:px-35">
       <div className="flex flex-col gap-3 lg:flex-row lg:justify-between">
         <div className="flex flex-col gap-2">
           <Link href="/" className="flex items-center gap-2">
@@ -46,8 +51,8 @@ export function SiteFooter() {
           . All Rights Reserved.
         </span>
         <div className="flex items-center gap-3">
-          {isMd && <FamilyService />}
-          <div className="flex gap-2">
+          {mounted && isMd && <FamilyService />}
+          <div className="flex gap-2 sibal">
             <Link href={siteConfig.links.micGithub} target="_blank">
               <div
                 className={buttonVariants({

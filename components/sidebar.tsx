@@ -227,7 +227,7 @@ export function DashbaordSidebar({ className, ...props }: React.ComponentProps<t
   const user = data.user
 
   return (
-    <Sidebar collapsible="icon" variant="inset" className={cn("font-TheJamsil5Bold", className)} {...props}>
+    <Sidebar collapsible="icon" className={cn("font-TheJamsil5Bold", className)} {...props}>
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>

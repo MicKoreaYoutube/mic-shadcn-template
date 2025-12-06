@@ -29,7 +29,13 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger, AccordionTriggerStyle } from "@/components/ui/accordion"
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionTriggerStyle,
+} from "@/components/ui/accordion"
 import { NavigationMenuStyle } from "@/components/ui/navigation-menu"
 
 import { ThemeToggle } from "@/components/theme-toggle"
@@ -73,33 +79,33 @@ export function NavSheet({ items, ...props }: NavSheetProps) {
                 {items?.map((item, index) => (
                   <AccordionItem key={index} value={index.toString()}>
                     {item.href ? (
-                      <Link
-                        href={`${item.href}`}
-                        className={AccordionTriggerStyle()}
-                      >
+                      <Link href={`${item.href}`} className={AccordionTriggerStyle()}>
                         {item.title}
                       </Link>
                     ) : (
                       <>
-                        <AccordionTrigger className="">{item.title}</AccordionTrigger>
+                        <AccordionTrigger>{item.title}</AccordionTrigger>
                         <AccordionContent>
-                          <ul className={cn("", item.mainLink && "grid grid-cols-[3fr_2fr] gap-2")}>
-                            {item.mainLink && (
+                          <ScrollArea className="h-40">
+                            <ul className={cn("grid gap-2")}>
+                              {item.mainLink && (
+                                <li>
+                                  <Link
+                                    className={cn(
+                                      NavigationMenuStyle(),
+                                      "to-primary/50 flex flex-col justify-end rounded-md bg-linear-to-b from-transparent p-4 no-underline outline-hidden select-none",
+                                    )}
+                                    href={`${item.mainLink?.href}`}
+                                  >
+                                    {item.mainLink.logo && <item.mainLink.logo className="size-6" />}
+                                    <h1 className="my-2 text-lg leading-tight font-medium">{item.mainLink?.title}</h1>
+                                    <p className="text-muted-foreground text-sm leading-tight">
+                                      {item.mainLink?.description}
+                                    </p>
+                                  </Link>
+                                </li>
+                              )}
                               <li>
-                                <Link
-                                  className={cn(NavigationMenuStyle(), "h-full flex flex-col justify-center rounded-md p-4 no-underline outline-hidden select-none bg-linear-to-b from-transparent to-primary/50")}
-                                  href={`${item.mainLink?.href}`}
-                                >
-                                  {item.mainLink.logo && <item.mainLink.logo className="size-6" />}
-                                  <h1 className="my-2 text-lg leading-tight font-medium">{item.mainLink?.title}</h1>
-                                  <p className="text-muted-foreground text-sm leading-tight">
-                                    {item.mainLink?.description}
-                                  </p>
-                                </Link>
-                              </li>
-                            )}
-                            <li>
-                              <ScrollArea className="h-40">
                                 <ul className={cn("grid gap-2", !item.mainLink && item.linkList && "grid-cols-2")}>
                                   {item.linkList?.map((linkListItem, index) => (
                                     <li key={index}>
@@ -120,9 +126,9 @@ export function NavSheet({ items, ...props }: NavSheetProps) {
                                     </li>
                                   ))}
                                 </ul>
-                              </ScrollArea>
-                            </li>
-                          </ul>
+                              </li>
+                            </ul>
+                          </ScrollArea>
                         </AccordionContent>
                       </>
                     )}
@@ -132,7 +138,7 @@ export function NavSheet({ items, ...props }: NavSheetProps) {
             )}
           </Accordion>
           <SheetFooter>
-            <div className="w-full flex justify-between md:justify-end">
+            <div className="flex w-full justify-between md:justify-end">
               {!useMediaQuery({ minWidth: tailwindBreakPoints["md"] }) && <FamilyService />}
               <DropDown label="My Account" items={navDropDownContent} />
             </div>

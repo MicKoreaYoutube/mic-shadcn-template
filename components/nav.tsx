@@ -52,7 +52,7 @@ function HeaderNav({ items, ...props }: HeaderNavProps) {
                         <li>
                           <NavigationMenuLink asChild>
                             <Link
-                              className="to-primary/50 flex flex-col justify-center rounded-md bg-linear-to-b from-transparent p-4 no-underline outline-hidden select-none"
+                              className="h-full to-primary/50 flex flex-col justify-center rounded-md bg-linear-to-b from-transparent p-4 no-underline outline-hidden select-none"
                               href={`${item.mainLink?.href}`}
                             >
                               {item.mainLink.logo && <item.mainLink.logo className="size-6" />}

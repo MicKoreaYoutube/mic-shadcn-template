@@ -85,7 +85,7 @@ export function NavSheet({ items, ...props }: NavSheetProps) {
                     ) : (
                       <>
                         <AccordionTrigger>{item.title}</AccordionTrigger>
-                        <AccordionContent>
+                        <AccordionContent className="py-2">
                           <ScrollArea className="h-40">
                             <ul className={cn("grid gap-2")}>
                               {item.mainLink && (

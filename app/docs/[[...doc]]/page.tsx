@@ -12,6 +12,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
 import { ChapterSidebar } from "@/components/sidebar"
+import { BreadcrumbByLink } from "@/components/breadcrumb"
 
 import { docsTree } from "@/config/site"
 
@@ -35,21 +36,7 @@ export default async function DocPage({ params }: { params: Promise<docsStaticPa
   return (
     <div className="flex w-full gap-7 p-6 lg:p-10">
       <article className="grow">
-        <Breadcrumb className="font-TheJamsil5Bold">
-          <BreadcrumbList>
-            <BreadcrumbItem>
-              <BreadcrumbLink href="/docs">Docs</BreadcrumbLink>
-            </BreadcrumbItem>
-            {slug.map((item, index) => (
-              <React.Fragment key={index}>
-                <BreadcrumbSeparator />
-                <BreadcrumbItem>
-                  <BreadcrumbLink href={`/docs/${slug.slice(0, index + 1).join("/")}`}>{toTitleCase(decodeURI(item).replaceAll("-", " "))}</BreadcrumbLink>
-                </BreadcrumbItem>
-              </React.Fragment>
-            ))}
-          </BreadcrumbList>
-        </Breadcrumb>
+        <BreadcrumbByLink />
         {frontmatter ? (
           <div className="mb-12">
             <h1 className="mb-4 mt-9 border-b pb-3 font-KBODiaGothic_bold text-5xl font-extrabold leading-tight tracking-tighter md:text-6xl">

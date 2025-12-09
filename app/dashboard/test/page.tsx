@@ -5,7 +5,7 @@ export default function DashboardMainPage() {
   return (
     <>
       {[...Array(75).keys()].map((item) => (
-        <Card className="my-4 w-full rounded-2xl shadow-sm transition-shadow hover:shadow-md" key={item}>
+        <Card className="my-4 w-full rounded-2xl shadow-sm transition-shadow hover:shadow-md active:shadow-md" key={item}>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Users</CardTitle>
             <ArrowUpRight className="text-muted-foreground size-5" />

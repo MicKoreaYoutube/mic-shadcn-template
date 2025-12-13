@@ -123,7 +123,48 @@ export function DashbaordSidebar({ className, ...props }: React.ComponentProps<t
         <SidebarGroup>
           <SidebarGroupLabel>Platform</SidebarGroupLabel>
           <SidebarGroupContent>
-            <SidebarMenu></SidebarMenu>
+            <SidebarMenu>
+              {[...Array(3).keys()].map((item) => (
+                <SidebarMenuItem key={item}>
+                  <Collapsible className="[&[data-state=open]>button>svg[data-role=expanded-indicator]]:rotate-90">
+                    <CollapsibleTrigger asChild>
+                      <SidebarMenuButton className="grid group-data-[state=expanded]:grid-cols-[auto_1fr_auto]">
+                        <Command className="size-5" />
+                        <span>이름</span>
+                        <ChevronRight className="transition-transform" data-role="expanded-indicator" />
+                      </SidebarMenuButton>
+                    </CollapsibleTrigger>
+                    <CollapsibleContent>
+                      <SidebarMenuSub className="mr-0 pr-0">
+                        <SidebarMenuItem>
+                          <Collapsible className="[&[data-state=open]>button>svg[data-role=expanded-indicator]]:rotate-90">
+                            <CollapsibleTrigger asChild>
+                              <SidebarMenuButton className="grid grid-cols-[auto_1fr_auto]">
+                                <Command />
+                                <span>왜 안 되지</span>
+                                <ChevronRight className="transition-transform" data-role="expanded-indicator" />
+                              </SidebarMenuButton>
+                            </CollapsibleTrigger>
+                            <CollapsibleContent>
+                              <SidebarMenuSub className="mr-0 pr-0">
+                                <SidebarMenuItem>
+                                  <SidebarMenuButton asChild>
+                                    <Link href="#">
+                                      <Command />
+                                      <span>ㅅㅂ</span>
+                                    </Link>
+                                  </SidebarMenuButton>
+                                </SidebarMenuItem>
+                              </SidebarMenuSub>
+                            </CollapsibleContent>
+                          </Collapsible>
+                        </SidebarMenuItem>
+                      </SidebarMenuSub>
+                    </CollapsibleContent>
+                  </Collapsible>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
@@ -201,6 +242,10 @@ export function DashbaordSidebar({ className, ...props }: React.ComponentProps<t
   )
 }
 
+function DashbaordSidebarTree() {
+
+}
+
 export function DocsSidebar({ items, rootPath }: docsSidebarInterface) {
   return (
     <div className="font-TheJamsil5Bold">
@@ -215,7 +260,7 @@ export function DocsSidebar({ items, rootPath }: docsSidebarInterface) {
             <SidebarMenu>
               <ScrollArea>
                 {items?.length
-                  ? items.map((item, index) => <DocsTree key={index} item={item} parentPath={rootPath} />)
+                  ? items.map((item, index) => <DocsSidebarTree key={index} item={item} parentPath={rootPath} />)
                   : null}
               </ScrollArea>
             </SidebarMenu>
@@ -226,7 +271,7 @@ export function DocsSidebar({ items, rootPath }: docsSidebarInterface) {
   )
 }
 
-function DocsTree({ item, parentPath }: { item: docsItem; parentPath?: string }) {
+function DocsSidebarTree({ item, parentPath }: { item: docsItem; parentPath?: string }) {
   const pathName = usePathname()
 
   const currentPath = `${parentPath}/${item.id}`
@@ -234,22 +279,22 @@ function DocsTree({ item, parentPath }: { item: docsItem; parentPath?: string })
   if (item.subDocList) {
     return (
       <SidebarMenuItem>
-        <Collapsible className="group/collapsible [&[data-state=open]>button>svg:last-child]:rotate-90">
+        <Collapsible className="[&[data-state=open]>button>svg[data-role=expanded-indicator]]:rotate-90">
           <CollapsibleTrigger asChild>
-            <SidebarMenuButton>
+            <SidebarMenuButton className="grid grid-cols-[1fr_auto]">
               <Link
                 href={item.isDoc ? currentPath : ""}
                 className={`${decodeURI(pathName) == currentPath ? "font-bold" : ""}`}
               >
                 {toTitleCase(item.id.replaceAll("-", " "))}
               </Link>
-              <ChevronRight className="transition-transform" />
+              <ChevronRight className="transition-transform" data-role="expanded-indicator" />
             </SidebarMenuButton>
           </CollapsibleTrigger>
           <CollapsibleContent>
-            <SidebarMenuSub>
+            <SidebarMenuSub className="mr-0 pr-0">
               {item.subDocList.map((subItem, index) => (
-                <DocsTree key={index} item={subItem} parentPath={currentPath} />
+                <DocsSidebarTree key={index} item={subItem} parentPath={currentPath} />
               ))}
             </SidebarMenuSub>
           </CollapsibleContent>

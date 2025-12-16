@@ -73,18 +73,18 @@ export function NavSheet({ items, ...props }: NavSheetProps) {
             </SheetTitle>
             <SheetDescription>{siteConfig.description}</SheetDescription>
           </SheetHeader>
-          <Accordion type="single" collapsible className="w-full flex-1">
+          <Accordion type="single" collapsible className="w-full flex-1 p-4">
             {items?.length && (
               <>
                 {items?.map((item, index) => (
                   <AccordionItem key={index} value={index.toString()}>
                     {item.href ? (
-                      <Link href={`${item.href}`} className={AccordionTriggerStyle()}>
+                      <Link href={`${item.href}`} className={cn(AccordionTriggerStyle(), "hover:shadow-md")}>
                         {item.title}
                       </Link>
                     ) : (
                       <>
-                        <AccordionTrigger>{item.title}</AccordionTrigger>
+                        <AccordionTrigger className="hover:bg-accent hover:shadow-md data-[state=open]:shadow-md data-[state=closed]:shadow-none">{item.title}</AccordionTrigger>
                         <AccordionContent className="py-2">
                           <ScrollArea className="h-40">
                             <ul className={cn("grid gap-2")}>

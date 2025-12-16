@@ -18,7 +18,7 @@ const AccordionItem = React.forwardRef<
 AccordionItem.displayName = "AccordionItem"
 
 const AccordionTriggerStyle = cva(
-  "flex flex-1 items-center justify-between py-4 font-medium transition-all px-2 rounded-md hover:shadow-md hover:underline data-[state=open]:shadow-md data-[state=closed]:shadow-none [&[data-state=open]>svg]:rotate-180"
+  "flex w-full items-center justify-between py-4 font-medium transition-all px-2 rounded-md cursor-pointer [&[data-state=open]>svg]:rotate-180"
 )
 
 const AccordionTrigger = React.forwardRef<

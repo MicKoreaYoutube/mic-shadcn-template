@@ -59,6 +59,7 @@ import {
   SidebarMenuAction,
   SidebarMenuSubButton,
   SidebarFooter,
+  SidebarSeparator,
   useSidebar,
 } from "@/components/ui/sidebar"
 import {
@@ -72,6 +73,7 @@ import {
   DropdownMenuShortcut,
 } from "@/components/ui/dropdown-menu"
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { AspectRatio } from "@/components/ui/aspect-ratio"
 
@@ -99,151 +101,125 @@ interface ChapterSidebarTargetLinkInterface {
   children?: string
 }
 
-export function DashbaordSidebar({ className, ...props }: React.ComponentProps<typeof Sidebar>) {
-  const { isMobile } = useSidebar()
+export function DashbaordSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const { state, isMobile } = useSidebar()
 
   return (
-    <Sidebar collapsible="icon" className={cn("font-TheJamsil5Bold", className)} {...props}>
-      <SidebarHeader>
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton size="lg">
-              <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-md">
-                <Command className="size-5" />
-              </div>
-              <div className="flex flex-1 flex-col">
-                <span className="text-base">Acme Inc</span>
-                <span className="text-xs">Enterprise</span>
-              </div>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-        </SidebarMenu>
-      </SidebarHeader>
-      <SidebarContent>
-        <SidebarGroup>
-          <SidebarGroupLabel>Platform</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {[...Array(3).keys()].map((item) => (
-                <SidebarMenuItem key={item}>
-                  <Collapsible className="[&[data-state=open]>button>svg[data-role=expanded-indicator]]:rotate-90">
-                    <CollapsibleTrigger asChild>
-                      <SidebarMenuButton className="grid group-data-[state=expanded]:grid-cols-[auto_1fr_auto]">
-                        <Command className="size-5" />
-                        <span>이름</span>
-                        <ChevronRight className="transition-transform" data-role="expanded-indicator" />
-                      </SidebarMenuButton>
-                    </CollapsibleTrigger>
-                    <CollapsibleContent>
-                      <SidebarMenuSub className="mr-0 pr-0">
-                        <SidebarMenuItem>
-                          <Collapsible className="[&[data-state=open]>button>svg[data-role=expanded-indicator]]:rotate-90">
-                            <CollapsibleTrigger asChild>
-                              <SidebarMenuButton className="grid grid-cols-[auto_1fr_auto]">
-                                <Command />
-                                <span>왜 안 되지</span>
-                                <ChevronRight className="transition-transform" data-role="expanded-indicator" />
-                              </SidebarMenuButton>
-                            </CollapsibleTrigger>
-                            <CollapsibleContent>
-                              <SidebarMenuSub className="mr-0 pr-0">
-                                <SidebarMenuItem>
-                                  <SidebarMenuButton asChild>
-                                    <Link href="#">
-                                      <Command />
-                                      <span>ㅅㅂ</span>
-                                    </Link>
-                                  </SidebarMenuButton>
-                                </SidebarMenuItem>
-                              </SidebarMenuSub>
-                            </CollapsibleContent>
-                          </Collapsible>
-                        </SidebarMenuItem>
-                      </SidebarMenuSub>
-                    </CollapsibleContent>
-                  </Collapsible>
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
-      </SidebarContent>
-      {/* <SidebarFooter>
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <SidebarMenuButton
-                  size="lg"
-                  className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
-                >
-                  <Avatar className="h-8 w-8 rounded-lg">
-                    <AvatarImage src={user.avatar} alt={user.name} />
-                    <AvatarFallback className="rounded-lg">CN</AvatarFallback>
-                  </Avatar>
-                  <div className="grid flex-1 text-left text-sm leading-tight">
-                    <span className="truncate font-medium">{user.name}</span>
-                    <span className="truncate text-xs">{user.email}</span>
-                  </div>
-                  <ChevronsUpDown className="ml-auto size-4" />
-                </SidebarMenuButton>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent
-                className="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg"
-                side={isMobile ? "bottom" : "right"}
-                align="end"
-                sideOffset={4}
-              >
-                <DropdownMenuLabel className="p-0 font-normal">
-                  <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
-                    <Avatar className="h-8 w-8 rounded-lg">
-                      <AvatarImage src={user.avatar} alt={user.name} />
-                      <AvatarFallback className="rounded-lg">CN</AvatarFallback>
-                    </Avatar>
-                    <div className="grid flex-1 text-left text-sm leading-tight">
-                      <span className="truncate font-medium">{user.name}</span>
-                      <span className="truncate text-xs">{user.email}</span>
-                    </div>
-                  </div>
-                </DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DropdownMenuGroup>
-                  <DropdownMenuItem>
-                    <Sparkles />
-                    Upgrade to Pro
-                  </DropdownMenuItem>
-                </DropdownMenuGroup>
-                <DropdownMenuSeparator />
-                <DropdownMenuGroup>
-                  <DropdownMenuItem>
-                    <BadgeCheck />
-                    Account
-                  </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    <CreditCard />
-                    Billing
-                  </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    <Bell />
-                    Notifications
-                  </DropdownMenuItem>
-                </DropdownMenuGroup>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>
-                  <LogOut />
-                  Log out
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </SidebarMenuItem>
-        </SidebarMenu>
-      </SidebarFooter> */}
+    <Sidebar collapsible="icon" {...props}>
+      <div>
+        <SidebarHeader>
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton size="lg">
+                <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-md">
+                  <Command className="size-5" />
+                </div>
+                <div className="flex flex-1 flex-col">
+                  <span className="text-base">Acme Inc</span>
+                  <span className="text-xs">Enterprise</span>
+                </div>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          </SidebarMenu>
+        </SidebarHeader>
+        <SidebarContent>
+          <SidebarGroup>
+            <SidebarGroupLabel>Platform</SidebarGroupLabel>
+            <SidebarGroupContent>
+              <SidebarMenu>
+                <Accordion type="multiple">
+                  {[...Array(3).keys()].map((item) => (
+                    <SidebarMenuItem key={item}>
+                      <AccordionItem value={item.toString()}>
+                        <AccordionTrigger
+                          className={cn(
+                            "hover:bg-accent flex items-center py-2",
+                            isMobile || state === "expanded" ? "justify-between" : "justify-center [&>svg]:hidden",
+                          )}
+                        >
+                          <Link href="/dashboard/test" className="flex flex-row items-center justify-center gap-2">
+                            <Command className="size-5" />
+                            {(isMobile || state === "expanded") && <span>이름</span>}
+                          </Link>
+                        </AccordionTrigger>
+                        {(isMobile || state === "expanded") && (
+                          <AccordionContent className="pb-0">
+                            <SidebarMenuSub className="mr-0 pr-0">
+                              <Accordion type="multiple">
+                                {[...Array(3).keys()].map((item) => (
+                                  <SidebarMenuItem key={item}>
+                                    <AccordionItem value={item.toString()}>
+                                      <AccordionTrigger
+                                        className={cn(
+                                          "hover:bg-accent flex items-center py-2",
+                                          isMobile || state === "expanded"
+                                            ? "justify-between"
+                                            : "justify-center [&>svg]:hidden",
+                                        )}
+                                      >
+                                        <Link
+                                          href="/dashboard/test"
+                                          className="flex flex-row items-center justify-center gap-2"
+                                        >
+                                          <Command className="size-5" />
+                                          {(isMobile || state === "expanded") && <span>이름</span>}
+                                        </Link>
+                                      </AccordionTrigger>
+                                      {(isMobile || state === "expanded") && (
+                                        <AccordionContent>
+                                          {/* <DashbaordSidebarTree sidebarState={{isMoblie: isMobile, state: state}} /> */}
+                                        </AccordionContent>
+                                      )}
+                                    </AccordionItem>
+                                  </SidebarMenuItem>
+                                ))}
+                              </Accordion>
+                            </SidebarMenuSub>
+                          </AccordionContent>
+                        )}
+                      </AccordionItem>
+                    </SidebarMenuItem>
+                  ))}
+                </Accordion>
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+        </SidebarContent>
+      </div>
     </Sidebar>
   )
 }
 
-function DashbaordSidebarTree() {
-
+function DashbaordSidebarTree({ sidebarState }: { sidebarState: { isMoblie: boolean; state: string } }) {
+  return (
+    <SidebarMenuSub className="mr-0 pr-0">
+      {[...Array(3).keys()].map((item) => (
+        <SidebarMenuItem key={item}>
+          <Collapsible className="[&[data-state=open]>button>svg[data-role=expanded-indicator]]:rotate-90">
+            <CollapsibleTrigger asChild>
+              <SidebarMenuButton
+                className={cn(
+                  "flex items-center",
+                  sidebarState.isMoblie || sidebarState.state === "expanded" ? "justify-between" : "justify-center",
+                )}
+              >
+                <Link href="/dashboard/test" className="flex flex-row items-center justify-center gap-2">
+                  <Command className="size-5" />
+                  {(sidebarState.isMoblie || sidebarState.state === "expanded") && <span>이름</span>}
+                </Link>
+                {(sidebarState.isMoblie || sidebarState.state === "expanded") && (
+                  <ChevronRight className="transition-transform" data-role="expanded-indicator" />
+                )}
+              </SidebarMenuButton>
+            </CollapsibleTrigger>
+            <CollapsibleContent>
+              <DashbaordSidebarTree sidebarState={sidebarState} />
+            </CollapsibleContent>
+          </Collapsible>
+        </SidebarMenuItem>
+      ))}
+    </SidebarMenuSub>
+  )
 }
 
 export function DocsSidebar({ items, rootPath }: docsSidebarInterface) {

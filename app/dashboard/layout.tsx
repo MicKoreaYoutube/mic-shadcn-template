@@ -8,7 +8,7 @@ import { BreadcrumbByLink } from "@/components/breadcrumb"
 export default function DashBoardLayout({ children }: { children: React.ReactNode }) {
   return (
     <SidebarProvider>
-      <DashbaordSidebar className="sticky top-16 h-[calc(100dvh-4rem)]" />
+      <DashbaordSidebar className="md:sticky md:top-16 md:h-[calc(100dvh-4rem)] font-TheJamsil5Bold" />
       <SidebarInset>
         <div className="border-b px-3 py-3 flex items-center gap-3 sticky top-16 bg-accent/50 backdrop-blur-sm">
           <SidebarTrigger />

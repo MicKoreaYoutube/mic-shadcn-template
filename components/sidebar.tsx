@@ -54,6 +54,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarMenuBadge,
   SidebarMenuSub,
   SidebarMenuSubItem,
   SidebarMenuAction,
@@ -61,6 +62,7 @@ import {
   SidebarFooter,
   SidebarSeparator,
   useSidebar,
+  SidebarContextProps,
 } from "@/components/ui/sidebar"
 import {
   DropdownMenu,
@@ -76,6 +78,7 @@ import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/component
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { AspectRatio } from "@/components/ui/aspect-ratio"
+import { Badge } from "@/components/ui/badge"
 
 import { usePathname } from "next/navigation"
 
@@ -85,6 +88,11 @@ import React from "react"
 // interface dashboardSidebarInterface {
 //   items?: dashboardSidebarItem[]
 // }
+
+interface DashbaordSidebarTreeProps extends React.RefAttributes<HTMLDivElement> {
+  sidebarState: Partial<SidebarContextProps>
+  className?: string
+}
 
 interface docsSidebarInterface {
   rootPath: string
@@ -127,60 +135,7 @@ export function DashbaordSidebar({ ...props }: React.ComponentProps<typeof Sideb
             <SidebarGroupLabel>Platform</SidebarGroupLabel>
             <SidebarGroupContent>
               <SidebarMenu>
-                <Accordion type="multiple">
-                  {[...Array(3).keys()].map((item) => (
-                    <SidebarMenuItem key={item}>
-                      <AccordionItem value={item.toString()}>
-                        <AccordionTrigger
-                          className={cn(
-                            "hover:bg-accent flex items-center py-2",
-                            isMobile || state === "expanded" ? "justify-between" : "justify-center [&>svg]:hidden",
-                          )}
-                        >
-                          <Link href="/dashboard/test" className="flex flex-row items-center justify-center gap-2">
-                            <Command className="size-5" />
-                            {(isMobile || state === "expanded") && <span>이름</span>}
-                          </Link>
-                        </AccordionTrigger>
-                        {(isMobile || state === "expanded") && (
-                          <AccordionContent className="pb-0">
-                            <SidebarMenuSub className="mr-0 pr-0">
-                              <Accordion type="multiple">
-                                {[...Array(3).keys()].map((item) => (
-                                  <SidebarMenuItem key={item}>
-                                    <AccordionItem value={item.toString()}>
-                                      <AccordionTrigger
-                                        className={cn(
-                                          "hover:bg-accent flex items-center py-2",
-                                          isMobile || state === "expanded"
-                                            ? "justify-between"
-                                            : "justify-center [&>svg]:hidden",
-                                        )}
-                                      >
-                                        <Link
-                                          href="/dashboard/test"
-                                          className="flex flex-row items-center justify-center gap-2"
-                                        >
-                                          <Command className="size-5" />
-                                          {(isMobile || state === "expanded") && <span>이름</span>}
-                                        </Link>
-                                      </AccordionTrigger>
-                                      {(isMobile || state === "expanded") && (
-                                        <AccordionContent>
-                                          {/* <DashbaordSidebarTree sidebarState={{isMoblie: isMobile, state: state}} /> */}
-                                        </AccordionContent>
-                                      )}
-                                    </AccordionItem>
-                                  </SidebarMenuItem>
-                                ))}
-                              </Accordion>
-                            </SidebarMenuSub>
-                          </AccordionContent>
-                        )}
-                      </AccordionItem>
-                    </SidebarMenuItem>
-                  ))}
-                </Accordion>
+                <DashbaordSidebarTree sidebarState={{ isMobile: isMobile, state: state }} />
               </SidebarMenu>
             </SidebarGroupContent>
           </SidebarGroup>
@@ -190,35 +145,59 @@ export function DashbaordSidebar({ ...props }: React.ComponentProps<typeof Sideb
   )
 }
 
-function DashbaordSidebarTree({ sidebarState }: { sidebarState: { isMoblie: boolean; state: string } }) {
+function DashbaordSidebarTree({ sidebarState, className, ...props }: DashbaordSidebarTreeProps) {
   return (
-    <SidebarMenuSub className="mr-0 pr-0">
+    <Accordion type="multiple" {...props}>
       {[...Array(3).keys()].map((item) => (
         <SidebarMenuItem key={item}>
-          <Collapsible className="[&[data-state=open]>button>svg[data-role=expanded-indicator]]:rotate-90">
-            <CollapsibleTrigger asChild>
-              <SidebarMenuButton
+          <AccordionItem value={item.toString()}>
+            <AccordionTrigger
+              className={cn(
+                "hover:bg-accent flex items-center gap-2 py-2",
+                sidebarState.isMobile || sidebarState.state === "expanded"
+                  ? "justify-between"
+                  : "justify-center [&>svg]:hidden",
+              )}
+            >
+              <div
                 className={cn(
-                  "flex items-center",
-                  sidebarState.isMoblie || sidebarState.state === "expanded" ? "justify-between" : "justify-center",
+                  "flex w-full",
+                  sidebarState.isMobile || sidebarState.state === "expanded"
+                    ? "justify-between"
+                    : "justify-center [&>div[data-role=sidebar-utilities]]:hidden",
                 )}
               >
                 <Link href="/dashboard/test" className="flex flex-row items-center justify-center gap-2">
                   <Command className="size-5" />
-                  {(sidebarState.isMoblie || sidebarState.state === "expanded") && <span>이름</span>}
+                  {(sidebarState.isMobile || sidebarState.state === "expanded") && <span>이름</span>}
                 </Link>
-                {(sidebarState.isMoblie || sidebarState.state === "expanded") && (
-                  <ChevronRight className="transition-transform" data-role="expanded-indicator" />
-                )}
-              </SidebarMenuButton>
-            </CollapsibleTrigger>
-            <CollapsibleContent>
-              <DashbaordSidebarTree sidebarState={sidebarState} />
-            </CollapsibleContent>
-          </Collapsible>
+                <div className="flex gap-2" data-role="sidebar-utilities">
+                  <Badge variant="outline">19</Badge>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <MoreHorizontal />
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent side="right" align="start">
+                      <DropdownMenuItem>
+                        <span>Edit Project</span>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem>
+                        <span>Delete Project</span>
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </div>
+              </div>
+            </AccordionTrigger>
+            <AccordionContent className="pb-0">
+              <SidebarMenuSub className="mr-0 pr-0">
+                <DashbaordSidebarTree sidebarState={{ isMobile: sidebarState.isMobile, state: sidebarState.state }} />
+              </SidebarMenuSub>
+            </AccordionContent>
+          </AccordionItem>
         </SidebarMenuItem>
       ))}
-    </SidebarMenuSub>
+    </Accordion>
   )
 }
 

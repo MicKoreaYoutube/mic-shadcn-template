@@ -6,6 +6,7 @@ import Logo from "@/public/logo.svg"
 
 import { cn, toTitleCase } from "@/lib/utils"
 
+import { dashboardSidebarGroupItem, dashboardSidebarItem } from "@/types/sidebar"
 import { docsItem, tocListItem } from "@/types/docs"
 
 // import { SearchDialog } from "@/components/search"
@@ -75,21 +76,24 @@ import {
   DropdownMenuShortcut,
 } from "@/components/ui/dropdown-menu"
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger, AccordionTriggerStyle } from "@/components/ui/accordion"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { AspectRatio } from "@/components/ui/aspect-ratio"
 import { Badge } from "@/components/ui/badge"
+
+import { DropDownTree } from "@/components/dropdown"
 
 import { usePathname } from "next/navigation"
 
 import { Link as TargetLink } from "react-scroll"
 import React from "react"
 
-// interface dashboardSidebarInterface {
-//   items?: dashboardSidebarItem[]
-// }
+interface dashboardSidebarInterface extends React.ComponentProps<typeof Sidebar> {
+  items?: dashboardSidebarGroupItem[]
+}
 
 interface DashbaordSidebarTreeProps extends React.RefAttributes<HTMLDivElement> {
+  items?: dashboardSidebarItem[]
   sidebarState: Partial<SidebarContextProps>
   className?: string
 }
@@ -109,54 +113,133 @@ interface ChapterSidebarTargetLinkInterface {
   children?: string
 }
 
-export function DashbaordSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+export function DashbaordSidebar({ items, ...props }: dashboardSidebarInterface) {
   const { state, isMobile } = useSidebar()
+
+  const user = {
+    name: "shadcn",
+    email: "m@example.com",
+    avatar: "/avatars/shadcn.jpg",
+  }
 
   return (
     <Sidebar collapsible="icon" {...props}>
-      <div>
-        <SidebarHeader>
-          <SidebarMenu>
-            <SidebarMenuItem>
-              <SidebarMenuButton size="lg">
-                <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-md">
-                  <Command className="size-5" />
-                </div>
-                <div className="flex flex-1 flex-col">
-                  <span className="text-base">Acme Inc</span>
-                  <span className="text-xs">Enterprise</span>
-                </div>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          </SidebarMenu>
-        </SidebarHeader>
-        <SidebarContent>
-          <SidebarGroup>
-            <SidebarGroupLabel>Platform</SidebarGroupLabel>
+      <SidebarHeader>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton size="lg">
+              <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-md">
+                <Command className="size-5" />
+              </div>
+              <div className="flex flex-1 flex-col">
+                <span className="text-base">Acme Inc</span>
+                <span className="text-xs">Enterprise</span>
+              </div>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarHeader>
+      <SidebarContent>
+        {items?.map((item, index) => (
+          <SidebarGroup key={index}>
+            <SidebarGroupLabel>{item.title}</SidebarGroupLabel>
             <SidebarGroupContent>
               <SidebarMenu>
-                <DashbaordSidebarTree sidebarState={{ isMobile: isMobile, state: state }} />
+                <DashbaordSidebarTree items={item.subItemList} sidebarState={{ isMobile: isMobile, state: state }} />
               </SidebarMenu>
             </SidebarGroupContent>
           </SidebarGroup>
-        </SidebarContent>
-      </div>
+        ))}
+      </SidebarContent>
+      <SidebarFooter>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <SidebarMenuButton
+                  size="lg"
+                  className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+                >
+                  <Avatar className="h-8 w-8 rounded-lg">
+                    <AvatarImage src={user.avatar} alt={user.name} />
+                    <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+                  </Avatar>
+                  <div className="grid flex-1 text-left text-sm leading-tight">
+                    <span className="truncate font-medium">{user.name}</span>
+                    <span className="truncate text-xs">{user.email}</span>
+                  </div>
+                  <ChevronsUpDown className="ml-auto size-4" />
+                </SidebarMenuButton>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent
+                className="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg"
+                side={isMobile ? "bottom" : "right"}
+                align="end"
+                sideOffset={4}
+              >
+                <DropdownMenuLabel className="p-0 font-normal">
+                  <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
+                    <Avatar className="h-8 w-8 rounded-lg">
+                      <AvatarImage src={user.avatar} alt={user.name} />
+                      <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+                    </Avatar>
+                    <div className="grid flex-1 text-left text-sm leading-tight">
+                      <span className="truncate font-medium">{user.name}</span>
+                      <span className="truncate text-xs">{user.email}</span>
+                    </div>
+                  </div>
+                </DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuGroup>
+                  <DropdownMenuItem>
+                    <Sparkles />
+                    Upgrade to Pro
+                  </DropdownMenuItem>
+                </DropdownMenuGroup>
+                <DropdownMenuSeparator />
+                <DropdownMenuGroup>
+                  <DropdownMenuItem>
+                    <BadgeCheck />
+                    Account
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <CreditCard />
+                    Billing
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Bell />
+                    Notifications
+                  </DropdownMenuItem>
+                </DropdownMenuGroup>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>
+                  <LogOut />
+                  Log out
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarFooter>
     </Sidebar>
   )
 }
 
-function DashbaordSidebarTree({ sidebarState, className, ...props }: DashbaordSidebarTreeProps) {
+function DashbaordSidebarTree({ items, sidebarState, className, ...props }: DashbaordSidebarTreeProps) {
+  const hideAccordionIndicatorClass = "[&>svg[data-role=accordian-indicator]]:hidden"
+
   return (
     <Accordion type="multiple" {...props}>
-      {[...Array(3).keys()].map((item) => (
-        <SidebarMenuItem key={item}>
-          <AccordionItem value={item.toString()}>
+      {items?.map((item, index) => (
+        <SidebarMenuItem key={index}>
+          <AccordionItem value={index.toString()}>
             <AccordionTrigger
               className={cn(
                 "hover:bg-accent flex items-center gap-2 py-2",
                 sidebarState.isMobile || sidebarState.state === "expanded"
                   ? "justify-between"
-                  : "justify-center [&>svg]:hidden",
+                  : `justify-center ${hideAccordionIndicatorClass}`,
+                !item.subItemList && hideAccordionIndicatorClass
               )}
             >
               <div
@@ -167,33 +250,32 @@ function DashbaordSidebarTree({ sidebarState, className, ...props }: DashbaordSi
                     : "justify-center [&>div[data-role=sidebar-utilities]]:hidden",
                 )}
               >
-                <Link href="/dashboard/test" className="flex flex-row items-center justify-center gap-2">
-                  <Command className="size-5" />
-                  {(sidebarState.isMobile || sidebarState.state === "expanded") && <span>이름</span>}
+                <Link href={item.href ?? "#"} className="flex flex-row items-center justify-center gap-2">
+                  {item.icon && <item.icon className="size-5" />}
+                  {(sidebarState.isMobile || sidebarState.state === "expanded") && <span>{item.title}</span>}
                 </Link>
                 <div className="flex gap-2" data-role="sidebar-utilities">
-                  <Badge variant="outline">19</Badge>
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <MoreHorizontal />
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent side="right" align="start">
-                      <DropdownMenuItem>
-                        <span>Edit Project</span>
-                      </DropdownMenuItem>
-                      <DropdownMenuItem>
-                        <span>Delete Project</span>
-                      </DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
+                  {item.badge && <Badge variant={item.badge?.variant}>{item.badge.title}</Badge>}
+                  {item.dropdown && (
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <MoreHorizontal />
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent side="right" align="start">
+                        <DropDownTree items={item.dropdown} />
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  )}
                 </div>
               </div>
             </AccordionTrigger>
-            <AccordionContent className="pb-0">
-              <SidebarMenuSub className="mr-0 pr-0">
-                <DashbaordSidebarTree sidebarState={{ isMobile: sidebarState.isMobile, state: sidebarState.state }} />
-              </SidebarMenuSub>
-            </AccordionContent>
+            {item.subItemList ? (
+              <AccordionContent className="pb-0">
+                <SidebarMenuSub className="mr-0 pr-0">
+                  <DashbaordSidebarTree items={item.subItemList} sidebarState={{ isMobile: sidebarState.isMobile, state: sidebarState.state }} />
+                </SidebarMenuSub>
+              </AccordionContent>
+            ) : null}
           </AccordionItem>
         </SidebarMenuItem>
       ))}
@@ -296,12 +378,12 @@ export function ChapterSidebar({ items }: chapterSidebarInterface) {
         <div className="grid gap-1">
           {items?.length
             ? items.map((item, index) => (
-                <div key={index} style={{ marginLeft: (item.depth - 1) * 8 }}>
-                  <ChapterSidebarTargetLink to={`heading-${item.text.replaceAll(" ", "-")}`}>
-                    {item.text}
-                  </ChapterSidebarTargetLink>
-                </div>
-              ))
+              <div key={index} style={{ marginLeft: (item.depth - 1) * 8 }}>
+                <ChapterSidebarTargetLink to={`heading-${item.text.replaceAll(" ", "-")}`}>
+                  {item.text}
+                </ChapterSidebarTargetLink>
+              </div>
+            ))
             : null}
         </div>
       </ScrollArea>

@@ -97,6 +97,7 @@ function DropDownTree({ items }: dropDownTreeProps) {
                       >
                         {item.icon && <item.icon />}
                         {item.title}
+                        <DropdownMenuShortcut>{item.shortcut}</DropdownMenuShortcut>
                       </DropdownMenuSubTrigger>
                       <DropdownMenuPortal>
                         <DropdownMenuSubContent>
@@ -123,3 +124,5 @@ function DropDownTree({ items }: dropDownTreeProps) {
     </div>
   )
 }
+
+export { DropDownTree }

@@ -27,7 +27,35 @@ const siteConfig = {
 }
 
 import { HeaderNavItem, FooterNavItem } from "@/types/nav"
-import { PcCase } from "lucide-react"
+import {
+  PcCase, 
+  LayoutDashboard,
+  Users,
+  Settings,
+  FileText,
+  Home, 
+  HelpCircle, 
+  Folder, 
+  BookOpen, 
+  Wrench, 
+  Package, 
+  Layers,
+  UserCog,
+  Bell,
+  Shield,
+  Database,
+  Activity,
+  User,
+  List,
+  PenLine,
+  Share2,
+  Lock,
+  Key,
+  HardDrive,
+  RefreshCcw,
+  Eye,
+  Crown
+} from "lucide-react"
 import Logo from "@/public/logo.svg"
 
 const headerNavContent: HeaderNavItem[] = [
@@ -50,7 +78,7 @@ const headerNavContent: HeaderNavItem[] = [
         title: "12번 링크",
         description: "12번 설명",
         href: "/12",
-        
+
       },
       {
         title: "13번 링크",
@@ -205,8 +233,6 @@ const footerNavContent: FooterNavItem[] = [
 ]
 
 import { dropDownItem } from "@/types/dropdown"
-
-import { Home, Settings, FileText, Users, HelpCircle, Folder, BookOpen, Wrench, Package, Layers } from "lucide-react"
 
 const navDropDownContent: dropDownItem[][] = [
   [
@@ -364,6 +390,213 @@ const navDropDownContent: dropDownItem[][] = [
   ],
 ]
 
+import { dashboardSidebarGroupItem } from "@/types/sidebar"
+
+const dashboardSidebarContent: dashboardSidebarGroupItem[] = [
+  // =========================
+  // OVERVIEW
+  // =========================
+  {
+    title: "Overview",
+    subItemList: [
+      {
+        icon: LayoutDashboard,
+        title: "Dashboard",
+        href: "/dashboard",
+      },
+      {
+        icon: Activity,
+        title: "Activity",
+        href: "/activity",
+        dropdown: [
+          [
+            { title: "Today", href: "/activity/today" },
+            { title: "Last 7 Days", href: "/activity/week" },
+          ],
+          [{ title: "Export Logs" }],
+        ],
+      },
+    ],
+  },
+
+  // =========================
+  // CONTENT
+  // =========================
+  {
+    title: "Content",
+    subItemList: [
+      {
+        icon: FileText,
+        title: "Posts",
+        subItemList: [
+          {
+            icon: List,
+            title: "All Posts",
+            href: "/posts",
+            dropdown: [
+              [
+                { title: "Create Post", href: "/posts/new" },
+                { title: "Bulk Edit" },
+              ],
+            ],
+          },
+          {
+            icon: PenLine,
+            title: "Drafts",
+            href: "/posts/drafts",
+            badge: {
+              title: "5",
+              variant: "secondary",
+            },
+            subItemList: [
+              {
+                icon: User,
+                title: "My Drafts",
+                href: "/posts/drafts/me",
+              },
+              {
+                icon: Share2,
+                title: "Shared Drafts",
+                href: "/posts/drafts/shared",
+                dropdown: [[{ title: "Request Access" }]],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        icon: Folder,
+        title: "Categories",
+        href: "/categories",
+      },
+    ],
+  },
+
+  // =========================
+  // USERS & PERMISSIONS
+  // =========================
+  {
+    title: "Users",
+    subItemList: [
+      {
+        icon: Users,
+        title: "User List",
+        href: "/users",
+        dropdown: [[{ title: "Invite User" }, { title: "Export Users" }]],
+      },
+      {
+        icon: User,
+        title: "Roles & Permissions",
+        subItemList: [
+          {
+            icon: UserCog,
+            title: "Roles",
+            href: "/roles",
+            subItemList: [
+              {
+                icon: Crown,
+                title: "Admin",
+                href: "/roles/admin",
+                dropdown: [[{ title: "Edit Role" }, { title: "Duplicate" }]],
+              },
+              {
+                icon: PenLine,
+                title: "Editor",
+                href: "/roles/editor",
+              },
+              {
+                icon: Eye,
+                title: "Viewer",
+                href: "/roles/viewer",
+              },
+            ],
+          },
+          {
+            icon: Lock,
+            title: "Permissions",
+            href: "/permissions",
+          },
+        ],
+      },
+    ],
+  },
+
+  // =========================
+  // SYSTEM
+  // =========================
+  {
+    title: "System",
+    subItemList: [
+      {
+        icon: Database,
+        title: "Data",
+        subItemList: [
+          {
+            icon: HardDrive,
+            title: "Backups",
+            href: "/system/backups",
+            dropdown: [[{ title: "Create Backup" }, { title: "Restore" }]],
+          },
+          {
+            icon: RefreshCcw,
+            title: "Migrations",
+            href: "/system/migrations",
+          },
+        ],
+      },
+      {
+        icon: Shield,
+        title: "Security",
+        subItemList: [
+          {
+            icon: Lock,
+            title: "Authentication",
+            href: "/security/auth",
+          },
+          {
+            icon: Key,
+            title: "API Keys",
+            href: "/security/api-keys",
+            subItemList: [
+              {
+                icon: Eye,
+                title: "Public Keys",
+                href: "/security/api-keys/public",
+              },
+              {
+                icon: Key,
+                title: "Private Keys",
+                href: "/security/api-keys/private",
+                dropdown: [[{ title: "Regenerate" }, { title: "Revoke" }]],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+
+  // =========================
+  // SETTINGS
+  // =========================
+  {
+    title: "Settings",
+    subItemList: [
+      {
+        icon: Settings,
+        title: "General",
+        href: "/settings/general",
+      },
+      {
+        icon: Bell,
+        title: "Notifications",
+        href: "/settings/notifications",
+        dropdown: [[{ title: "Email" }, { title: "Push" }]],
+      },
+    ],
+  },
+]
+
 import { docsItem } from "@/types/docs"
 
 const docsTree: docsItem[] = [
@@ -405,4 +638,4 @@ const docsTree: docsItem[] = [
   },
 ]
 
-export { siteConfig, headerNavContent, footerNavContent, navDropDownContent, docsTree }
+export { siteConfig, headerNavContent, footerNavContent, navDropDownContent, dashboardSidebarContent, docsTree }

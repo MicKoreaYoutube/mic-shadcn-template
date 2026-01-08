@@ -79,6 +79,8 @@ import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/component
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger, AccordionTriggerStyle } from "@/components/ui/accordion"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { AspectRatio } from "@/components/ui/aspect-ratio"
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
+
 import { Badge } from "@/components/ui/badge"
 
 import { DropDownTree } from "@/components/dropdown"
@@ -233,6 +235,7 @@ function DashbaordSidebarTree({ items, sidebarState, className, ...props }: Dash
       {items?.map((item, index) => (
         <SidebarMenuItem key={index}>
           <AccordionItem value={index.toString()}>
+
             <AccordionTrigger
               className={cn(
                 "hover:bg-accent flex items-center gap-2 py-2",
@@ -251,7 +254,12 @@ function DashbaordSidebarTree({ items, sidebarState, className, ...props }: Dash
                 )}
               >
                 <Link href={item.href ?? "#"} className="flex flex-row items-center justify-center gap-2">
-                  {item.icon && <item.icon className="size-5" />}
+                  <Tooltip>
+                    <TooltipTrigger>
+                      {item.icon && <item.icon className="size-5" />}
+                    </TooltipTrigger>
+                    {sidebarState.state == "collapsed" && <TooltipContent className="font-TheJamsil5Bold">{item.title}</TooltipContent>}
+                  </Tooltip>
                   {(sidebarState.isMobile || sidebarState.state === "expanded") && <span>{item.title}</span>}
                 </Link>
                 <div className="flex gap-2" data-role="sidebar-utilities">
@@ -269,6 +277,8 @@ function DashbaordSidebarTree({ items, sidebarState, className, ...props }: Dash
                 </div>
               </div>
             </AccordionTrigger>
+
+
             {item.subItemList ? (
               <AccordionContent className="pb-0">
                 <SidebarMenuSub className="mr-0 pr-0">

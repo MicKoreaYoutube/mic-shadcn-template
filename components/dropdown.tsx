@@ -5,8 +5,6 @@ import React, { useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 
-import { useInView } from "react-intersection-observer"
-
 import { ChevronDown, LogIn } from "lucide-react"
 
 import { cn } from "@/lib/utils"
@@ -31,56 +29,40 @@ import { LoadingComp } from "@/components/loading-comp"
 
 import { dropDownItem } from "@/types/dropdown"
 
-interface dropDownTreeProps {
+interface dropDownTreeProps extends React.HTMLAttributes<HTMLDivElement> {
   items?: dropDownItem[][]
 }
 
-interface dropDownProps extends dropDownTreeProps, React.HTMLAttributes<HTMLDivElement> {
+interface dropDownProps extends dropDownTreeProps {
   label: string
 }
 
-export function DropDown({ label, items, ...props }: dropDownProps) {
-  const [isLogin, changeLoginState] = useState(true)
-  const [DropDownRef, DropDownRefInView] = useInView({
-    threshold: 1,
-  })
-
+function NavDropDown({ label, items, ...props }: dropDownProps) {
   return (
     <div {...props}>
-      {isLogin ? (
-        <DropdownMenu>
-          <DropdownMenuTrigger className="flex items-center">
-            <Avatar>
-              <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-              <AvatarFallback>
-                <LoadingComp />
-              </AvatarFallback>
-            </Avatar>
-            <ChevronDown
-              className={cn("m-2 block size-6 transition-transform duration-100", DropDownRefInView && "rotate-180")}
-            />
-          </DropdownMenuTrigger>
-          <DropdownMenuContent className="font-TheJamsil5Bold w-56" ref={DropDownRef}>
-            <DropdownMenuLabel>{label}</DropdownMenuLabel>
-            <DropDownTree items={items} />
-          </DropdownMenuContent>
-        </DropdownMenu>
-      ) : (
-        <Button asChild variant="ghost" size="icon">
-          <Link href="/auth/login">
-            <LogIn className="size-5" />
-          </Link>
-        </Button>
-      )}
+      <DropdownMenu>
+        <DropdownMenuTrigger className="flex items-center rounded-full p-1 cursor-pointer">
+          <Avatar>
+            <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+            <AvatarFallback>
+              <LoadingComp />
+            </AvatarFallback>
+          </Avatar>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent className="font-TheJamsil5Bold w-56">
+          <DropdownMenuLabel>{label}</DropdownMenuLabel>
+          <DropDownTree items={items} className="font-TheJamsil5Bold" />
+        </DropdownMenuContent>
+      </DropdownMenu>
     </div>
   )
 }
 
-function DropDownTree({ items }: dropDownTreeProps) {
+function DropDownTree({ items, ...props }: dropDownTreeProps) {
   const router = useRouter()
 
   return (
-    <div className="font-TheJamsil5Bold">
+    <div {...props}>
       {items?.map((group, index) => (
         <React.Fragment key={index}>
           {index != 0 && <DropdownMenuSeparator />}
@@ -90,28 +72,26 @@ function DropDownTree({ items }: dropDownTreeProps) {
                 {item.subDropDown ? (
                   <DropdownMenuSub>
                     <DropdownMenuSubTrigger
-                      onClick={() => router.push(item.href ?? "#")}
                       disabled={item.disable}
                       className={`${item.disable && "cursor-not-allowed"}`}
                     >
                       {item.icon && <item.icon />}
-                      {item.title}
+                      <Link href={item.href ?? "#"}>{item.title}</Link>
                       <DropdownMenuShortcut>{item.shortcut}</DropdownMenuShortcut>
                     </DropdownMenuSubTrigger>
                     <DropdownMenuPortal>
                       <DropdownMenuSubContent>
-                        <DropDownTree items={item.subDropDown} />
+                        <DropDownTree items={item.subDropDown} {...props} />
                       </DropdownMenuSubContent>
                     </DropdownMenuPortal>
                   </DropdownMenuSub>
                 ) : (
                   <DropdownMenuItem
-                    onClick={() => router.push(item.href ?? "#")}
                     disabled={item.disable}
                     className={`${item.disable && "cursor-not-allowed"}`}
                   >
                     {item.icon && <item.icon />}
-                    {item.title}
+                    <Link href={item.href ?? "#"}>{item.title}</Link>
                     <DropdownMenuShortcut>{item.shortcut}</DropdownMenuShortcut>
                   </DropdownMenuItem>
                 )}
@@ -124,4 +104,4 @@ function DropDownTree({ items }: dropDownTreeProps) {
   )
 }
 
-export { DropDownTree }
+export { NavDropDown, DropDownTree }

@@ -147,7 +147,7 @@ export function DashbaordSidebar({ items, ...props }: dashboardSidebarInterface)
             <SidebarGroupLabel>{item.title}</SidebarGroupLabel>
             <SidebarGroupContent>
               <SidebarMenu>
-                <DashbaordSidebarTree items={item.subItemList} sidebarState={{ isMobile: isMobile, state: state }} />
+                <SidebarTree items={item.subItemList} sidebarState={{ isMobile: isMobile, state: state }} />
               </SidebarMenu>
             </SidebarGroupContent>
           </SidebarGroup>
@@ -227,7 +227,9 @@ export function DashbaordSidebar({ items, ...props }: dashboardSidebarInterface)
   )
 }
 
-function DashbaordSidebarTree({ items, sidebarState, className, ...props }: DashbaordSidebarTreeProps) {
+
+
+function SidebarTree({ items, sidebarState, className, ...props }: DashbaordSidebarTreeProps) {
   const hideAccordionIndicatorClass = "[&>svg[data-role=accordian-indicator]]:hidden"
 
   return (
@@ -235,7 +237,6 @@ function DashbaordSidebarTree({ items, sidebarState, className, ...props }: Dash
       {items?.map((item, index) => (
         <SidebarMenuItem key={index}>
           <AccordionItem value={index.toString()}>
-
             <AccordionTrigger
               className={cn(
                 "hover:bg-accent flex items-center gap-2 py-2",
@@ -255,10 +256,10 @@ function DashbaordSidebarTree({ items, sidebarState, className, ...props }: Dash
               >
                 <Link href={item.href ?? "#"} className="flex flex-row items-center justify-center gap-2">
                   <Tooltip>
-                    <TooltipTrigger>
+                    <TooltipTrigger asChild>
                       {item.icon && <item.icon className="size-5" />}
                     </TooltipTrigger>
-                    {sidebarState.state == "collapsed" && <TooltipContent className="font-TheJamsil5Bold">{item.title}</TooltipContent>}
+                    {sidebarState.state == "collapsed" && <TooltipContent className="font-TheJamsil5Bold" side="right">{item.title}</TooltipContent>}
                   </Tooltip>
                   {(sidebarState.isMobile || sidebarState.state === "expanded") && <span>{item.title}</span>}
                 </Link>
@@ -270,19 +271,17 @@ function DashbaordSidebarTree({ items, sidebarState, className, ...props }: Dash
                         <MoreHorizontal />
                       </DropdownMenuTrigger>
                       <DropdownMenuContent side="right" align="start">
-                        <DropDownTree items={item.dropdown} />
+                        <DropDownTree items={item.dropdown} className="font-TheJamsil5Bold" />
                       </DropdownMenuContent>
                     </DropdownMenu>
                   )}
                 </div>
               </div>
             </AccordionTrigger>
-
-
             {item.subItemList ? (
               <AccordionContent className="pb-0">
                 <SidebarMenuSub className="mr-0 pr-0">
-                  <DashbaordSidebarTree items={item.subItemList} sidebarState={{ isMobile: sidebarState.isMobile, state: sidebarState.state }} />
+                  <SidebarTree items={item.subItemList} sidebarState={{ isMobile: sidebarState.isMobile, state: sidebarState.state }} />
                 </SidebarMenuSub>
               </AccordionContent>
             ) : null}

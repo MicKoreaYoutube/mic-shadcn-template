@@ -541,6 +541,10 @@ const dashboardSidebarContent: dashboardSidebarGroupItem[] = [
             icon: RefreshCcw,
             title: "Migrations",
             href: "/system/migrations",
+            badge: {
+              variant: "default",
+              title: "NEW"
+            }
           },
         ],
       },

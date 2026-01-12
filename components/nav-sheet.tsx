@@ -1,11 +1,11 @@
 import Link from "next/link"
-import React from "react"
+import { useState } from "react"
 
 import { useMediaQuery } from "react-responsive"
 
 import { cn } from "@/lib/utils"
 
-import { Menu } from "lucide-react"
+import { Menu, LogIn } from "lucide-react"
 
 import { HeaderNavItem } from "@/types/nav"
 import { siteConfig, navDropDownContent } from "@/config/site"
@@ -39,7 +39,7 @@ import {
 import { NavigationMenuStyle } from "@/components/ui/navigation-menu"
 
 import { ThemeToggle } from "@/components/theme-toggle"
-import { DropDown } from "@/components/dropdown"
+import { NavDropDown } from "@/components/dropdown"
 
 import { useInView } from "react-intersection-observer"
 
@@ -55,6 +55,7 @@ interface NavSheetProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export function NavSheet({ items, ...props }: NavSheetProps) {
+  const [isLogin, changeLoginState] = useState(true)
   return (
     <>
       <Sheet {...props}>
@@ -140,7 +141,15 @@ export function NavSheet({ items, ...props }: NavSheetProps) {
           <SheetFooter>
             <div className="flex w-full justify-between md:justify-end">
               {!useMediaQuery({ minWidth: tailwindBreakPoints["md"] }) && <FamilyService />}
-              <DropDown label="My Account" items={navDropDownContent} />
+              {isLogin ? (
+                <NavDropDown label="My Account" items={navDropDownContent} />
+              ) : (
+                <Button asChild variant="ghost" size="icon">
+                  <Link href="/auth/login">
+                    <LogIn className="size-5" />
+                  </Link>
+                </Button>
+              )}
             </div>
           </SheetFooter>
         </SheetContent>

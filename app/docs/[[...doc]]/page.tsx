@@ -11,7 +11,7 @@ import {
   BreadcrumbList,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
-import { ChapterSidebar } from "@/components/sidebar-comp"
+// import { ChapterSidebar } from "@/components/sidebar-comp"
 import { BreadcrumbByLink } from "@/components/breadcrumb"
 
 import { docsTree } from "@/config/site"
@@ -50,7 +50,7 @@ export default async function DocPage({ params }: { params: Promise<docsStaticPa
         <Document />
       </article>
       <div className="sticky top-24 hidden h-full lg:inline">
-        <ChapterSidebar items={toc} />
+        {/* <ChapterSidebar items={toc} /> */}
       </div>
     </div>
   )

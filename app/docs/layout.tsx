@@ -2,7 +2,7 @@ import { Menu } from "lucide-react"
 
 import { docsTree } from "@/config/site"
 
-import { DocsSidebar } from "@/components/sidebar-comp"
+// import { DocsSidebar } from "@/components/sidebar-comp"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Button } from "@/components/ui/button"
 import { SidebarProvider, Sidebar } from "@/components/ui/sidebar"
@@ -13,7 +13,7 @@ export default async function DocsLayout({ children }: { children: React.ReactNo
       <div className="flex size-full flex-col lg:flex-row">
         <div className="sticky top-16 hidden h-dvh lg:inline">
           <Sidebar className="overflow-hidden">
-            <DocsSidebar items={docsTree} rootPath="/docs" />
+            {/* <DocsSidebar items={docsTree} rootPath="/docs" /> */}
           </Sidebar>
         </div>
         <div className="inline px-6 pt-10 lg:hidden">
@@ -24,7 +24,7 @@ export default async function DocsLayout({ children }: { children: React.ReactNo
               </Button>
             </SheetTrigger>
             <SheetContent side="left">
-              <DocsSidebar items={docsTree} rootPath="/docs" />
+              {/* <DocsSidebar items={docsTree} rootPath="/docs" /> */}
             </SheetContent>
           </Sheet>
         </div>

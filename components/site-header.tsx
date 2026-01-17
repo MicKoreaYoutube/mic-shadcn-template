@@ -19,7 +19,7 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { LoadingComp } from "@/components/loading-comp"
 import { HeaderNav } from "@/components/nav"
-import { NavDropDown, DropDownTree } from "@/components/dropdown"
+import { NavDropDown } from "@/components/nav-dropdown"
 import { NavSheet } from "@/components/nav-sheet"
 
 import { SearchDialog } from "@/components/search-dialog"
@@ -67,7 +67,7 @@ export function SiteHeader() {
             )}
           </>
         )}
-        <NavSheet items={headerNavContent} />
+        {mounted && !isLg && <NavSheet items={headerNavContent} /> }
       </div>
     </header>
   )

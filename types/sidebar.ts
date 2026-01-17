@@ -9,18 +9,18 @@ interface badgeInterface {
   variant: VariantProps<typeof badgeVariants>["variant"]
 }
 
-interface dashboardSidebarItem {
+interface sidebarGroupItem {
   icon?: LucideIcon | React.FC<React.SVGProps<SVGSVGElement>>
   title: string
   href?: string
   badge?: badgeInterface
   dropdown?: dropDownItem[][]
-  subItemList?: dashboardSidebarItem[]
+  subItemList?: sidebarGroupItem[]
 }
 
-interface dashboardSidebarGroupItem {
+interface sidebarContentItem {
   title: string
-  subItemList?: dashboardSidebarItem[]
+  subItemList?: sidebarGroupItem[]
 }
 
-export { type dashboardSidebarGroupItem, type dashboardSidebarItem }
+export { type sidebarContentItem, type sidebarGroupItem }

@@ -2,7 +2,7 @@ import { Menu } from "lucide-react"
 
 import { docsTree } from "@/config/site"
 
-import { DocsSidebar } from "@/components/sidebar"
+import { DocsSidebar } from "@/components/sidebar-comp"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Button } from "@/components/ui/button"
 import { SidebarProvider, Sidebar } from "@/components/ui/sidebar"

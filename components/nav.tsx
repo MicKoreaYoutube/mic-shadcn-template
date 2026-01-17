@@ -44,7 +44,7 @@ function HeaderNav({ items, ...props }: HeaderNavProps) {
                     <ul
                       className={cn(
                         "p-6",
-                        item.mainLink && "grid grid-cols-[3fr_4fr] gap-2",
+                        item.mainLink && "grid grid-cols-[3fr_4fr] gap-2 items-stretch",
                         !item.mainLink && item.linkList && item.linkList.length <= 3 ? "w-75" : "w-125",
                       )}
                     >
@@ -65,7 +65,7 @@ function HeaderNav({ items, ...props }: HeaderNavProps) {
                         </li>
                       )}
                       <li>
-                        <ScrollArea className="h-45">
+                        <ScrollArea className={cn(item.mainLink ? "h-full" : "h-45")}>
                           <ul
                             className={cn(
                               "grid gap-2",
@@ -75,9 +75,9 @@ function HeaderNav({ items, ...props }: HeaderNavProps) {
                             {item.linkList?.map((linkListItem, index) => (
                               <li key={index}>
                                 <NavigationMenuLink asChild>
-                                  <Link href={linkListItem.href} className="flex flex-row items-center">
+                                  <Link href={linkListItem.href} className="flex flex-row items-center gap-2">
                                     {linkListItem.icon && (
-                                      <linkListItem.icon className="text-accent-foreground size-7" />
+                                      <linkListItem.icon className="text-accent-foreground size-7 shrink-0" />
                                     )}
                                     <div className="flex flex-col justify-center gap-1">
                                       <h1 className="text-sm leading-none font-medium">{linkListItem.title}</h1>

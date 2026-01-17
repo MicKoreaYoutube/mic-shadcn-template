@@ -39,7 +39,7 @@ import {
 import { NavigationMenuStyle } from "@/components/ui/navigation-menu"
 
 import { ThemeToggle } from "@/components/theme-toggle"
-import { NavDropDown } from "@/components/dropdown"
+import { NavDropDown } from "@/components/nav-dropdown"
 
 import { useInView } from "react-intersection-observer"
 
@@ -59,7 +59,7 @@ export function NavSheet({ items, ...props }: NavSheetProps) {
   return (
     <>
       <Sheet {...props}>
-        <SheetTrigger asChild className="lg:hidden">
+        <SheetTrigger asChild>
           <Button variant="ghost" size="icon">
             <Menu />
           </Button>
@@ -112,10 +112,10 @@ export function NavSheet({ items, ...props }: NavSheetProps) {
                                     <li key={index}>
                                       <Link
                                         href={linkListItem.href}
-                                        className={cn(NavigationMenuStyle(), "flex flex-row items-center")}
+                                        className={cn(NavigationMenuStyle(), "flex flex-row items-center gap-2")}
                                       >
                                         {linkListItem.icon && (
-                                          <linkListItem.icon className="text-accent-foreground size-7" />
+                                          <linkListItem.icon className="text-accent-foreground size-7 shrink-0" />
                                         )}
                                         <div className="flex flex-col justify-center gap-1">
                                           <h1 className="text-sm leading-none font-medium">{linkListItem.title}</h1>
@@ -139,7 +139,7 @@ export function NavSheet({ items, ...props }: NavSheetProps) {
             )}
           </Accordion>
           <SheetFooter>
-            <div className="flex w-full justify-between md:justify-end">
+            <div className="flex w-full justify-between items-center md:justify-end">
               {!useMediaQuery({ minWidth: tailwindBreakPoints["md"] }) && <FamilyService />}
               {isLogin ? (
                 <NavDropDown label="My Account" items={navDropDownContent} />

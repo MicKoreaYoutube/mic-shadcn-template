@@ -11,7 +11,7 @@ import {
   BreadcrumbList,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
-import { ChapterSidebar } from "@/components/sidebar"
+import { ChapterSidebar } from "@/components/sidebar-comp"
 import { BreadcrumbByLink } from "@/components/breadcrumb"
 
 import { docsTree } from "@/config/site"

@@ -54,129 +54,164 @@ import {
   HardDrive,
   RefreshCcw,
   Eye,
-  Crown
+  Crown,
+  CreditCard,
+  Code,
+  Rocket,
+  Download,
+  Route,
+  Terminal
 } from "lucide-react"
 import Logo from "@/public/logo.svg"
 
 const headerNavContent: HeaderNavItem[] = [
   {
-    title: "Home",
+    title: "Product",
     mainLink: {
-      logo: Logo,
-      title: siteConfig.name,
-      description: siteConfig.description,
-      href: "/",
+      logo: Rocket,
+      title: "All-in-one Platform",
+      description: "Build, deploy, and manage your projects in one place.",
+      href: "/product",
     },
     linkList: [
       {
-        title: "11번 링크",
-        description: "11번 설명",
-        href: "/11",
-        icon: PcCase,
-      },
-      {
-        title: "12번 링크",
-        description: "12번 설명",
-        href: "/12",
-
-      },
-      {
-        title: "13번 링크",
-        description: "13번 설명",
-        href: "/13",
-      },
-      {
-        title: "14번 링크",
-        description: "14번 설명",
-        href: "/14",
-      },
-    ],
-  },
-  {
-    title: "dashboard",
-    linkList: [
-      {
-        title: "Dashboard Home",
-        description: "/dashboard",
+        icon: LayoutDashboard,
+        title: "Dashboard",
+        description: "Monitor and manage your projects.",
         href: "/dashboard",
       },
       {
-        title: "22번 링크",
-        description: "22번 설명",
-        href: "/22",
+        icon: Code,
+        title: "API & SDK",
+        description: "Integrate our platform into your workflow.",
+        href: "/docs/api",
       },
       {
-        title: "23번 링크",
-        description: "23번 설명",
-        href: "/23",
-      },
-      {
-        title: "24번 링크",
-        description: "24번 설명",
-        href: "/24",
-      },
-      {
-        title: "25번 링크",
-        description: "25번 설명",
-        href: "/25",
-      },
-      {
-        title: "26번 링크",
-        description: "26번 설명",
-        href: "/26",
-      },
-      {
-        title: "27번 링크",
-        description: "27번 설명",
-        href: "/27",
-      },
-      {
-        title: "28번 링크",
-        description: "28번 설명",
-        href: "/28",
-      },
-      {
-        title: "29번 링크",
-        description: "29번 설명",
-        href: "/29",
-      },
-      {
-        title: "211번 링크",
-        description: "211번 설명",
-        href: "/211",
-      },
-      {
-        title: "26번 링크",
-        description: "26번 설명",
-        href: "/26",
+        icon: Users,
+        title: "Collaboration",
+        description: "Invite teammates and manage permissions.",
+        href: "/product/collaboration",
       },
     ],
   },
   {
-    title: "test",
+    title: "Docs",
+    mainLink: {
+      logo: BookOpen,
+      title: "Documentation",
+      description: "Guides, references, and examples to get started fast.",
+      href: "/docs",
+    },
     linkList: [
       {
-        title: "test",
-        description: "/test",
-        href: "/test",
+        icon: FileText,
+        title: "Getting Started",
+        description: "Learn the basics and set up your first project.",
+        href: "/docs/getting-started",
       },
       {
-        title: "32번 링크",
-        description: "32번 설명",
-        href: "/32",
+        icon: Code,
+        title: "API Reference",
+        description: "Detailed information about every endpoint.",
+        href: "/docs/api",
       },
       {
-        title: "33번 링크",
-        description: "33번 설명",
-        href: "/33",
+        icon: Shield,
+        title: "Security",
+        description: "Understand how we keep your data safe.",
+        href: "/docs/security",
       },
     ],
   },
   {
-    title: "documenation",
-    href: "/docs",
+    title: "Pricing",
+    href: "/pricing",
   },
+  {
+    title: "Company",
+    linkList: [
+      {
+        icon: Users,
+        title: "About Us",
+        description: "Learn more about our mission and team.",
+        href: "/company/about",
+      },
+      {
+        icon: Rocket,
+        title: "Careers",
+        description: "Join us and help build the future.",
+        href: "/company/careers",
+      },
+      {
+        icon: Settings,
+        title: "Blog",
+        description: "Product updates and engineering stories.",
+        href: "/blog",
+      },
+    ],
+  },
+  {
+  title: "Resources",
+  linkList: [
+    {
+      title: "Getting Started",
+      description: "Project setup and basic usage",
+      href: "/docs/getting-started",
+      icon: BookOpen,
+    },
+    {
+      title: "Installation",
+      description: "Install via npm, pnpm, or bun",
+      href: "/docs/installation",
+      icon: Download,
+    },
+    {
+      title: "Configuration",
+      description: "Environment variables and options",
+      href: "/docs/configuration",
+      icon: Settings,
+    },
+    {
+      title: "Routing",
+      description: "App Router and navigation patterns",
+      href: "/docs/routing",
+      icon: Route,
+    },
+    {
+      title: "Authentication",
+      description: "Login, session, and permissions",
+      href: "/docs/auth",
+      icon: Shield,
+    },
+    {
+      title: "Database",
+      description: "Schema, queries, and migrations",
+      href: "/docs/database",
+      icon: Database,
+    },
+    {
+      title: "Deployment",
+      description: "Deploy to Vercel and others",
+      href: "/docs/deployment",
+      icon: Rocket,
+    },
+    {
+      title: "CLI",
+      description: "Command-line tools and scripts",
+      href: "/docs/cli",
+      icon: Terminal,
+    },
+    {
+      title: "FAQ",
+      description: "Common questions and solutions",
+      href: "/docs/faq",
+      icon: HelpCircle,
+    },
+  ],
+}
+
 ]
+
 
 const footerNavContent: FooterNavItem[] = [
   {
@@ -390,9 +425,9 @@ const navDropDownContent: dropDownItem[][] = [
   ],
 ]
 
-import { dashboardSidebarGroupItem } from "@/types/sidebar"
+import { sidebarContentItem } from "@/types/sidebar"
 
-const dashboardSidebarContent: dashboardSidebarGroupItem[] = [
+const dashboardSidebarContent: sidebarContentItem[] = [
   // =========================
   // OVERVIEW
   // =========================

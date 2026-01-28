@@ -1,35 +1,51 @@
 import fs from "fs"
 import path from "path"
 import { unified } from "unified"
+import remark from "remark"
+import html from "remark-html"
 import remarkParse from "remark-parse"
+import remarkRehype from "remark-rehype"
+import rehypeSanitize from "rehype-sanitize"
+import rehypeStringify from "rehype-stringify"
+import rehypeReact from "rehype-react"
 import { Root } from "mdast"
+import matter from "gray-matter"
+import dynamic from 'next/dynamic'
+import React from "react"
 
 import { tocListItem } from "@/types/docs"
 
 interface mdxUtilsProps {
-    rootPath: string
-    slugPath: string
+  mdxPath: string
 }
 
-export async function mdxUtils({ rootPath, slugPath }: mdxUtilsProps) {
-  const { default: Document, frontmatter } = await import(`@/docs/${slugPath}`)
+export async function mdxUtils({ mdxPath }: mdxUtilsProps) {
+  const fullPath = path.join(process.cwd(), "mdx", mdxPath)
+  const mdxContent = fs.readFileSync(fullPath, "utf8")
 
-  const fullPath = path.join(process.cwd(), rootPath, slugPath)
-  const fileContent = fs.readFileSync(fullPath, "utf8")
+  const matterResult = matter(mdxContent)
+  const result = await unified()
+  .use(remarkParse)
+  .use(remarkRehype)
+  .use(rehypeSanitize)
+  .use(rehypeReact, {
+    createElement: React.createElement,
+  })
+  .process(matterResult.content)
 
-  const tree = unified().use(remarkParse).parse(fileContent) as Root
+  const tree = unified().use(remarkParse).parse(mdxContent) as Root
 
-  const toc = tree.children.filter((node) => node.type == "heading")
+  const headings = tree.children.filter((node) => node.type == "heading")
 
-  const headings: tocListItem[] = []
+  const toc: tocListItem[] = []
 
-  toc.forEach((node) => {
-    if (node.children[0].type == "text") headings.push({ depth: node.depth, text: node.children[0].value })
+  headings.forEach((node) => {
+    if (node.children[0].type == "text") toc.push({ depth: node.depth, text: node.children[0].value })
   })
 
   return {
-    Document,
-    frontmatter,
-    toc: headings,
+    Document: result.result,
+    frontmatter: matterResult.data,
+    tree,
   }
 }

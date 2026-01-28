@@ -105,9 +105,9 @@ const headerNavContent: HeaderNavItem[] = [
     linkList: [
       {
         icon: FileText,
-        title: "Getting Started",
+        title: "Get Started",
         description: "Learn the basics and set up your first project.",
-        href: "/docs/getting-started",
+        href: "/docs/get-started",
       },
       {
         icon: Code,
@@ -637,43 +637,85 @@ const dashboardSidebarContent: sidebarContentItem[] = [
 ]
 
 import { docsItem } from "@/types/docs"
+import { sidebarGroupItem } from "@/types/sidebar"
 
 const docsTree: docsItem[] = [
   {
-    id: "introduction",
-    isDoc: true,
+    title: "Introduction",
+    subItemList: [
+      {
+        title: "What is This?",
+      },
+      {
+        title: "Get Started",
+      },
+      {
+        title: "Project Structure",
+      },
+    ],
   },
   {
-    id: "get-started",
-    isDoc: true,
-    subDocList: [
+    title: "Core Concepts",
+    isPage: false,
+    subItemList: [
       {
-        id: "시작하기-하위-페이지-1",
-        isDoc: true,
+        title: "Routing",
       },
       {
-        id: "시작하기-하위-페이지-2",
-        isDoc: true,
+        title: "Layouts",
       },
       {
-        id: "sub-folder",
-        subDocList: [
+        title: "Data Fetching",
+        isPage: false,
+        subItemList: [
           {
-            id: "sub-markdown",
-            isDoc: true,
+            title: "Server Components",
+          },
+          {
+            title: "Client Components",
+          },
+          {
+            title: "Caching Strategy",
           },
         ],
       },
     ],
   },
   {
-    id: "test",
-    subDocList: [
+    title: "UI Components",
+    isPage: false,
+    subItemList: [
       {
-        id: "test1",
-        isDoc: true,
+        title: "Sidebar",
+      },
+      {
+        title: "Navigation Menu",
+      },
+      {
+        title: "Breadcrumb",
+      },
+      {
+        title: "Scroll Area",
       },
     ],
+  },
+  {
+    title: "Advanced",
+    isPage: false,
+    subItemList: [
+      {
+        title: "Performance",
+      },
+      {
+        title: "Accessibility",
+      },
+      {
+        title: "Theming",
+      },
+    ],
+  },
+  {
+    title: "API Reference",
   },
 ]
 

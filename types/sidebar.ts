@@ -12,6 +12,7 @@ interface badgeInterface {
 interface sidebarGroupItem {
   icon?: LucideIcon | React.FC<React.SVGProps<SVGSVGElement>>
   title: string
+  isPage?: boolean
   href?: string
   badge?: badgeInterface
   dropdown?: dropDownItem[][]

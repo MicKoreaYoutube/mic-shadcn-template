@@ -39,7 +39,7 @@
     "**/*.js",
     "**/*.jsx",
     ".next/types/**/*.ts"
-  ],
+, "app/docs/get-started/page.mdx", "app/docs/get-started/시작하기-하위-페이지-1/page.mdx"  ],
   "exclude": [
     "node_modules"
   ]

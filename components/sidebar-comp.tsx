@@ -92,6 +92,7 @@ import React from "react"
 
 interface sidebarContentProps extends React.ComponentProps<typeof SidebarContent> {
   items?: sidebarContentItem[]
+  root?: string
   sidebarState: Pick<SidebarContextProps, "state" | "isMobile">
 }
 
@@ -101,6 +102,7 @@ interface sidebarFooterProps extends React.ComponentProps<typeof SidebarFooter> 
 
 interface sidebarTreeProps extends React.RefAttributes<HTMLDivElement> {
   items?: sidebarGroupItem[]
+  stem: string[]
   sidebarState: Pick<SidebarContextProps, "state" | "isMobile">
   className?: string
 }
@@ -110,17 +112,17 @@ interface docsSidebarInterface {
   items?: docsItem[]
 }
 
-interface chapterSidebarInterface {
-  items?: tocListItem[]
-}
+// interface chapterSidebarInterface {
+//   items?: tocListItem[]
+// }
 
-interface ChapterSidebarTargetLinkInterface {
-  to: string
-  className?: string
-  children?: string
-}
+// interface ChapterSidebarTargetLinkInterface {
+//   to: string
+//   className?: string
+//   children?: string
+// }
 
-function SidebarContentComp({ items, sidebarState, ...props }: sidebarContentProps) {
+function SidebarContentComp({ items, root, sidebarState, ...props }: sidebarContentProps) {
   return (
     <SidebarContent {...props}>
       {items?.map((item, index) => (
@@ -128,7 +130,7 @@ function SidebarContentComp({ items, sidebarState, ...props }: sidebarContentPro
           <SidebarGroupLabel>{item.title}</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              <SidebarTree items={item.subItemList} sidebarState={{ isMobile: sidebarState.isMobile, state: sidebarState.state }} />
+              <SidebarTree items={item.subItemList} stem={root ? [root] : []} sidebarState={{ isMobile: sidebarState.isMobile, state: sidebarState.state }} />
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
@@ -212,7 +214,7 @@ function SidebarContentComp({ items, sidebarState, ...props }: sidebarContentPro
 //   )
 // }
 
-function SidebarTree({ items, sidebarState, className, ...props }: sidebarTreeProps) {
+function SidebarTree({ items, stem, sidebarState, className, ...props }: sidebarTreeProps) {
   const hideAccordionIndicatorClass = "[&>svg[data-role=accordian-indicator]]:hidden"
 
   return (
@@ -237,7 +239,7 @@ function SidebarTree({ items, sidebarState, className, ...props }: sidebarTreePr
                     : "justify-center [&>div[data-role=sidebar-utilities]]:hidden",
                 )}
               >
-                <Link href={item.href ?? "#"} className="flex flex-row items-center justify-center gap-2">
+                <Link href={item.isPage !== false ? (item.href ?? `/${stem.join("/")}/${item.title.toLocaleLowerCase()}`) : "#"} className="flex flex-row items-center justify-center gap-2">
                   <Tooltip>
                     <TooltipTrigger asChild>
                       {item.icon && <item.icon className="size-5" />}
@@ -264,7 +266,7 @@ function SidebarTree({ items, sidebarState, className, ...props }: sidebarTreePr
             {item.subItemList ? (
               <AccordionContent className="pb-0">
                 <SidebarMenuSub className="mr-0 pr-0">
-                  <SidebarTree items={item.subItemList} sidebarState={{ isMobile: sidebarState.isMobile, state: sidebarState.state }} />
+                  <SidebarTree items={item.subItemList} stem={[...stem, item.title.toLocaleLowerCase()]} sidebarState={{ isMobile: sidebarState.isMobile, state: sidebarState.state }} />
                 </SidebarMenuSub>
               </AccordionContent>
             ) : null}

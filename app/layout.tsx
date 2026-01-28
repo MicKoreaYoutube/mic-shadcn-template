@@ -38,7 +38,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <div className="relative flex flex-col transition duration-700">
               <SiteHeader />
               {children}
-              <SiteFooter />
+              {/* <SiteFooter /> */}
             </div>
             <TailwindIndicator />
           </ThemeProvider>

@@ -1,35 +1,23 @@
-import { Menu } from "lucide-react"
+import { SidebarProvider, SidebarTrigger, SidebarInset } from "@/components/ui/sidebar"
+import { Separator } from "@/components/ui/separator"
+
+import { DocsSidebar } from "@/components/docs-sidebar"
+import { BreadcrumbByLink } from "@/components/breadcrumb"
 
 import { docsTree } from "@/config/site"
-
-// import { DocsSidebar } from "@/components/sidebar-comp"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { Button } from "@/components/ui/button"
-import { SidebarProvider, Sidebar } from "@/components/ui/sidebar"
 
 export default async function DocsLayout({ children }: { children: React.ReactNode }) {
   return (
     <SidebarProvider>
-      <div className="flex size-full flex-col lg:flex-row">
-        <div className="sticky top-16 hidden h-dvh lg:inline">
-          <Sidebar className="overflow-hidden">
-            {/* <DocsSidebar items={docsTree} rootPath="/docs" /> */}
-          </Sidebar>
+      <DocsSidebar className="top-16 md:h-[calc(100dvh-4rem)] font-TheJamsil5Bold" items={docsTree} />
+      <SidebarInset>
+        <div className="sticky top-16 border-b px-3 py-3 flex items-center gap-3 bg-accent/50 backdrop-blur-sm">
+          <SidebarTrigger />
+          <Separator orientation="vertical"/>
+          <BreadcrumbByLink />
         </div>
-        <div className="inline px-6 pt-10 lg:hidden">
-          <Sheet>
-            <SheetTrigger asChild>
-              <Button variant="secondary" size="icon">
-                <Menu />
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="left">
-              {/* <DocsSidebar items={docsTree} rootPath="/docs" /> */}
-            </SheetContent>
-          </Sheet>
-        </div>
-        <main className="grow">{children}</main>
-      </div>
+        <div className="px-10 py-6">{children}</div>
+      </SidebarInset>
     </SidebarProvider>
   )
 }

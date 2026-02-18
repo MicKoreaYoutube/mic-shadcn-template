@@ -28,8 +28,10 @@ function BreadcrumbByLink() {
           <React.Fragment key={index}>
             {index != 0 && <BreadcrumbSeparator />}
             <BreadcrumbItem>
-              <BreadcrumbLink href={`/${slug.slice(0, index + 1).join("/")}`}>
-                {toTitleCase(decodeURI(item).replaceAll("-", " "))}
+              <BreadcrumbLink asChild>
+                <Link href={`/${slug.slice(0, index + 1).join("/")}`}>
+                  {toTitleCase(decodeURI(item).replaceAll("-", " "))}
+                </Link>
               </BreadcrumbLink>
             </BreadcrumbItem>
           </React.Fragment>

@@ -6,7 +6,6 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     h1: ({ node, children, ...props }) => (
       <h1
         className="mb-4 mt-9 border-b pb-3 font-KBODiaGothic_bold text-4xl font-extrabold leading-tight tracking-tighter md:text-5xl"
-        name={"heading-" + children.replaceAll(" ", "-")}
         {...props}
       >
         {children}
@@ -15,7 +14,6 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     h2: ({ node, children, ...props }) => (
       <h2
         className="mb-3 mt-8 border-b pb-2 font-KBODiaGothic_bold text-3xl font-extrabold leading-tight tracking-tighter md:text-4xl"
-        name={"heading-" + children.replaceAll(" ", "-")}
         {...props}
       >
         {children}
@@ -24,7 +22,6 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     h3: ({ node, children, ...props }) => (
       <h3
         className="font-KBODiaGothic_bold text-2xl font-extrabold leading-tight tracking-tighter md:text-3xl"
-        name={"heading-" + children.replaceAll(" ", "-")}
         {...props}
       >
         {children}
@@ -33,7 +30,6 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     h4: ({ node, children, ...props }) => (
       <h4
         className="font-KBODiaGothic_bold text-xl font-extrabold leading-tight tracking-tighter md:text-2xl"
-        name={"heading-" + children.replaceAll(" ", "-")}
         {...props}
       >
         {children}
@@ -42,7 +38,6 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     h5: ({ node, children, ...props }) => (
       <h4
         className="font-KBODiaGothic_bold text-lg font-extrabold leading-tight tracking-tighter md:text-xl"
-        name={"heading-" + children.replaceAll(" ", "-")}
         {...props}
       >
         {children}
@@ -51,7 +46,6 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     h6: ({ node, children, ...props }) => (
       <h4
         className="font-KBODiaGothic_bold text-base font-extrabold leading-tight tracking-tighter md:text-lg"
-        name={"heading-" + children.replaceAll(" ", "-")}
         {...props}
       >
         {children}
